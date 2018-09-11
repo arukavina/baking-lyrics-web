@@ -1,0 +1,58 @@
+.body {
+  width: 100%;
+  background: black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.background {
+  background: url('../../static/images/background.png')
+}
+
+.contParraf {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  color: white;
+  width: 350px;
+}
+
+.parraf {
+  padding: 0 10%;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.title {
+  color: white;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 50px;
+}
+
+.button { 
+  margin-top: 30px;
+  background: grey;
+  padding: .5rem 1.2rem;
+  border-radius: 6px; 
+  font-size: 20px;
+}
+
+.button:hover {
+  background: rgb(201, 198, 198)
+}
+
+.face{
+  border-radius: 8px;
+}
+
+.face:hover {
+  opacity: 0.7;
+}
+
+.imgFace {
+  margin-top: 10px;
+  width: 90px;
+  height: 40px;
+}
