@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import './GeneratedSong.css'
 import face from '../../static/images/face.png'
@@ -40,7 +40,7 @@ export default () => {
         </div>
       </div>
       <button className='button'>Copy</button>
-      <a href='' className='face' ><img className='imgFace' src={face}/></a>
+      <a href='' className='face' ><img className='imgFace' src={face} alt="fb logo" /></a>
     </div>
   )
 }

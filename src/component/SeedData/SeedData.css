@@ -9,14 +9,6 @@
   flex-direction: column;
 }
 
-.logoRed {
-  width: 20%;
-  max-width: 40%;
-  padding: 10px;
-  min-width: 20px;
-  height: 10%;
-}
-
 .buttonsContainer {
   padding: 40px;
   vertical-align: center;

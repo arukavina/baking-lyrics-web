@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Montserrat Regular';
+  src: local('Montserrat Regular'), url('./static/fonts/Montserrat/Montserrat-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat Regular';
+  src: local('Montserrat Regular'), url('./static/fonts/Montserrat/Montserrat-ExtraBold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url('./static/fonts/Roboto/Roboto-Light.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;

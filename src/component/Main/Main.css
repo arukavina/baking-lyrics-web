@@ -1,35 +1,27 @@
-.backgoundTwo {
+.container {
   background: #000 url("../../static/images/background.png") no-repeat center top;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  margin: 0;
   overflow-x: hidden;
   width: 100%;
   height: 100vh;
   display: flex;
   flex-flow: column;
-}
-
-.header {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .logoRed {
-  width: 20%;
-  max-width: 40%;
-  padding: 10px;
-  min-width: 20px;
-  height: 10%;
+  width: 300px;
+  height: 150px;
 }
+
 .buttonsContainer {
   padding: 40px;
   vertical-align: center;
 }
 
-.main {
+.homeTitle {
   width: 100%;
   height: 50vh;
   padding-left: 0;
@@ -38,30 +30,69 @@
   align-items: center;
 }
 
-.main > p {
-  min-width: 600px;
-  color: #999;
-  font-size: 30px;
-  padding-top: 100px;
-  margin: 0;
+.homeTitle > p {
+  min-width: 50vw;
+  text-align: center;
   padding-bottom: 40px;
+  color: #FFFFFF;
+  font-family: 'Montserrat Regular';
+	font-size: 48px;
+	letter-spacing: 0.9px;
+	line-height: 58px;
 }
 
-.main > p > span {
-color: #fff;
+.homeTitle > p > span {
+  color: #fff;
+  font-weight: bold;
 }
 
-.searchButton {
+.tryButton {
   outline: none;
   border: none;
   color: #fff;
   background-color: #E32C3E;
-  padding: 3px;
-  width: 160px;
-  height: 50px;
-  min-height: 30px;
+  padding: 1.5rem 3rem;
+  text-decoration: none;
 }
 
-.searchButton:hover {
+.tryButton:hover {
   background-color: #800;
+}
+
+.mainFooter {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.mainFooter > span {
+  margin: 0 2rem;
+  color: #fff;
+  font-family: 'Roboto';	
+  font-size: 24px;	
+  font-weight: 300;	
+  letter-spacing: 0.68px;	
+  line-height: 28px;
+}
+
+
+@media (max-width: 500px) {
+  .logoRed {
+    width: 150px;
+    height: auto;
+  }
+
+  .tryButton {
+    padding: 1rem 2rem;
+  }
+
+  .homeTitle > p {
+    font-size: 16px;
+    letter-spacing: 0.9px;
+    line-height: 29px;
+  }
+
+  .mainFooter > span {
+    font-size: 16px;
+  }
 }

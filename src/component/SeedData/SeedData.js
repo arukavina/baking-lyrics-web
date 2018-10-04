@@ -7,11 +7,11 @@ export default ({ handleSubmit }) => {
   return(
     <div className="backgound">
       <div className="header">
-        <img className="logoRed" src={logoRed} />
+        <img className="logoRed" src={logoRed} alt="baking logo" />
         <div className="buttonsContainer" />
       </div>
       <form className="main" onSubmit={handleSubmit}>
-        <img className='led' src={logoled}/>
+        <img className='led' src={logoled} alt="band logo"/>
         <div className='contArea'>
           <textarea className='textArea' placeholder='Seed'/>
           <div className='titleSection'>

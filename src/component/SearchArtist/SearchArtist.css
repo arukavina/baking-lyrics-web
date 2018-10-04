@@ -1,0 +1,35 @@
+.searchArtistContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  height: 100vh;
+}
+
+.logoRed {
+  width: 300px;
+  height: 150px;
+}
+
+.searchBar {
+  width: 55%;
+  background-color: #4D4D4D;
+  padding: .5rem;
+}
+
+.searchBar > input {
+  width: 90%;
+  background: url(../../static/images/find.png) no-repeat;
+  background-position: left;
+  background-size: 32px 32px;
+  background-color: #4D4D4D;
+  border: 0;
+  padding: .3rem;
+  padding-left: 40px;
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.45px;
+  line-height: 28px;
+  outline: none;
+}

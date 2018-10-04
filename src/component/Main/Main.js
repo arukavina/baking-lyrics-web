@@ -1,18 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import logoRed from '../../static/images/logoRed.png'
-import imageDragons from '../../static/images/imageDragonsLogo.png'
 import './Main.css'
 
 export default ({ handleSubmit }) => {
   return(
-    <div className="backgoundTwo">
-      <div className="header">
-        <img className="logoRed" src={logoRed} />
-      </div>
-      <form onSubmit={handleSubmit} className="main">
-        <p>CREATE <span>RANDOM</span> LYRICS WITH JUST A CLICK!</p>
-        <button className="searchButton" type="submit" name="TRY" >TRY IT OUT</button>
+    <div className="container">
+      <img className="logoRed" src={logoRed} alt="baking logo" />
+      <form onSubmit={handleSubmit} className="homeTitle">
+        <p>CREATE <span>RANDOM LYRICS</span> WITH JUST A CLICK!</p>
+        <Link className="tryButton" to="artist" >TRY IT OUT</Link>
       </form>
+      <footer className="mainFooter">
+        <span>Open code in GitHub</span>
+        <span>About Us</span>
+      </footer>
     </div>
   );
 }
