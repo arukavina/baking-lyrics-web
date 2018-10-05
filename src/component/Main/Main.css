@@ -8,12 +8,14 @@
   height: 100vh;
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .logoRed {
-  width: 300px;
-  height: 150px;
+  margin-top: 50px;
+  margin-left: 40px;
+  width: 207px;
+  height: 111px;
 }
 
 .buttonsContainer {
@@ -23,20 +25,20 @@
 
 .homeTitle {
   width: 100%;
-  height: 50vh;
+  height: 35vh;
   padding-left: 0;
   display: flex;
   flex-flow: column;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .homeTitle > p {
   min-width: 50vw;
   text-align: center;
-  padding-bottom: 40px;
   color: #FFFFFF;
   font-family: 'Montserrat Regular';
-	font-size: 48px;
+	font-size: 45px;
 	letter-spacing: 0.9px;
 	line-height: 58px;
 }
@@ -50,8 +52,10 @@
   outline: none;
   border: none;
   color: #fff;
+  margin-top: 5px;
+  font-size: 20px;
   background-color: #E32C3E;
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 4rem;
   text-decoration: none;
 }
 
@@ -67,6 +71,7 @@
 
 .mainFooter > span {
   margin: 0 2rem;
+  opacity: 0.8;
   color: #fff;
   font-family: 'Roboto';	
   font-size: 24px;	
@@ -77,13 +82,20 @@
 
 
 @media (max-width: 500px) {
+  .container {
+    align-items: center;
+  }
+  
   .logoRed {
+    margin: 2rem 0rem 0rem 0rem;
     width: 150px;
     height: auto;
   }
 
   .tryButton {
-    padding: 1rem 2rem;
+    margin-top: 10px;
+    font-size: 15px;
+    padding: 1rem 2.5rem;
   }
 
   .homeTitle > p {

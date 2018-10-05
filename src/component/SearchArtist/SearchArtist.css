@@ -1,35 +1,179 @@
-.searchArtistContainer {
+.searchArtistComponentcontainer {
   display: flex;
   flex-direction: column;
   background-color: black;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+  justify-content: flex-start;
 }
 
-.logoRed {
-  width: 300px;
-  height: 150px;
+.searchArtistContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.searchArtist {
+  width: 90%;
+  max-width: 900px;
 }
 
 .searchBar {
-  width: 55%;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
   background-color: #4D4D4D;
-  padding: .5rem;
+  padding: .7rem 0;
+}
+
+.showingResultsContainer {
+  display: flex;
+  min-height: 80px;
+  max-width: 90%;
+  align-items: flex-end;
+}
+
+.showingResults {
+  margin-left: 15px;
+  color: #FFFFFF;
+  opacity: 0.8;
+  font-size: 20px;
+}
+
+.serchImage {
+  margin-left: 15px;
+  width: 32px;
+  height: 32px;
 }
 
 .searchBar > input {
   width: 90%;
-  background: url(../../static/images/find.png) no-repeat;
-  background-position: left;
-  background-size: 32px 32px;
   background-color: #4D4D4D;
   border: 0;
-  padding: .3rem;
-  padding-left: 40px;
+  padding-left: 15px;
   color: #FFFFFF;
   font-family: Roboto;
-  font-size: 24px;
+  opacity: 0.8;
+  font-size: 20px;
   font-weight: 300;
   letter-spacing: 0.45px;
   line-height: 28px;
   outline: none;
+}
+
+.listArtistContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+.artistContainer {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 225px;
+  height: 225px;
+}
+
+.artistContainer:hover{
+  cursor: pointer;
+ }
+
+.artistName {
+  margin: 15px;
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 20px;
+  z-index: 2;
+}
+
+.artistLogo {
+  opacity: 0.6;
+  position: absolute;
+  width: 225px;
+  height: 225px;
+}
+
+.notFoundArtistAlertContainer{
+  margin-top: 170px;
+}
+
+.notFoundArtistAlert {
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 40px;
+}
+
+.notFoundArtistAlertTitle {
+  font-weight: bold;
+}
+
+@media (max-width: 500px) {
+
+  .searchArtistComponentcontainer{
+    align-items: center;
+  }
+
+  .searchArtistContainer {
+    align-items: center;
+  }
+
+  .searchBar > input {
+    font-size: 14px;
+    padding-left: 10px;
+  }
+  
+  .logoRed {
+    margin: 2rem 0rem 0rem 0rem;
+    width: 150px;
+    height: auto;
+  }
+
+  .serchImage {
+    width: 24px;
+    height: 24px;
+  }
+
+  .artistContainer {
+    width: 150px;
+    height: 150px;
+  }
+
+  .artistName {
+    font-size: 16px;
+  }
+
+  .artistLogo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .showingResultsContainer {
+    min-height: 60px;
+  }
+
+  .showingResults {
+    font-size: 14px;
+  }
+
+  .notFoundArtistAlertContainer{
+    margin-top: 40px;
+  }
+
+  .notFoundArtistAlert {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 20px;
+  }
+  
+  .notFoundArtistAlertTitle {
+    font-weight: bold;
+  }
+
 }

@@ -1,26 +1,35 @@
 import React from 'react'
-import logoled from '../../static/images/logo-led.png'
 import logoRed from '../../static/images/logoRed.png'
 import './SeedData.css'
 
 export default ({ handleSubmit }) => {
   return(
-    <div className="backgound">
+    <div className="SeedDataContainer">
       <div className="header">
         <img className="logoRed" src={logoRed} alt="baking logo" />
-        <div className="buttonsContainer" />
       </div>
-      <form className="main" onSubmit={handleSubmit}>
-        <img className='led' src={logoled} alt="band logo"/>
-        <div className='contArea'>
-          <textarea className='textArea' placeholder='Seed'/>
-          <div className='titleSection'>
-            <input className='titleInp' placeholder='Title' type='text' />
-            <label><input className='checkbox' type='checkbox' />Generate Automatically</label>
+      <div className="formContainer">
+        <div className="form">
+          <div className="headerContainer">
+            <spam className="headerSubTitle">
+              CREATE RANDOM LYRICS LIKE
+            </spam>
+            <spam className="headerTitle">
+              AC DC
+            </spam>
           </div>
-            <button type="submit" className='generateButton'>GENERATE</button>
+          <div className="inputContainer">
+            <input className='input' placeholder='Seed'/>
+            <input className='input' placeholder='Title' type='text' />
+          </div>
+          <spam className="form"></spam>
+          <form className="main" onSubmit={handleSubmit}>
+            <div className='contArea'>
+                <button type="submit" className='generateButton'>GENERATE</button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

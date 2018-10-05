@@ -16,8 +16,20 @@
   src: local('Roboto'), url('./static/fonts/Roboto/Roboto-Light.ttf');
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url('./static/fonts/Roboto/Roboto-Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Mattilda';
+  src: local('Mattilda'), url('./static/fonts/Matilda-Font/Matilda-Font/Matilda.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: black;
 }
