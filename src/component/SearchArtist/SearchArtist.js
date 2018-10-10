@@ -10,7 +10,7 @@ import './SearchArtist.css'
 const renderField = (field) => (
   <div className="searchBar">
     <img className="serchImage" src={serchImage} alt="Search" />
-    <input {...field.input} maxLength={40} type="text" placeholder="Search for a band"/>
+    <input {...field.input} maxLength={40} type="text" placeholder={field.placeholder}/>
   </div>
 )
 
@@ -166,7 +166,7 @@ export default class extends Component {
 
   state = {
     artists: []
-  }  
+  }
 
   listArtists = () => {
     const { artists } = this.state
@@ -185,31 +185,42 @@ export default class extends Component {
     changeSearch(name)
     history.push('start-text')
   }
-    
+
   render () {
     const { search } = this.props
     const { artists } = this.state
+    console.log('this.props', this.props)
     return(
       <div className="searchArtistComponentcontainer">
         <img className="logoRed" src={logoRed} alt="baking logo" />
         <div className="searchArtistContainer">
           <div className="searchArtist">
             <form>
-              <Field component={renderField} name="search"/>
+              <Field component={renderField} placeholder="Searc for a band" name="search"/>
             </form>
             <div className="showingResultsContainer">
               {
                 (search && artists.length !== 0) &&
-                <p className="showingResults">Showing results for "<span>{search}</span>"</p>
+                <p className="showingResults">
+                  {'Showing results for "'}
+                  <span>
+                    {search}
+                  </span>
+                  {'"'}
+                </p>
               }
             </div>
             <div className="listArtistContainer">
               {
                 artists.length !== 0
-                ? artists.map((item, index) => {
+                ?
+                  artists.map((item, index) => {
                     return (
                       (index <= 7) &&
-                        <div onClick={() => this.onClickHandler(item.name)} key={index} className="artistContainer">
+                        <div
+                          onClick={() => this.onClickHandler(item.name)}
+                          key={index} className="artistContainer"
+                        >
                           <img className="artistLogo" src={fooImage} alt="foo logo" />
                           <span className="artistName">
                             {item.name}
@@ -217,9 +228,10 @@ export default class extends Component {
                         </div>
                     )
                   })
-                : <div className="notFoundArtistAlertContainer">
+                :
+                  <div className="notFoundArtistAlertContainer">
                     <span className="notFoundArtistAlert">
-                      Oops! We found no results for " 
+                      {'Oops! We found no results for "'}
                     </span>
                     <span className="notFoundArtistAlertTitle notFoundArtistAlert">
                       {search}
@@ -231,7 +243,7 @@ export default class extends Component {
               }
             </div>
           </div>
-        </div> 
+        </div>
       </div>
     )
   }

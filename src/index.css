@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: 'Mattilda';
-  src: local('Mattilda'), url('./static/fonts/Matilda-Font/Matilda-Font/Matilda.ttf');
+  src: local('Mattilda'), url('./static/fonts/Mattilda/Mattilda.otf');
 }
 
 body {
