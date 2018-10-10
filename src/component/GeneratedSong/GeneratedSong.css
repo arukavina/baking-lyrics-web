@@ -1,58 +1,127 @@
-.body {
+.generatedSongContainer {
+  background: #000 url("../../static/images/acdc2.jpg") no-repeat center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   width: 100%;
-  background: black;
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.generatedSongHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bandNameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px 40px 0;
+}
+
+.bandNameTitle {
+  color: #FFFFFF;
+  font-family: Montserrat Regular;
+  font-size: 30px;
+  letter-spacing: 0.68px;
+  line-height: 44px;
+}
+
+.montserratTextBold {
+  font-weight: bold;
+  font-size: 45px;
+}
+
+.textSongFlexContainer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.textSongContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+}
+
+.textSongTitle {
+  color: #FFFFFF;
+  font-family: Mattilda;
+  font-size: 55px;
+  letter-spacing: 1.2px;
+  line-height: 78px;
+}
+
+.textSong {
+  white-space: pre-wrap;
+  color: #FFFFFF;
+  font-family: Montserrat Regular;
+  font-size: 25px;
+  letter-spacing: 0.56px;
+  line-height: 37px;
+  text-align: center;
+}
+
+.generatedSongFooterContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.background {
-  background: url('../../static/images/background.png')
-}
-
-.contParraf {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  color: white;
-  width: 350px;
-}
-
-.parraf {
-  padding: 0 10%;
-  font-family: 'Times New Roman', Times, serif;
-}
-
-.title {
-  color: white;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 50px;
-}
-
-.button { 
+  width: 100%;
   margin-top: 30px;
-  background: grey;
-  padding: .5rem 1.2rem;
-  border-radius: 6px; 
-  font-size: 20px;
 }
 
-.button:hover {
-  background: rgb(201, 198, 198)
+.generatedSongFooterTitle {
+  color: #FFFFFF;
+  font-family: Montserrat Regular;
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: 0.9px;
+  line-height: 58px;
+  margin-bottom: 30px;
 }
 
-.face{
-  border-radius: 8px;
+.socialContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  margin-bottom: 50px;
 }
 
-.face:hover {
-  opacity: 0.7;
+.socialIcon {
+  height: 48px;
+  width: 48px;
 }
 
-.imgFace {
-  margin-top: 10px;
-  width: 90px;
-  height: 40px;
+@media (max-width: 500px) {
+
+  .generatedSongHeader {
+    flex-direction: column;
+  }
+
+  .textSongTitle {
+    font-size: 30px;
+    letter-spacing: 0;
+  }
+
+  .textSong {
+    font-size: 15px;
+  }
+
+  .montserratTextBold {
+    font-size: 35px;
+  }
+
 }
