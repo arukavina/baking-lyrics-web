@@ -79,6 +79,10 @@
   line-height: 28px;
 }
 
+.mainButton {
+  cursor: pointer
+}
+
 @media (max-width: 500px) {
 
   .container{
