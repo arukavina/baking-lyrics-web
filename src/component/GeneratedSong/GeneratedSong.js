@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import face from '../../static/images/face.png'
 import logoRed from '../../static/images/logoRed.png'
 import instagram from '../../static/images/instagram.png'
 import facebook from '../../static/images/facebook.png'

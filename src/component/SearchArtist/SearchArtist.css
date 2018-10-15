@@ -82,6 +82,7 @@
 
 .artistContainer:hover{
   cursor: pointer;
+  opacity: .8;
  }
 
 .artistName {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logoRed from '../../static/images/logoRed.png'
 import { Field } from "redux-form"
 import { Link } from 'react-router-dom'
-import loading from '../../static/images/loading.png'
+// import loading from '../../static/images/loading.png'
 import './SeedData.css'
 
 export default class extends Component {
@@ -23,6 +23,7 @@ export default class extends Component {
     )
   }
   render() {
+    const { search } = this.props
     return (
       <div className="SeedDataContainer">
         <div className="header">
@@ -35,7 +36,7 @@ export default class extends Component {
                 {'CREATE RANDOM LYRICS LIKE'}
               </span>
               <span className="headerTitle">
-                {'AC DC'}
+                {search}
               </span>
             </div>
             <div className="inputContainer">
