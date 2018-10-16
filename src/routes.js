@@ -5,6 +5,7 @@ import App from './App'
 import Main from './component/Main'
 import SeedData from './component/SeedData'
 import GeneratedSong from './component/GeneratedSong'
+import AboutUs from './component/AboutUs'
 import SearchArtist from './component/SearchArtist'
 
 const Routes = () => (
@@ -14,7 +15,7 @@ const Routes = () => (
       <Route exact path="/artist" component={SearchArtist} />
       <Route exact path="/start-text" component={SeedData} />
       <Route exact path="/song" component={GeneratedSong} />
-
+      <Route exact path="/about-us" component={AboutUs} />
       {/* 404 */}
       {/* <Route component={NotFound} /> */}
     </Switch>

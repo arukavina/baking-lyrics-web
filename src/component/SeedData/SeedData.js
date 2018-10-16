@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import logoRed from '../../static/images/logoRed.png'
 import { Field } from "redux-form"
 import { Link } from 'react-router-dom'
-// import loading from '../../static/images/loading.png'
 import './SeedData.css'
 
 export default class extends Component {
@@ -44,14 +43,14 @@ export default class extends Component {
                 component={this.renderField}
                 title="Start song with"
                 name="fistThreeWords"
-                placeholder="Tipe the first three words of your lyrics"
+                placeholder="Type the first three words of your lyrics"
               />
             </div>
             <div className="inputContainer">
               <Field
                 component={this.renderField}
                 title="Title"
-                placeholder="Tipe the title of the song"
+                placeholder="Type the title of the song"
                 name="songTitle" />
             </div>
           </div>

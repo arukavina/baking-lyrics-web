@@ -1,0 +1,93 @@
+.aboutUsSectionData {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  min-height: 540px;
+  margin: 0 100px;
+}
+
+.aboutUsSectionImage {
+  border-radius: 100px;
+  height: 200px;
+  width: 200px;
+}
+
+.aboutUsSectionName {
+  margin-top: 20px;
+  color: #FFFFFF;
+  font-family: Montserrat Regular;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: 0.68px;
+  line-height: 44px;
+  width: 100%;
+  text-align: center;
+}
+
+.aboutUsSectionDescription {
+  white-space: pre-wrap;
+  margin-bottom: 0;
+  padding: 0;
+  margin-top: 20px;
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 21px;
+  letter-spacing: 0.45px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.aboutUsSectionSocialContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+}
+
+.infoBoxLogoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  /* height: 60px; */
+}
+
+.aboutUsSocialLogo {
+  height: 29px;
+  width: 30px;
+}
+
+.aboutUsSocialName {
+  margin-top: 5px;
+  margin-left: 25px;
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 21px;
+  letter-spacing: 0.45px;
+  line-height: 28px;
+}
+
+@media (max-width: 1200px) {
+
+  .aboutUsSectionData {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    min-height: 540px;
+    margin: 0 20px 20px;
+  }
+
+}
+
+@media (max-width: 940px) {
+
+  .aboutUsSectionDescription{
+    font-size: 15px;
+  }
+
+}
