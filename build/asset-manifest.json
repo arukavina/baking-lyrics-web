@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.11467b0a.css",
-  "main.css.map": "static/css/main.11467b0a.css.map",
-  "main.js": "static/js/main.b00e70e8.js",
-  "main.js.map": "static/js/main.b00e70e8.js.map",
+  "main.css": "static/css/main.5b1b35f7.css",
+  "main.css.map": "static/css/main.5b1b35f7.css.map",
+  "main.js": "static/js/main.0a0ba8a7.js",
+  "main.js.map": "static/js/main.0a0ba8a7.js.map",
   "static/media/Mattilda.otf": "static/media/Mattilda.b16023fb.otf",
   "static/media/Montserrat-ExtraBold.ttf": "static/media/Montserrat-ExtraBold.9bc77c3b.ttf",
   "static/media/Montserrat-Regular.ttf": "static/media/Montserrat-Regular.9c460951.ttf",
@@ -10,10 +10,12 @@
   "static/media/Roboto-Light.ttf": "static/media/Roboto-Light.fc84e998.ttf",
   "static/media/acdc.jpg": "static/media/acdc.7d7f8db9.jpg",
   "static/media/acdc2.jpg": "static/media/acdc2.161863ea.jpg",
+  "static/media/adrianaMaulini.png": "static/media/adrianaMaulini.e157256d.png",
+  "static/media/andreiRukavina.png": "static/media/andreiRukavina.3fd2e367.png",
   "static/media/background.png": "static/media/background.92bf1336.png",
-  "static/media/face.png": "static/media/face.9df4b53a.png",
   "static/media/find.png": "static/media/find.3347515a.png",
-  "static/media/foo.png": "static/media/foo.17ac6e9a.png",
-  "static/media/loading.png": "static/media/loading.b91209ee.png",
-  "static/media/logoRed.png": "static/media/logoRed.83a0e132.png"
+  "static/media/logoRed.png": "static/media/logoRed.83a0e132.png",
+  "static/media/notImg.png": "static/media/notImg.30336981.png",
+  "static/media/sergioBanchero.png": "static/media/sergioBanchero.35d8052f.png",
+  "static/media/solanaSierra.png": "static/media/solanaSierra.d043c2b8.png"
 }
