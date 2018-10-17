@@ -6,18 +6,14 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { getArtists } from "../../redux/modules/artists/actions";
-// import getColumnsFromData from "../../redux/selectors/getColumns";
 import SearchArtist from './SearchArtist'
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('wizard')
-  // const artistsWithImg = getColumnsFromData(state)
-  // console.log(artistsWithImg);
   
   return{
     search: selector(state, 'search'),
     artists: state.artists.list,
-    // artistsWithImg,
   }
 }
 
