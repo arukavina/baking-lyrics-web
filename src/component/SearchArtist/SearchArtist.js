@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Field } from "redux-form"
+import debounce from "lodash/debounce"
 import logoRed from '../../static/images/logoRed.png'
 import serchImage from '../../static/images/find.png'
 import './SearchArtist.css'
@@ -20,6 +21,7 @@ export default class extends Component {
     getArtists()
     changeSearch('')
   }
+  debouncedOnChange = debounce(this.onChange, 1000).bind(this);
 
   listArtists = () => {
     const { artists } = this.props
@@ -28,6 +30,11 @@ export default class extends Component {
         {art.name}
       </span>
     ))
+  }
+
+  onChange(event, newValue, previousValue) {
+    const { getArtists } = this.props;
+    event.target.value.length > 2 ? getArtists(event.target.value) : getArtists()
   }
 
   onClickHandler = (name) => {
@@ -48,7 +55,12 @@ export default class extends Component {
         <div className="searchArtistContainer">
           <div className="searchArtist">
             <form>
-              <Field component={renderField} placeholder="Search for a band" name="search"/>
+              <Field 
+                component={renderField} 
+                onChange={this.debouncedOnChange}
+                placeholder="Search for a band" 
+                name="search"
+              />
             </form>
             <div className="showingResultsContainer">
               {
@@ -65,8 +77,7 @@ export default class extends Component {
             <div className="listArtistContainer">
               {
                 artists.length !== 0
-                ?
-                artists.map((item, index) => {
+                ? artists.map((item, index) => {
                   
                     return (
                       (index <= 7) &&

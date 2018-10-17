@@ -5,8 +5,7 @@ import {
   GET_ARTISTS_REJECTED,
   SAVE_COVER_IMAGE,
 } from './const'
-// Get
-import { getArtistsDataMock } from '../../../helpers/api/artists'
+import { getArtistsData } from '../../../helpers/api/artists'
 // import {
 //   getAppInstanceData,
 //   putAppInstanceItem,
@@ -15,13 +14,14 @@ import { getArtistsDataMock } from '../../../helpers/api/artists'
 // } from '../../../helpers/api/appinstance'
 
 
-export const getArtists = () => (dispatch) => {
+export const getArtists = (filter = '') => (dispatch) => {
   dispatch({
     type: GET_ARTISTS_PENDING
   })
-  return getArtistsDataMock()
+  return getArtistsData(filter)
     .then((artists) => {
-      artists.data.forEach(item => {
+      const artistList = filter ? artists.data : artists.data.items
+      artistList.forEach(item => {
         const name = item.name.replace(' ', '%20')
         return fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&origin=*&format=json&piprop=original&titles=${name}`, { "Content-Type": "application/json; charset=UTF-8" })
           .then(res => res.json())
@@ -40,14 +40,14 @@ export const getArtists = () => (dispatch) => {
         })
       dispatch({
         type: GET_ARTISTS_FULFILLED,
-        payload: artists.data
+        payload: artistList
       })
     })
     .catch((e) => {
       dispatch({
         type: GET_ARTISTS_REJECTED,
         payload: {
-          errorMsg: `Failed trying to get artists ${e.error}`
+          errorMsg: `Failed trying to get artists ${e}`
         }
       })
     })

@@ -27,7 +27,6 @@ export default (state = initialState, action) => {
       const itemIndex = state.list.findIndex(x => x.name === action.payload.name)
       const newList = [...state.list]
       newList[itemIndex] = action.payload
-      console.log('savecover', action, itemIndex);
       return {
         ...state,
         list: [
