@@ -14,7 +14,7 @@ const Routes = () => (
       <Route exact path="/" component={Main} />
       <Route exact path="/artist" component={SearchArtist} />
       <Route exact path="/start-text" component={SeedData} />
-      <Route exact path="/song" component={GeneratedSong} />
+      <Route exact path="/song/:songId" component={GeneratedSong} />
       <Route exact path="/about-us" component={AboutUs} />
       {/* 404 */}
       {/* <Route component={NotFound} /> */}

@@ -14,12 +14,16 @@ const mapStateToProps = (state) => {
   return{
     search: selector(state, 'search'),
     artists: state.artists.list,
+    isFetching: state.artists.isFetching
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   getArtists: bindActionCreators(getArtists, dispatch),
-  changeSearch: value => dispatch(change('wizard', 'search', value)),
+  changeSearch: (value, artistId) => {
+    dispatch(change('wizard', 'search', value))
+    dispatch(change('wizard', 'artistId', artistId))
+  }
 })
 
 const formConfig = {

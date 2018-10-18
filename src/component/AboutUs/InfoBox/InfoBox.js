@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './InfoBox.css'
 import logoGithub from '../../../static/images/github-logo.png'
-import logoTwitter from '../../../static/images/twitter2.png'
+import logoTwitter from '../../../static/images/twitter.png'
 import logoLinkedin from '../../../static/images/linkedin-logo.png'
-import instagram2 from '../../../static/images/instagram2.png'
+import logoInstagram from '../../../static/images/instagram.png'
 
 export default class extends Component {
 
@@ -33,7 +33,7 @@ export default class extends Component {
         {
           instagram &&
             <div className="infoBoxLogoContainer">
-              <img className="aboutUsSocialLogo" src={instagram2} alt="linkedin logo" />
+              <img className="aboutUsSocialLogo" src={logoInstagram} alt="linkedin logo" />
               <span className="aboutUsSocialName">{instagram}</span>
             </div>
         }

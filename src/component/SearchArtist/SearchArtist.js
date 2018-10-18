@@ -37,13 +37,56 @@ export default class extends Component {
     event.target.value.length > 2 ? getArtists(event.target.value) : getArtists()
   }
 
-  onClickHandler = (name) => {
+  onClickHandler = (name, artistId) => {
     const {
       changeSearch,
       history,
     } = this.props
-    changeSearch(name)
+    changeSearch(name, artistId)
     history.push('start-text')
+  }
+
+  artistList () {
+    const { search, artists, isFetching } = this.props
+    if (artists.length !== 0) {
+      return artists.map((item, index) => {
+      
+        return (
+          (index <= 7) &&
+            <div
+              onClick={() => this.onClickHandler(item.name, item.id)}
+              key={index} className="artistContainer"
+            >
+              {item.coverImg && <img className="artistLogo" src={item.coverImg} alt="foo logo" />}
+              <span className="artistName">
+                {item.name}
+              </span>
+            </div>
+        )
+      })
+    } else if (!isFetching) {
+      return (
+        <div className="notFoundArtistAlertContainer">
+          <span className="notFoundArtistAlert">
+            {'Oops! We found no results for "'}
+          </span>
+          <span className="notFoundArtistAlertTitle notFoundArtistAlert">
+            {search}
+          </span>
+          <span className="notFoundArtistAlert">
+            "
+          </span>
+        </div>
+      )
+    } else {
+      return (
+        <div className="notFoundArtistAlertContainer">
+          <span className="notFoundArtistAlert">
+            Retreiving artists...
+          </span>
+        </div>
+      )
+    }
   }
 
   render () {
@@ -75,36 +118,7 @@ export default class extends Component {
               }
             </div>
             <div className="listArtistContainer">
-              {
-                artists.length !== 0
-                ? artists.map((item, index) => {
-                  
-                    return (
-                      (index <= 7) &&
-                        <div
-                          onClick={() => this.onClickHandler(item.name)}
-                          key={index} className="artistContainer"
-                        >
-                          {item.coverImg && <img className="artistLogo" src={item.coverImg} alt="foo logo" />}
-                          <span className="artistName">
-                            {item.name}
-                          </span>
-                        </div>
-                    )
-                  })
-                :
-                  <div className="notFoundArtistAlertContainer">
-                    <span className="notFoundArtistAlert">
-                      {'Oops! We found no results for "'}
-                    </span>
-                    <span className="notFoundArtistAlertTitle notFoundArtistAlert">
-                      {search}
-                    </span>
-                    <span className="notFoundArtistAlert">
-                      "
-                    </span>
-                  </div>
-              }
+              {this.artistList()}
             </div>
           </div>
         </div>
