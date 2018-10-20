@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import logoRed from '../../static/images/logoRed.png'
-import instagram from '../../static/images/instagram.png'
 import facebook from '../../static/images/facebook.png'
 import twitter from '../../static/images/twitter.png'
 import './GeneratedSong.css'
 
 export default class extends Component {
-
   componentDidMount() {
     const {
       getGeneratedSong,
@@ -17,6 +15,14 @@ export default class extends Component {
     if (!lyrics) {
       getGeneratedSong(match.params.songId)
     }
+  }
+
+  openURLInPopup(url) {
+    window.open(
+      `${url}http://bakinglyrics.com/song/${this.props.match.params.songId}`,
+      "pop",
+      "width=600, height=400, scrollbars=no"
+    );
   }
 
   render() {
@@ -59,15 +65,22 @@ export default class extends Component {
             {'SHARE'}
           </span>
           <div className='socialContainer'>
-            <div>
+            <button 
+              onClick={() => 
+                this.openURLInPopup('https://www.facebook.com/sharer/sharer.php?u=')
+              } 
+              className='link'
+            >
               <img className="socialIcon" src={facebook} alt="socialIcon" />
-            </div>
-            <div>
-              <img className="socialIcon" src={instagram} alt="socialIcon" />
-            </div>
-            <div>
+            </button>
+            <button 
+              onClick={() => 
+                this.openURLInPopup('http://twitter.com/home?status=Take%20a%20look%20at%20this%20new%20song:%20')
+              } 
+              className='link'
+            >
               <img className="socialIcon" src={twitter} alt="socialIcon" />
-            </div>
+            </button>
           </div>
         </div>
       </div>
