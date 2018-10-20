@@ -105,6 +105,12 @@
   width: 48px;
 }
 
+.link {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
 @media (max-width: 500px) {
 
   .generatedSongHeader {

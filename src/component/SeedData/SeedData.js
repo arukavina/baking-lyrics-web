@@ -6,23 +6,35 @@ import loading from '../../static/images/loading.png'
 import './SeedData.css'
 
 export default class extends Component {
+  componentDidMount () {
+    if (!this.props.search) return this.props.history.push(`artist`)
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.songId) return this.props.history.push(`song/${nextProps.songId}`)
   }
+
+
+  required = value => (value || typeof value === 'number' ? undefined : 'Required')
+  minLength = min => value =>
+    value && value.length < min ? `Must be ${min} characters or more` : undefined
+  minLength10 = this.minLength(10)
 
   renderField = (field) => {
     const {
       title,
       placeholder,
+      meta: { touched, error }
     } = field
     return(
       <div className="inputContainer">
         <span className="inputTitle">{title}</span>
         <input
           {...field.input}
-          className='input'
+          className={touched && error ? 'errorInput' : 'input'}
           placeholder={placeholder}
         />
+        {touched &&
+        error && <span className='errorMsg'>{error}</span>}
       </div>
     )
   }
@@ -50,6 +62,7 @@ export default class extends Component {
                 title="Start song with"
                 name="fistThreeWords"
                 placeholder="Type the first three words of your lyrics"
+                validate={[this.required, this.minLength10]}
               />
             </div>
           </div>
