@@ -39,13 +39,18 @@ export default class extends Component {
     )
   }
 
+  sectionStyle = {
+    background: `linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 100%), url("${ this.props.background}") no-repeat center top fixed`,
+    backgroundSize: 'cover'
+  };
+  
   render() {
     const { search, handleSubmit, isFetching } = this.props
     return (
-      <div className="SeedDataContainer">
-        <div className="header">
+      <div className="SeedDataContainer" style={this.sectionStyle}>
+        <Link className="header" to={'/'}>
           <img className="logoRed" src={logoRed} alt="baking logo" />
-        </div>
+        </Link>
         <div className="formContainer">
           <div className="form">
             <div className="headerContainer">
