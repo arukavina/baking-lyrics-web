@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Field } from "redux-form"
+import { Link } from "react-router-dom";
 import debounce from "lodash/debounce"
 import logoRed from '../../static/images/logoRed.png'
 import serchImage from '../../static/images/find.png'
@@ -34,7 +35,7 @@ export default class extends Component {
 
   onChange(event, newValue, previousValue) {
     const { getArtists } = this.props;
-    event.target.value.length > 2 ? getArtists(event.target.value) : getArtists()
+    event.target.value.length > 2 ? getArtists(event.target.value.trimEnd()) : getArtists()
   }
 
   onClickHandler = (name, artistId) => {
@@ -94,7 +95,9 @@ export default class extends Component {
     
     return(
       <div className="searchArtistComponentcontainer">
-        <img className="logoRed" src={logoRed} alt="baking logo" />
+        <Link className="header" to={'/'}>
+          <img className="logoRed" src={logoRed} alt="baking logo" />
+        </Link>
         <div className="searchArtistContainer">
           <div className="searchArtist">
             <form>

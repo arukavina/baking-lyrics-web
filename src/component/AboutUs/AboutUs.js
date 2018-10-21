@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Element } from 'react-scroll'
+import { Link as RouterLink } from "react-router-dom";
 import InfoBox from './InfoBox'
 import logoRed from '../../static/images/logoRed.png'
 import menu from '../../static/images/menu.png'
@@ -7,6 +8,7 @@ import adrianaMauliniImg from '../../static/images/adrianaMaulini.png'
 import andreiRukavinaImg from '../../static/images/andreiRukavina.png'
 import sergioBancheroImg from '../../static/images/sergioBanchero.png'
 import solanaSierraImg from '../../static/images/solanaSierra.png'
+import radiumLogo from '../../static/images/radium-logo.jpg'
 import notImg from '../../static/images/notImg.png'
 
 import './AboutUs.css'
@@ -24,10 +26,6 @@ export default class extends Component {
     return(
       <div className="aboutUsSectionSeparatorContainer">
         <div className="aboutUsSectionSeparator"/>
-        <div className="aboutUsSectionTitleContainer">
-          <span className="aboutUsSectionTitle">{title}</span>
-        </div>
-        <div className="aboutUsSectionSeparator"/>
       </div>
     )
   }
@@ -43,7 +41,7 @@ export default class extends Component {
             smooth={true}
             duration={500}
           >
-            {'ARTIFICIAL INTELLIGENCE'}
+            {'ALL MEMBERS'}
           </Link>
         </span>
         <span className="aboutUsMenuTitle">
@@ -55,7 +53,7 @@ export default class extends Component {
             offset={-200}
             duration={500}
           >
-            {'DESIGN'}
+            {'SERGIO BANCHERO'}
         </Link>
         </span>
         <span className="aboutUsMenuTitle">
@@ -110,10 +108,10 @@ export default class extends Component {
     return(
       <div className="aboutUsContainer">
         <div className="aboutUsHeader">
-          <div className="aboutUsLogoContainer">
+          <RouterLink to="/" className="aboutUsLogoContainer">
             <span className="aboutUsTitleImage">WE CREATED</span>
             <img className="aboutUsLogoRed" src={logoRed} alt="baking logo" />
-          </div>
+          </RouterLink>
           <div className="aboutUsMenuContainer">
             <div
               className="menuButton"
@@ -133,10 +131,11 @@ export default class extends Component {
         </div>
         <div className="aboutUsSectionContainer">
           <Element name="artificialIntelligence" className="aboutUsElementContainer">
-            {this.lineTitle('ARTIFICIAL INTELLIGENCE')}
             <div className="aboutUsSectionDataContainer">
               <InfoBox
                 name={'SERGIO BANCHERO'}
+                type={'primary'}
+                roles={'AI'}
                 image={sergioBancheroImg}
                 description={
                   `Electronics Engineer gone Data Scientist.\n` +
@@ -145,11 +144,13 @@ export default class extends Component {
                   `of a color just from looking at it.`
                 }
                 social={{
-                  linkedin: '/serigio banchero',
+                  linkedin: '/sergio-banchero-4828bb77',
                 }}
               />
               <InfoBox
                 name={'ANDREI RUKAVINA'}
+                type={'primary'}
+                roles={'AI, Backend, DevOps'}
                 image={andreiRukavinaImg}
                 description={
                   `Software Engineer, Data scientist& InfoViz.\n` +
@@ -160,16 +161,16 @@ export default class extends Component {
                   twitter: '@andrei_rukavina',
                   github: 'https://github.com/arukavina',
                   linkedin: '/andreirukavina',
-
                 }}
               />
             </div>
           </Element>
-          <Element name="design" className="aboutUsElementContainer">
-            {this.lineTitle('DESIGN')}
-            <div className="aboutUsSectionDataContainer">
+          <div className="aboutUsSecondSectionDataContainer">
+            <Element name="design" className="aboutUsElementContainer">
               <InfoBox
                 name={'SOLANA SIERRA'}
+                type={'secondary'}
+                roles={'UXD'}
                 image={solanaSierraImg}
                 description={
                   `Interaction designer. Expert in User\n` +
@@ -183,13 +184,12 @@ export default class extends Component {
 
                 }}
               />
-            </div>
-          </Element>
-          <Element name="backend" className="aboutUsElementContainer">
-            {this.lineTitle('BACKEND')}
-            <div className="aboutUsSectionDataContainer">
+            </Element>
+            <Element name="backend" className="aboutUsElementContainer">
               <InfoBox
                 name={'ADRIANA MAULINI'}
+                type={'secondary'}
+                roles={'Testing/Coverage'}
                 image={adrianaMauliniImg}
                 description={
                   `Software engineer, c# and now "whatever it \n` +
@@ -199,32 +199,16 @@ export default class extends Component {
                   `cat lady"`
                 }
                 social={{
-                  linkedin: '/adriana-maulini-b',
+                  linkedin: '/adriana-maulini-b-226278a4',
 
                 }}
               />
+            </Element>
+            <Element name="devOps" className="aboutUsElementContainer">
               <InfoBox
-                name={'ANDREI RUKAVINA'}
-                image={andreiRukavinaImg}
-                description={
-                  `Software Engineer, Data scientist & InfoViz \n` +
-                  `enthusiastic with a fantastic taste for coffee.\n` +
-                  `Member of the Python/R purifiers society.`
-                }
-                social={{
-                  twitter: '@andrei_rukavina',
-                  github: 'https://github.com/arukavina',
-                  linkedin: '/andreirukavina/',
-
-                }}
-              />
-            </div>
-          </Element>
-          <Element name="devOps" className="aboutUsElementContainer">
-            {this.lineTitle('DEV OPS')}
-            <div className="aboutUsSectionDataContainer">
-              <InfoBox
-                name={'NICOLAS CRIBOLI'}
+                name={'NICOLAS CRIBIOLI'}
+                type={'secondary'}
+                roles={'DevOps'}
                 image={notImg}
                 description={
                   `Cupcake ipsum dolor sit. Amet cake bonbon\n` +
@@ -232,30 +216,27 @@ export default class extends Component {
                   `powder jelly-o chocolate bar powder.`
                 }
                 social={{
-                  instagram: '@cupcake-ipsum',
-                  linkedin: '/cupcake',
+                  linkedin: '/nicolas-cribioli',
                 }}
               />
-            </div>
-          </Element>
-          <Element name="frontend" className="aboutUsElementContainer">
-            {this.lineTitle('FRONTEND')}
-            <div name="frontend" className="aboutUsSectionDataContainer">
+            </Element>
+            <Element name="frontend" className="aboutUsElementContainer">
               <InfoBox
-                name={'NOMBRE/EMPRESA'}
-                image={notImg}
+                name={'RADIUM ROCKET'}
+                type={'secondary'}
+                roles={'Web'}
+                image={radiumLogo}
                 description={
                   `Cupcake ipsum dolor sit. Amet cake bonbon\n` +
                   `gummies. Chocolate bar chocolate cake\n` +
                   `powder jelly-o chocolate bar powder.`
                 }
                 social={{
-                  instagram: '@cupcake-ipsum',
-                  linkedin: '/cupcake',
+                  web: 'http://radiumrocket.com/',
                 }}
               />
-            </div>
-          </Element>
+            </Element>
+          </div>
         </div>
       </div>
     )

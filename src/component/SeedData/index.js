@@ -9,10 +9,13 @@ import { generateSong } from "../../redux/modules/song/actions";
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('wizard')
+  const selectedArtist = state.artists.list.find(x => x.id === selector(state, 'artistId'))
+  
   return {
     fistThreeWords: selector(state, 'fistThreeWords'),
     songTitle: selector(state, 'songTitle'),
     search: selector(state, 'search'),
+    background: selectedArtist && selectedArtist.coverImg,
     generated: state.song.generatedSong,
     songId: state.song.generatedSong.lyrics ? state.song.generatedSong.id : null,
     isFetching: state.song.isFetching

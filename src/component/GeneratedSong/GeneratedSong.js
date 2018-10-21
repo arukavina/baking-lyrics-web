@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import logoRed from '../../static/images/logoRed.png'
 import facebook from '../../static/images/facebook.png'
 import twitter from '../../static/images/twitter.png'
@@ -40,7 +41,9 @@ export default class extends Component {
     return (
       <div className="generatedSongContainer">
         <div className="generatedSongHeader">
-          <img className="logoRed" src={logoRed} alt="baking logo" />
+          <Link className="header" to={'/'}>
+            <img className="logoRed" src={logoRed} alt="baking logo" />
+          </Link>
           <div className="bandNameContainer">
             <span className="bandNameTitle">
               {'LYRICS BASED IN'}
