@@ -8,8 +8,8 @@ import adrianaMauliniImg from '../../static/images/adrianaMaulini.png'
 import andreiRukavinaImg from '../../static/images/andreiRukavina.png'
 import sergioBancheroImg from '../../static/images/sergioBanchero.png'
 import solanaSierraImg from '../../static/images/solanaSierra.png'
+import nicolasCribioliImg from '../../static/images/nicolasCribioli.png'
 import radiumLogo from '../../static/images/radium-logo.jpg'
-import notImg from '../../static/images/notImg.png'
 
 import './AboutUs.css'
 
@@ -35,26 +35,15 @@ export default class extends Component {
       <div className={classSelected}>
         <span className="aboutUsMenuTitle">
           <Link
-            activeClass="active" to="artificialIntelligence"
-            spy={true}
-            offset={-200}
-            smooth={true}
-            duration={500}
-          >
-            {'ALL MEMBERS'}
-          </Link>
-        </span>
-        <span className="aboutUsMenuTitle">
-          <Link
             activeClass="active"
-            to="design"
+            to="artificialIntelligence"
             spy={true}
-            smooth={true}
             offset={-200}
+            smooth={true}
             duration={500}
           >
-            {'SERGIO BANCHERO'}
-        </Link>
+            {'ARTIFICIAL INTELLIGENCE'}
+          </Link>
         </span>
         <span className="aboutUsMenuTitle">
           <Link
@@ -66,6 +55,30 @@ export default class extends Component {
             duration={500}
           >
             {'BACKEND'}
+          </Link>
+        </span>
+        <span className="aboutUsMenuTitle">
+          <Link
+            activeClass="active"
+            to="design"
+            spy={true}
+            smooth={true}
+            offset={-200}
+            duration={500}
+          >
+            {'DESIGN'}
+          </Link>
+        </span>
+        <span className="aboutUsMenuTitle">
+          <Link
+            activeClass="active"
+            to="testing"
+            spy={true}
+            smooth={true}
+            offset={-200}
+            duration={500}
+          >
+            {'TESTING'}
           </Link>
         </span>
         <span className="aboutUsMenuTitle">
@@ -147,22 +160,24 @@ export default class extends Component {
                   linkedin: '/sergio-banchero-4828bb77',
                 }}
               />
-              <InfoBox
-                name={'ANDREI RUKAVINA'}
-                type={'primary'}
-                roles={'AI, Backend, DevOps'}
-                image={andreiRukavinaImg}
-                description={
-                  `Software Engineer, Data scientist& InfoViz.\n` +
-                  `enthusiastic with a fantastic taste for coffee.\n` +
-                  `Member of the Python/Rpurifiers society.`
-                }
-                social={{
-                  twitter: '@andrei_rukavina',
-                  github: 'https://github.com/arukavina',
-                  linkedin: '/andreirukavina',
-                }}
-              />
+              <Element name="backend" >
+                <InfoBox
+                  name={'ANDREI RUKAVINA'}
+                  type={'primary'}
+                  roles={'AI, Backend, DevOps'}
+                  image={andreiRukavinaImg}
+                  description={
+                    `Software Engineer, Data scientist& InfoViz.\n` +
+                    `enthusiastic with a fantastic taste for coffee.\n` +
+                    `Member of the Python/Rpurifiers society.`
+                  }
+                  social={{
+                    twitter: '@andrei_rukavina',
+                    github: 'https://github.com/arukavina',
+                    linkedin: '/andreirukavina',
+                  }}
+                />
+              </Element>
             </div>
           </Element>
           <div className="aboutUsSecondSectionDataContainer">
@@ -185,7 +200,7 @@ export default class extends Component {
                 }}
               />
             </Element>
-            <Element name="backend" className="aboutUsElementContainer">
+            <Element name="testing" className="aboutUsElementContainer">
               <InfoBox
                 name={'ADRIANA MAULINI'}
                 type={'secondary'}
@@ -209,11 +224,10 @@ export default class extends Component {
                 name={'NICOLAS CRIBIOLI'}
                 type={'secondary'}
                 roles={'DevOps'}
-                image={notImg}
+                image={nicolasCribioliImg}
                 description={
-                  `Cupcake ipsum dolor sit. Amet cake bonbon\n` +
-                  `gummies. Chocolate bar chocolate cake\n` +
-                  `powder jelly-o chocolate bar powder.`
+                  `Systems Analyst, SysAdmin, information\n` +
+                  `security. Barbecue guru & organizer`
                 }
                 social={{
                   linkedin: '/nicolas-cribioli',
@@ -226,11 +240,6 @@ export default class extends Component {
                 type={'secondary'}
                 roles={'Web'}
                 image={radiumLogo}
-                description={
-                  `Cupcake ipsum dolor sit. Amet cake bonbon\n` +
-                  `gummies. Chocolate bar chocolate cake\n` +
-                  `powder jelly-o chocolate bar powder.`
-                }
                 social={{
                   web: 'http://radiumrocket.com/',
                 }}

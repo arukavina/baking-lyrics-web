@@ -68,22 +68,22 @@ export default class extends Component {
             {'SHARE'}
           </span>
           <div className='socialContainer'>
-            <button 
-              onClick={() => 
+            <a
+              onClick={() =>
                 this.openURLInPopup('https://www.facebook.com/sharer/sharer.php?u=')
-              } 
+              }
               className='link'
             >
               <img className="socialIcon" src={facebook} alt="socialIcon" />
-            </button>
-            <button 
-              onClick={() => 
+            </a>
+            <a
+              onClick={() =>
                 this.openURLInPopup('http://twitter.com/home?status=Take%20a%20look%20at%20this%20new%20song:%20')
-              } 
+              }
               className='link'
             >
               <img className="socialIcon" src={twitter} alt="socialIcon" />
-            </button>
+            </a>
           </div>
         </div>
       </div>
