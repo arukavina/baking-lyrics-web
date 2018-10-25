@@ -68,18 +68,7 @@
   padding-bottom: 2rem;
 }
 
-.mainFooter > span {
-  margin: 0 2rem;
-  opacity: 0.8;
-  color: #fff;
-  font-family: 'Roboto';
-  font-size: 24px;
-  font-weight: 300;
-  letter-spacing: 0.68px;
-  line-height: 28px;
-}
-
-.mainButton {
+.footerLink {
   cursor: pointer;
   margin: 0 2rem;
   opacity: 0.8;
@@ -95,6 +84,10 @@
 .gitHubLink {
   display: flex;
   text-decoration: none;
+}
+
+.aboutUsSocialLogoHome {
+  height: 30px;
 }
 
 @media (max-width: 500px) {
@@ -124,15 +117,15 @@
 
   .mainFooter {
     flex-direction: row;
-    width: 100%;
+    width: 80%;
     justify-content: space-around;
   }
 
-  .mainFooter > span {
-    font-size: 16px;
-    width: auto;
-    margin: 0;
-    padding: 0;
+  .aboutUsSocialLogoHome {
+    height: 24px;
+  }
 
+  .footerLink {
+    font-size: 16px;
   }
 }

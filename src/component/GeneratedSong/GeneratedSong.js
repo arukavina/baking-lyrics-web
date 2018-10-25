@@ -26,6 +26,11 @@ export default class extends Component {
     );
   }
 
+  sectionStyle = {
+    background: `linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 100%), url("${ this.props.background}") no-repeat center top fixed`,
+    backgroundSize: 'cover'
+  };
+
   render() {
     const {
       generatedSong: {
@@ -38,8 +43,9 @@ export default class extends Component {
         lyrics
       }
     } = this.props
+    console.log(this.sectionStyle, this.props)
     return (
-      <div className="generatedSongContainer">
+      <div className="generatedSongContainer" style={this.sectionStyle}>
         <div className="generatedSongHeader">
           <Link className="header" to={'/'}>
             <img className="logoRed" src={logoRed} alt="baking logo" />
@@ -78,7 +84,7 @@ export default class extends Component {
             </a>
             <a
               onClick={() =>
-                this.openURLInPopup('http://twitter.com/home?status=Take%20a%20look%20at%20this%20new%20song:%20')
+                this.openURLInPopup('https://twitter.com/intent/tweet?text=Take%20a%20look%20at%20this%20new%20song:%20')
               }
               className='link'
             >

@@ -25,16 +25,16 @@ export default class extends Component {
         </form>
         <footer className="mainFooter">
           <a href="https://github.com/arukavina/baking-lyrics" className="gitHubLink">
-            <img className="aboutUsSocialLogo" src={logoGithub} alt="linkedin logo" />
+            <img className="aboutUsSocialLogoHome" src={logoGithub} alt="linkedin logo" />
             <span
-              className="mainButton"
+              className="footerLink"
             >
               {'GitHub'}
             </span>
           </a>
           <span
             onClick={() => history.push('about-us')}
-            className="mainButton"
+            className="footerLink"
           >
             {'About Us'}
           </span>

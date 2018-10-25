@@ -30,81 +30,48 @@ export default class extends Component {
     )
   }
 
+  generateLinks = (devs) => {
+    return devs.map(dev => (
+      <span className="aboutUsMenuTitle" key={dev.name}>
+        <Link
+          activeClass="active"
+          to={dev.link}
+          spy={true}
+          offset={-200}
+          smooth={true}
+          duration={500}
+        >
+          {dev.name}
+        </Link>
+      </span>
+    ))
+  }
+
   menu = (classSelected) => {
+
+    const devs = [{ 
+      link: 'sergio', 
+      name: 'SERGIO BANCHERO'
+    },{ 
+      link: 'andrei', 
+      name: 'ANDREI RUKAVINA'
+    },{ 
+      link: 'solana', 
+      name: 'SOLANA SIERRA'
+    },{ 
+      link: 'adriana', 
+      name: 'ADRIANA MAULINI'
+    },{ 
+      link: 'nicolas', 
+      name: 'NICOLAS CRIBIOLI'
+    },{ 
+      link: 'radium', 
+      name: 'RADIUM ROCKET'
+    }]
+
     return(
       <div className={classSelected}>
-        <span className="aboutUsMenuTitle">
-          <Link
-            activeClass="active"
-            to="artificialIntelligence"
-            spy={true}
-            offset={-200}
-            smooth={true}
-            duration={500}
-          >
-            {'ARTIFICIAL INTELLIGENCE'}
-          </Link>
-        </span>
-        <span className="aboutUsMenuTitle">
-          <Link
-            activeClass="active"
-            to="backend"
-            spy={true}
-            smooth={true}
-            offset={-200}
-            duration={500}
-          >
-            {'BACKEND'}
-          </Link>
-        </span>
-        <span className="aboutUsMenuTitle">
-          <Link
-            activeClass="active"
-            to="design"
-            spy={true}
-            smooth={true}
-            offset={-200}
-            duration={500}
-          >
-            {'DESIGN'}
-          </Link>
-        </span>
-        <span className="aboutUsMenuTitle">
-          <Link
-            activeClass="active"
-            to="testing"
-            spy={true}
-            smooth={true}
-            offset={-200}
-            duration={500}
-          >
-            {'TESTING'}
-          </Link>
-        </span>
-        <span className="aboutUsMenuTitle">
-          <Link
-            activeClass="active"
-            to="devOps"
-            spy={true}
-            smooth={true}
-            offset={-200}
-            duration={500}
-          >
-            {'DEV OPS'}
-          </Link>
-        </span>
-        <span className="aboutUsMenuTitle">
-          <Link
-            activeClass="active"
-            to="frontend"
-            spy={true}
-            smooth={true}
-            offset={-200}
-            duration={500}
-          >
-            {'FRONTEND'}
-          </Link>
-        </span>
+        {this.generateLinks(devs)}
       </div>
     )
   }
@@ -143,7 +110,7 @@ export default class extends Component {
           </div>
         </div>
         <div className="aboutUsSectionContainer">
-          <Element name="artificialIntelligence" className="aboutUsElementContainer">
+          <Element name="sergio" className="aboutUsElementContainer">
             <div className="aboutUsSectionDataContainer">
               <InfoBox
                 name={'SERGIO BANCHERO'}
@@ -160,16 +127,16 @@ export default class extends Component {
                   linkedin: '/sergio-banchero-4828bb77',
                 }}
               />
-              <Element name="backend" >
+              <Element name="andrei" >
                 <InfoBox
                   name={'ANDREI RUKAVINA'}
                   type={'primary'}
                   roles={'AI, Backend, DevOps'}
                   image={andreiRukavinaImg}
                   description={
-                    `Software Engineer, Data scientist& InfoViz.\n` +
+                    `Software Engineer, Data scientist & InfoViz \n` +
                     `enthusiastic with a fantastic taste for coffee.\n` +
-                    `Member of the Python/Rpurifiers society.`
+                    `Member of the Python/R purifiers society.`
                   }
                   social={{
                     twitter: '@andrei_rukavina',
@@ -181,7 +148,7 @@ export default class extends Component {
             </div>
           </Element>
           <div className="aboutUsSecondSectionDataContainer">
-            <Element name="design" className="aboutUsElementContainer">
+            <Element name="solana" className="aboutUsElementContainer">
               <InfoBox
                 name={'SOLANA SIERRA'}
                 type={'secondary'}
@@ -200,7 +167,7 @@ export default class extends Component {
                 }}
               />
             </Element>
-            <Element name="testing" className="aboutUsElementContainer">
+            <Element name="adriana" className="aboutUsElementContainer">
               <InfoBox
                 name={'ADRIANA MAULINI'}
                 type={'secondary'}
@@ -219,7 +186,7 @@ export default class extends Component {
                 }}
               />
             </Element>
-            <Element name="devOps" className="aboutUsElementContainer">
+            <Element name="nicolas" className="aboutUsElementContainer">
               <InfoBox
                 name={'NICOLAS CRIBIOLI'}
                 type={'secondary'}
@@ -234,7 +201,7 @@ export default class extends Component {
                 }}
               />
             </Element>
-            <Element name="frontend" className="aboutUsElementContainer">
+            <Element name="radium" className="aboutUsElementContainer">
               <InfoBox
                 name={'RADIUM ROCKET'}
                 type={'secondary'}
