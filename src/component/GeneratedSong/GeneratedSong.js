@@ -43,7 +43,7 @@ export default class extends Component {
         lyrics
       }
     } = this.props
-    console.log(this.sectionStyle, this.props)
+
     return (
       <div className="generatedSongContainer" style={this.sectionStyle}>
         <div className="generatedSongHeader">
