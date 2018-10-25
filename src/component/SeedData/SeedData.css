@@ -1,5 +1,4 @@
-.SeedDataContainer {
-  /* background: #000 url("../../static/images/acdc.jpg") no-repeat center top; */
+.seedDataContainer {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;

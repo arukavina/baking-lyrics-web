@@ -47,7 +47,7 @@ export default class extends Component {
   render() {
     const { search, handleSubmit, isFetching } = this.props
     return (
-      <div className="SeedDataContainer" style={this.sectionStyle}>
+      <div className="seedDataContainer" style={this.sectionStyle}>
         <Link className="header" to={'/'}>
           <img className="logoRed" src={logoRed} alt="baking logo" />
         </Link>
