@@ -50,9 +50,7 @@ export default class extends Component {
   artistList () {
     const { search, artists, isFetching } = this.props
     if (artists.length !== 0) {
-      return artists.map((item, index) => {
-      
-        return (
+      return artists.map((item, index) => (
           (index <= 7) &&
             <div
               onClick={() => this.onClickHandler(item.name, item.id)}
@@ -64,9 +62,9 @@ export default class extends Component {
               </span>
             </div>
         )
-      })
+      )
     } else if (!isFetching) {
-      return (
+      return search ? (
         <div className="notFoundArtistAlertContainer">
           <span className="notFoundArtistAlert">
             {'Oops! We found no results for "'}
@@ -76,6 +74,13 @@ export default class extends Component {
           </span>
           <span className="notFoundArtistAlert">
             "
+          </span>
+        </div>
+      )
+      : (
+        <div className="notFoundArtistAlertContainer">
+          <span className="notFoundArtistAlert">
+            Oops! We found no artist
           </span>
         </div>
       )
