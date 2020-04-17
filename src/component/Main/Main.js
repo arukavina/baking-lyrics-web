@@ -27,12 +27,7 @@ export default (handleSubmit, history) => (
           {'GitHub'}
         </span>
       </a>
-      <span
-        onClick={() => history.push('about-us')}
-        className="footerLink"
-      >
-        {'About Us'}
-      </span>
+      <Link className="footerLink" to="about-us" >{'About Us'}</Link>
     </footer>
   </div>
 )
