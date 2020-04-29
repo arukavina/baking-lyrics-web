@@ -34,7 +34,7 @@ export default class extends Component {
           placeholder={placeholder}
         />
         {touched &&
-        error && <span className='errorMsg'>{error}</span>}
+        error && <span className="errorMsg">{error}</span>}
       </div>
     )
   }
@@ -45,7 +45,9 @@ export default class extends Component {
   };
   
   render() {
-    const { search, handleSubmit, isFetching } = this.props
+    const { search, handleSubmit, isFetching, errorMsg } = this.props
+    console.log(errorMsg);
+    
     return (
       <div className="seedDataContainer" style={this.sectionStyle}>
         <Link className="header" to={'/'}>
@@ -69,6 +71,7 @@ export default class extends Component {
                 placeholder="Type the first three words of your lyrics"
                 validate={[this.required, this.minLength10]}
               />
+              {errorMsg && <span className="errorMsg">Failed trying to get a song</span>}
             </div>
           </div>
         </div>
@@ -76,7 +79,7 @@ export default class extends Component {
           <Link className="tryButton" to="song" onClick={handleSubmit}>{'GENERATE'}</Link>
         </div>
         {
-          isFetching 
+          isFetching
           ? (<div className="isFetching">
               <img className="imgLoading" src={loading} alt="loading" />
               <span className="textLoading">
