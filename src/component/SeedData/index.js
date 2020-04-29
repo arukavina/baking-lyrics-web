@@ -18,7 +18,8 @@ const mapStateToProps = (state) => {
     background: selectedArtist && selectedArtist.coverImg,
     generated: state.song.generatedSong,
     songId: state.song.generatedSong.lyrics ? state.song.generatedSong.id : null,
-    isFetching: state.song.isFetching
+    isFetching: state.song.isFetching,
+    errorMsg: state.song.errorMsg
   }
 }
 
@@ -26,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
   changeSearch: value => dispatch(change('wizard', 'search', value)),
 })
 
-const onSubmit = (values, dispatch, props) => {
+const onSubmit = (values, dispatch) => {
   dispatch(generateSong(values.fistThreeWords, '50', values.artistId))
 }
 

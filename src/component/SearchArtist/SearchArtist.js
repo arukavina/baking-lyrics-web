@@ -5,6 +5,7 @@ import debounce from "lodash/debounce"
 import logoRed from '../../static/images/logoRed.png'
 import serchImage from '../../static/images/find.png'
 import './SearchArtist.css'
+import { clearSong } from '../../redux/modules/song/actions';
 
 const renderField = (field) => (
   <div className="searchBar">
@@ -18,8 +19,10 @@ export default class extends Component {
     const {
       changeSearch,
       getArtists,
+      clearSong,
     } = this.props
     getArtists()
+    clearSong()
     changeSearch('')
   }
   debouncedOnChange = debounce(this.onChange, 1000).bind(this);

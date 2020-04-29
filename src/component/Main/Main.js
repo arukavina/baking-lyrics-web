@@ -5,19 +5,19 @@ import logoGithub from '../../static/images/github-logo.png'
 import logoRed from '../../static/images/logoRed.png'
 import './Main.css'
 
-export default (handleSubmit, history) => (
+export default () => (
   <div className="container">
     <img className="logoRed" src={logoRed} alt="baking logo" />
-    <form onSubmit={handleSubmit} className="homeTitle">
+    <div className="homeTitle">
       <p>
-        {'CREATE'}
+        {'GENERATE'}
         <span>
           {'RANDOM LYRICS'}
         </span>
         {'WITH JUST A CLICK!'}
       </p>
       <Link className="tryButton" to="artist" >{'TRY IT OUT'}</Link>
-    </form>
+    </div>
     <footer className="mainFooter">
       <a href="https://github.com/arukavina/baking-lyrics" className="gitHubLink">
         <img className="aboutUsSocialLogoHome" src={logoGithub} alt="linkedin logo" />
