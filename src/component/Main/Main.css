@@ -83,11 +83,8 @@
 
 .gitHubLink {
   display: flex;
+  align-items: center;
   text-decoration: none;
-}
-
-.aboutUsSocialLogoHome {
-  height: 30px;
 }
 
 @media (max-width: 500px) {
@@ -119,10 +116,6 @@
     flex-direction: row;
     width: 80%;
     justify-content: space-around;
-  }
-
-  .aboutUsSocialLogoHome {
-    height: 24px;
   }
 
   .footerLink {
