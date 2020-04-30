@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import logoRed from '../../static/images/logoRed.png'
-import facebook from '../../static/images/facebook.png'
-import twitter from '../../static/images/twitter.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitterSquare, faFacebook } from '@fortawesome/free-brands-svg-icons'
 import './GeneratedSong.css'
 
 export default class extends Component {
@@ -60,35 +60,36 @@ export default class extends Component {
           </div>
         </div>
         <div className="textSongFlexContainer">
-          <div className='textSongContainer'>
-            <span className='textSongTitle'>
+          <div className="textSongContainer">
+            <span className="textSongTitle">
               {title}
             </span>
-            <p className='textSong'>
+            <p className="textSong">
               {lyrics}
             </p>
           </div>
         </div>
-        <div className='generatedSongFooterContainer'>
-          <span className='generatedSongFooterTitle'>
+        <div className="generatedSongFooterContainer">
+          <span className="shareTitle">
             {'SHARE'}
           </span>
-          <div className='socialContainer'>
+          <div className="socialContainer">
             <a
               onClick={() =>
                 this.openURLInPopup('https://www.facebook.com/sharer/sharer.php?u=')
               }
-              className='link'
+              className="link"
+              
             >
-              <img className="socialIcon" src={facebook} alt="socialIcon" />
+              <FontAwesomeIcon icon={faFacebook} size="3x" color="white" />
             </a>
             <a
               onClick={() =>
                 this.openURLInPopup('https://twitter.com/intent/tweet?text=Take%20a%20look%20at%20this%20new%20song:%20')
               }
-              className='link'
+              className="link"
             >
-              <img className="socialIcon" src={twitter} alt="socialIcon" />
+              <FontAwesomeIcon icon={faTwitterSquare} size="3x" color="white" />
             </a>
           </div>
         </div>

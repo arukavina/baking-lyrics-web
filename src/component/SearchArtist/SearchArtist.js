@@ -5,7 +5,6 @@ import debounce from "lodash/debounce"
 import logoRed from '../../static/images/logoRed.png'
 import serchImage from '../../static/images/find.png'
 import './SearchArtist.css'
-import { clearSong } from '../../redux/modules/song/actions';
 
 const renderField = (field) => (
   <div className="searchBar">

@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import './InfoBox.css'
-import logoGithub from '../../../static/images/github-logo.png'
-import logoTwitter from '../../../static/images/twitter.png'
-import logoLinkedin from '../../../static/images/linkedin-logo.png'
-import logoInstagram from '../../../static/images/instagram.png'
-import logoChrome from '../../../static/images/chrome.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFirefoxBrowser, faLinkedinIn, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 export default class extends Component {
 
@@ -22,7 +19,7 @@ export default class extends Component {
         {
           twitter &&
             <div className="infoBoxLogoContainer">
-              <img className={ type === 'primary' ? "aboutUsSocialLogo" : "secondAboutUsSocialLogo" } src={logoTwitter} alt="linkedin logo" />
+              <FontAwesomeIcon icon={faTwitter} size="lg" color="white" />
               <a href={`https://twitter.com/${twitter.replace('@', '')}`}>
                 <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
                   {twitter}
@@ -33,7 +30,7 @@ export default class extends Component {
         {
           github &&
             <div className="infoBoxLogoContainer">
-              <img className={ type === 'primary' ? "aboutUsSocialLogo" : "secondAboutUsSocialLogo" } src={logoGithub} alt="linkedin logo" />
+              <FontAwesomeIcon icon={faGithub} size="lg" color="white" />
               <a href={github}>
                 <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
                   {github}
@@ -44,7 +41,7 @@ export default class extends Component {
         {
           instagram &&
             <div className="infoBoxLogoContainer">
-              <img className={ type === 'primary' ? "aboutUsSocialLogo" : "secondAboutUsSocialLogo" } src={logoInstagram} alt="linkedin logo" />
+              <FontAwesomeIcon icon={faInstagram} size="lg" color="white" />
               <a href={`https://instagram.com/${instagram}`}>
                 <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
                   {instagram}
@@ -55,7 +52,7 @@ export default class extends Component {
         {
           linkedin &&
             <div className="infoBoxLogoContainer">
-              <img className={ type === 'primary' ? "aboutUsSocialLogo" : "secondAboutUsSocialLogo" } src={logoLinkedin} alt="linkedin logo" />
+              <FontAwesomeIcon icon={faLinkedinIn} size="lg" color="white" />
               <a href={`https://linkedin.com/in${linkedin}`}>
                 <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
                   {linkedin}
@@ -66,7 +63,7 @@ export default class extends Component {
         {
           web &&
             <div className="infoBoxLogoContainer">
-              <img className={ type === 'primary' ? "aboutUsSocialLogo" : "secondAboutUsSocialLogo" } src={logoChrome} alt="linkedin logo" />
+              <FontAwesomeIcon icon={faFirefoxBrowser} size="lg" color="white" />
               <a href={web}>
                 <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
                   {web}

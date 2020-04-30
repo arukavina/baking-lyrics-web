@@ -8,8 +8,6 @@ const mapStateToProps = (state) => {
   const selector = formValueSelector('wizard')
   const selectedArtist = state.artists.list.find(x => x.id === selector(state, 'artistId'))
 
-  console.log(selectedArtist)
-
   return{
     generatedSong: state.song.generatedSong,
     background: selectedArtist && selectedArtist.coverImg

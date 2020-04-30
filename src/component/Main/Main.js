@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import logoGithub from '../../static/images/github-logo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import logoRed from '../../static/images/logoRed.png'
 import './Main.css'
 
@@ -20,7 +21,7 @@ export default () => (
     </div>
     <footer className="mainFooter">
       <a href="https://github.com/arukavina/baking-lyrics" className="gitHubLink">
-        <img className="aboutUsSocialLogoHome" src={logoGithub} alt="linkedin logo" />
+        <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
         <span
           className="footerLink"
         >
