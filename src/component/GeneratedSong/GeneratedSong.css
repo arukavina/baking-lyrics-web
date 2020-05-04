@@ -28,6 +28,7 @@
   font-size: 30px;
   letter-spacing: 0.68px;
   line-height: 44px;
+  text-transform: capitalize;
 }
 
 .montserratTextBold {
@@ -104,7 +105,13 @@
   border: none;
   padding: 0;
   background: transparent;
+  cursor: pointer;
 }
+
+.link > svg:hover {
+  color: rgba(202, 194, 194, 0.781);
+}
+
 
 @media (max-width: 500px) {
 

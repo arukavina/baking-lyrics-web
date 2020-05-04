@@ -25,7 +25,8 @@ export default (state = initialState, action) => {
           artificialTitle: {...action.payload.artificial_title},
           baseArtist: {...action.payload.base_artist},
           lyrics: action.payload.lyrics,
-          id: action.payload.id
+          id: action.payload.id,
+          coverImg: action.payload.coverImg || null
         }
       }
     }

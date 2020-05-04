@@ -7,6 +7,11 @@
   justify-content: flex-start;
 }
 
+.header {
+  width: 207px;
+  height: auto;
+}
+
 .searchArtistContainer {
   width: 100%;
   display: flex;
@@ -15,13 +20,15 @@
 
 .searchArtist {
   width: 90%;
-  max-width: 900px;
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
 }
 
 .searchBar {
   display: flex;
   align-items: center;
-  margin-top: 30px;
+  margin: 1.5rem 0 1rem;
   width: 100%;
   background-color: #4D4D4D;
   padding: .7rem 0;
@@ -62,6 +69,11 @@
   outline: none;
 }
 
+.totalArtists {
+  color: #4D4D4D;
+  align-self: flex-end;
+}
+
 .listArtistContainer {
   display: flex;
   flex-wrap: wrap;
@@ -78,6 +90,8 @@
   align-items: flex-end;
   width: 225px;
   height: 225px;
+  margin: .3rem;
+  border: solid 1px #FFFFFF;
 }
 
 .artistContainer:hover{
@@ -92,6 +106,7 @@
   font-weight: bold;
   font-size: 20px;
   z-index: 2;
+  text-transform: capitalize;
 }
 
 .artistLogo {
@@ -130,7 +145,7 @@
     padding-left: 10px;
   }
 
-  .logoRed {
+  .logoRed, header {
     margin: 2rem 0rem 0rem 0rem;
     width: 150px;
     height: auto;

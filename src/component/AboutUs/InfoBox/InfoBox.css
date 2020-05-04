@@ -103,6 +103,7 @@
   border-radius: 100px;
   height: 150px;
   width: 150px;
+  filter: grayscale(1);
 }
 .secondAboutUsSectionName {
   margin-top: 20px;

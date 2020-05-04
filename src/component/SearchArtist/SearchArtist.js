@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Field } from "redux-form"
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import debounce from "lodash/debounce"
 import logoRed from '../../static/images/logoRed.png'
 import serchImage from '../../static/images/find.png'
@@ -24,7 +24,7 @@ export default class extends Component {
     clearSong()
     changeSearch('')
   }
-  debouncedOnChange = debounce(this.onChange, 1000).bind(this);
+  debouncedOnChange = debounce(this.onChange, 1000).bind(this)
 
   listArtists = () => {
     const { artists } = this.props
@@ -36,7 +36,7 @@ export default class extends Component {
   }
 
   onChange(event, newValue, previousValue) {
-    const { getArtists } = this.props;
+    const { getArtists } = this.props
     event.target.value.length > 2 ? getArtists(event.target.value.trimEnd()) : getArtists()
   }
 
@@ -53,7 +53,7 @@ export default class extends Component {
     const { search, artists, isFetching } = this.props
     if (artists.length !== 0) {
       return artists.map((item, index) => (
-          (index <= 7) &&
+          (index <= 15) &&
             <div
               onClick={() => this.onClickHandler(item.name, item.id)}
               key={index} className="artistContainer"
@@ -98,7 +98,7 @@ export default class extends Component {
   }
 
   render () {
-    const { search, artists } = this.props
+    const { search, artists, total } = this.props
     
     return(
       <div className="searchArtistComponentcontainer">
@@ -107,14 +107,13 @@ export default class extends Component {
         </Link>
         <div className="searchArtistContainer">
           <div className="searchArtist">
-            <form>
-              <Field 
-                component={renderField} 
-                onChange={this.debouncedOnChange}
-                placeholder="Search for a band" 
-                name="search"
-              />
-            </form>
+            <Field 
+              component={renderField} 
+              onChange={this.debouncedOnChange}
+              placeholder="Search for an artist or a band" 
+              name="search"
+            />
+            {total && <span className="totalArtists">{`Searching in a database of ${total} artists`}</span>}
             <div className="showingResultsContainer">
               {
                 (search && artists.length !== 0) &&

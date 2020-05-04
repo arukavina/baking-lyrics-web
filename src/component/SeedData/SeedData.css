@@ -1,3 +1,9 @@
+
+.header {
+  width: 207px;
+  height: auto;
+}
+
 .seedDataContainer {
   background-size: cover;
   background-repeat: no-repeat;
@@ -48,7 +54,8 @@
   font-weight: 300;
   font-family: Montserrat Regular;
   font-weight: bold;
-  color: #FFFFFF
+  color: #FFFFFF;
+  text-transform: capitalize;
 }
 
 .inputContainer {

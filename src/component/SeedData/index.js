@@ -28,14 +28,12 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const onSubmit = (values, dispatch) => {
-  dispatch(generateSong(values.fistThreeWords, '50', values.artistId))
+  dispatch(generateSong(values.fistThreeWords, '100', values.artistId))
 }
 
 const formConfig = {
   onSubmit,
   form: 'wizard',
-  destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
 }
 export default connect(
   mapStateToProps,

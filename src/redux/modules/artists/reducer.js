@@ -20,11 +20,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        list: action.payload
+        list: action.payload.artistList,
+        total: action.payload.total || state.total
       }
     }
     case SAVE_COVER_IMAGE: {
-      const itemIndex = state.list.findIndex(x => x.name === action.payload.name)
+      const itemIndex = state.list.findIndex(x => x.id === action.payload.id)
       const newList = [...state.list]
       newList[itemIndex] = action.payload
       return {

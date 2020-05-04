@@ -1,6 +1,7 @@
 const initialState = {
   list: [],
   isFetching: false,
+  total: 0,
   errorMsg: ''
 }
 

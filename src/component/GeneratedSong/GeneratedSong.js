@@ -26,11 +26,6 @@ export default class extends Component {
     );
   }
 
-  sectionStyle = {
-    background: `linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 100%), url("${ this.props.background}") no-repeat center top fixed`,
-    backgroundSize: 'cover'
-  };
-
   render() {
     const {
       generatedSong: {
@@ -41,13 +36,20 @@ export default class extends Component {
           name
         },
         lyrics
-      }
+      },
+      background,
     } = this.props
 
+    const sectionStyle = {
+      background: `linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 100%), url("${background}") no-repeat center top fixed`,
+      backgroundSize: 'cover'
+    };
+    
+    
     return (
-      <div className="generatedSongContainer" style={this.sectionStyle}>
+      <div className="generatedSongContainer" style={sectionStyle}>
         <div className="generatedSongHeader">
-          <Link className="header" to={'/'}>
+          <Link className="header" to={'/artist'}>
             <img className="logoRed" src={logoRed} alt="baking logo" />
           </Link>
           <div className="bandNameContainer">
@@ -55,14 +57,14 @@ export default class extends Component {
               {'LYRICS BASED IN'}
             </span>
             <span className="bandNameTitle montserratTextBold">
-              {name}
+              {name && name.replace(/\-/g, ' ')}
             </span>
           </div>
         </div>
         <div className="textSongFlexContainer">
           <div className="textSongContainer">
             <span className="textSongTitle">
-              {title}
+              {title && title.replace(/\-/g, ' ')}
             </span>
             <p className="textSong">
               {lyrics}

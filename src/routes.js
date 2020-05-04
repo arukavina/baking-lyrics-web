@@ -1,11 +1,11 @@
 import React from 'react'
-import { Route, Switch } from 'react-router'
-// import NotFound from './components/NotFound/NotFound'
+import { Route, Switch, Redirect } from 'react-router'
 import App from './App'
 import Main from './component/Main'
 import SeedData from './component/SeedData'
 import GeneratedSong from './component/GeneratedSong'
 import AboutUs from './component/AboutUs'
+import HelpUs from './component/HelpUs/HelpUs'
 import SearchArtist from './component/SearchArtist'
 
 const Routes = () => (
@@ -16,8 +16,11 @@ const Routes = () => (
       <Route exact path="/start-text" component={SeedData} />
       <Route exact path="/song/:songId" component={GeneratedSong} />
       <Route exact path="/about-us" component={AboutUs} />
+      <Route exact path="/help-us" component={HelpUs} />
       {/* 404 */}
-      {/* <Route component={NotFound} /> */}
+      <Route>
+        <Redirect to="/" /> 
+      </Route>
     </Switch>
   </App>
 )
