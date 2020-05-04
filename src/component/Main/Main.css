@@ -26,7 +26,6 @@
 }
 
 .homeTitle {
-  width: 100%;
   padding-left: 0;
   display: flex;
   flex-flow: column;
@@ -41,18 +40,20 @@
 .homeTitle > h1 {
 	font-size: 45px;
   font-weight: 400;
+  width: 80%;
 }
 
 .homeTitle > h2 {
 	font-size: 30px;
   font-weight: 400;
+  width: 60%;
 }
 
 .homeTitle > p {
-  text-align: left;
-  width: 80%;
+  text-align: center;
   line-height: normal;
   font-size: 24px;
+  width: 50%;
 }
 
 .tryButton {

@@ -35,12 +35,14 @@
 .helpUsContent > h1 {
   margin: 3rem 1rem;
   font-size: 48px;
+  font-weight: normal;
 }
 
 .helpUsContent > p {
   margin: 3rem 1rem;
   font-size: 30px;
-  max-width: 70%;
+  max-width: 50%;
+  text-align: center;
 }
 
 .donationLinks {

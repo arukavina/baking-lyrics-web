@@ -18,7 +18,8 @@ export default () => (
         Baking-Lyrics is free, always evolving, user-supported service. But unfortunately it isn’t free to operate. 
         We have salaries to pay and infrastructure costs to cover to make Baking-Lyrics available to our million users worldwide.<br/><br/>
         Thankfully, many users do support us by donating what they can afford (💵), to help us support ongoing development.<br/>
-        We ❤️ you, and couldn’t exist without you. Every donation helps!
+        We ❤️ you, and couldn’t exist without you. Every donation helps!<br/><br/>
+        The Baking-Lyrics coding ⌨️ band.
 			</p>
 		</div>
     <div className="donationLinks">

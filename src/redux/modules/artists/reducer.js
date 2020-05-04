@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        list: action.payload.artistList,
+        list: action.payload.list,
         total: action.payload.total || state.total
       }
     }

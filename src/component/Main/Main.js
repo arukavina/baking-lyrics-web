@@ -30,7 +30,7 @@ export default () => (
         We wish you the best so play as much as you want, release your creativity, innovate,  copy & paste.<br/>
         <br/>
         Best regards,<br/>
-        The Baking-Lyrics band.
+        The Baking-Lyrics coding ⌨️ band.
       </p>
       <Link className="tryButton" to="artist" >{'TRY IT OUT'}</Link>
     </div>

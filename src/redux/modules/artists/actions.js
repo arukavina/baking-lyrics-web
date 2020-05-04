@@ -5,7 +5,7 @@ import {
   GET_ARTISTS_REJECTED,
   SAVE_COVER_IMAGE,
 } from './const'
-import { getArtistsData } from '../../../helpers/api/artists'
+import { getArtistsData, getRandomArtists } from '../../../helpers/api/artists'
 
 
 export const getArtists = (filter = '') => async (dispatch) => {
@@ -14,36 +14,47 @@ export const getArtists = (filter = '') => async (dispatch) => {
   })
   try {
     const artists = await getArtistsData(filter.replace(' ', '-'))
-    const artistList = filter ? artists.data : artists.data.items
-    const newList = artistList.forEach(async (item) => {
-      const name = item.name.replace(/\-/g, '%20')
-      const res = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&origin=*&redirects=1&format=json&piprop=original&titles=${name}`, { "Content-Type": "application/json charset=UTF-8" })
-      const json = await res.json()
-      const firstElement = Object.keys(json.query.pages)[0]
-      const coverImg = get(json.query.pages[firstElement], 'original.source')
-      dispatch({
-        type: SAVE_COVER_IMAGE,
-        payload: {
-          ...item,
-          name: item.name.replace(/\-/g, ' '),
-          coverImg,
-        }
+    const randomArtists = await getRandomArtists()
+    if (filter && filter.length > 3) {
+      artists.data.forEach(async (item) => {
+        const name = item.name.replace(/\-/g, '%20')
+        const res = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&origin=*&redirects=1&format=json&piprop=original&titles=${name}`, { "Content-Type": "application/json charset=UTF-8" })
+        const json = await res.json()
+        const firstElement = Object.keys(json.query.pages)[0]
+        const coverImg = get(json.query.pages[firstElement], 'original.source')
+        dispatch({
+          type: SAVE_COVER_IMAGE,
+          payload: {
+            ...item,
+            name: item.name.replace(/\-/g, ' '),
+            coverImg,
+          }
+        })
       })
-      return {
-        ...item,
-        name: item.name.replace(/\-/g, ' ')
-      }
-    })
-    if (filter) {
       dispatch({
         type: GET_ARTISTS_FULFILLED,
-        payload: {artistList}
+        payload: {list: artists.data}
       })
     }
     else {
+      randomArtists.data.forEach(async (item) => {
+        const name = item.name.replace(/\-/g, '%20')
+        const res = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&origin=*&redirects=1&format=json&piprop=original&titles=${name}`, { "Content-Type": "application/json charset=UTF-8" })
+        const json = await res.json()
+        const firstElement = Object.keys(json.query.pages)[0]
+        const coverImg = get(json.query.pages[firstElement], 'original.source')
+        dispatch({
+          type: SAVE_COVER_IMAGE,
+          payload: {
+            ...item,
+            name: item.name.replace(/\-/g, ' '),
+            coverImg,
+          }
+        })
+      })
       dispatch({
         type: GET_ARTISTS_FULFILLED,
-        payload: {artistList, total: artists.data.total}
+        payload: {list: randomArtists.data, total: artists.data.total}
       })
     }
   }
