@@ -9,6 +9,10 @@
 	overflow-x: hidden;
 	width: 100%;
 	min-height: 100vh;
+  padding-left: 0;
+  color: #FFFFFF;
+  font-family: 'Montserrat Regular';
+  min-width: 50vw;
 }
   
 .logoRed {
@@ -21,6 +25,11 @@
   margin: 3rem 1rem;
   color: #FFFFFF;
   text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
 }
 
 .helpUsContent > h1 {
@@ -30,26 +39,27 @@
 
 .helpUsContent > p {
   margin: 3rem 1rem;
-  font-size: 24px;
+  font-size: 30px;
+  max-width: 70%;
 }
 
 .donationLinks {
   display: flex;
   justify-content: center;
-  margin: 10rem 0;
+  margin-top: 6rem;
 }
 
-.paypalLink > svg:hover {
-  color: rgba(202, 194, 194, 0.781);
+.paypalLink, .patreonLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
-.patreonLink > svg:hover {
-  color: rgba(202, 194, 194, 0.781);
-}
-
-.footerLink {
+.aboutUsFooterLink {
   cursor: pointer;
-  margin: 0 2rem;
+  margin: 1rem 2rem;
   opacity: 0.8;
   color: #fff;
   font-family: 'Roboto';
@@ -58,6 +68,14 @@
   letter-spacing: 0.68px;
   line-height: 28px;
   text-decoration: none;
+}
+
+.paypalLink > svg:hover {
+  color: rgba(202, 194, 194, 0.781);
+}
+
+.patreonLink > svg:hover {
+  color: rgba(202, 194, 194, 0.781);
 }
 
 @media (max-width: 500px) {
@@ -82,12 +100,7 @@
     font-size: 18px;
   }
 
-  .donationLinks {
-    justify-content: space-around;
-  }
-
   .footerLink {
     font-size: 16px;
-    margin: 0 .5rem;
   }
 }

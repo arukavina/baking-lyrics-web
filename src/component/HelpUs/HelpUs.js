@@ -25,7 +25,7 @@ export default () => (
       <a href="https://www.patreon.com/baking_lyrics" className="patreonLink" target="_blank">
         <FontAwesomeIcon icon={faPatreon} size="4x" color="white"/>
         <span
-          className="footerLink"
+          className="aboutUsFooterLink footerLink"
         >
           {'Patreon'}
         </span>
@@ -33,7 +33,7 @@ export default () => (
       <a href="https://paypal.me/bakinglyrics" className="paypalLink" target="_blank">
         <FontAwesomeIcon icon={faPaypal} size="4x" color="white"/>
         <span
-          className="footerLink"
+          className="aboutUsFooterLink footerLink"
         >
           {'Paypal'}
         </span>
