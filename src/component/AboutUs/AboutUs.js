@@ -124,7 +124,7 @@ export default class extends Component {
                   `of a color just from looking at it.`
                 }
                 social={{
-                  linkedin: '/sergio-banchero-4828bb77',
+                  linkedin: '/sergio-banchero',
                 }}
               />
               <Element name="andrei" >
@@ -134,9 +134,10 @@ export default class extends Component {
                   roles={'AI, Backend, DevOps'}
                   image={andreiRukavinaImg}
                   description={
-                    `Software Engineer, Data scientist & InfoViz \n` +
-                    `enthusiastic with a fantastic taste for coffee.\n` +
-                    `Member of the Python/R purifiers society.`
+                    `Software Engineer, Data scientist & InfoVis \n` +
+                    `enthusiastic with an outlandish taste for\n` +
+                    `yerba mate. Member of the Python / R purifiers \n` +
+                    `fictitious society. I can speak really loud`
                   }
                   social={{
                     twitter: '@andrei_rukavina',
@@ -173,15 +174,16 @@ export default class extends Component {
                 type={'secondary'}
                 roles={'Testing/Coverage'}
                 image={jonathanPerkesImg}
-                // description={
-                //   // `Software engineer, c# and now "whatever it \n` +
-                //   // `comes" developer, master in engineering \n` +
-                //   // `candidate, because just one thesis is not \n` +
-                //   // `enough to cry, and of course a senior "crazy \n` +
-                //   // `cat lady"`
-                // }
+                description={
+                  `Computer Engineer, Data Scientist. I’ve \n` +
+                  `been particularly interested in Fourier Analysis \n` +
+                  `and DSP as of late. I once saw the Necronomicon’s \n` +
+                  `copy at my university library and I can create \n` +
+                  `origami versions of flowers I casually see during \n` +
+                  `the day.`
+                }
                 social={{
-                  // linkedin: '/adriana-maulini-b-226278a4'
+                  linkedin: '/jonathan-perkes'
                 }}
               />
             </Element>
