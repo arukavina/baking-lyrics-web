@@ -1,6 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router'
-// import NotFound from './components/NotFound/NotFound'
+import { Route, Switch, Redirect } from 'react-router'
 import App from './App'
 import Main from './component/Main'
 import SeedData from './component/SeedData'
@@ -19,7 +18,9 @@ const Routes = () => (
       <Route exact path="/about-us" component={AboutUs} />
       <Route exact path="/help-us" component={HelpUs} />
       {/* 404 */}
-      {/* <Route component={NotFound} /> */}
+      <Route>
+        <Redirect to="/" /> 
+      </Route>
     </Switch>
   </App>
 )
