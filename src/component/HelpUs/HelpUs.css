@@ -1,4 +1,4 @@
-.container {
+.helpUsContainer {
   background: linear-gradient(
 		rgba(0, 0, 0, 0.5),
 		rgba(0, 0, 0, 0.5)
@@ -9,129 +9,85 @@
 	overflow-x: hidden;
 	width: 100%;
 	min-height: 100vh;
-	display: flex;
-	flex-flow: column;
-	justify-content: space-between;
 }
   
-  .logoRed {
-    margin: 50px 40px 0;
-    width: 207px;
-    height: 111px;
-  }
-  
-  .buttonsContainer {
-    padding: 40px;
-    vertical-align: center;
+.logoRed {
+  margin: 50px 40px 0;
+  width: 207px;
+  height: 111px;
+}
+
+.helpUsContent {
+  margin: 3rem 1rem;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.helpUsContent > h1 {
+  margin: 3rem 1rem;
+  font-size: 48px;
+}
+
+.helpUsContent > p {
+  margin: 3rem 1rem;
+  font-size: 24px;
+}
+
+.donationLinks {
+  display: flex;
+  justify-content: center;
+  margin: 10rem 0;
+}
+
+.paypalLink > svg:hover {
+  color: rgba(202, 194, 194, 0.781);
+}
+
+.patreonLink > svg:hover {
+  color: rgba(202, 194, 194, 0.781);
+}
+
+.footerLink {
+  cursor: pointer;
+  margin: 0 2rem;
+  opacity: 0.8;
+  color: #fff;
+  font-family: 'Roboto';
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.68px;
+  line-height: 28px;
+  text-decoration: none;
+}
+
+@media (max-width: 500px) {
+
+  .container{
+    align-items: center;
   }
 
-  .helpUsContent {
-		color: #FFFFFF;
-		text-align: center;
+  .logoRed {
+    margin: 2rem 0rem 0rem 0rem;
+    width: 150px;
+    height: auto;
   }
-  
-  .homeTitle {
-    width: 100%;
-    padding-left: 0;
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    color: #FFFFFF;
-    font-family: 'Montserrat Regular';
-    min-width: 50vw;
-  }
-  
-  .homeTitle > h1 {
-      font-size: 45px;
-    font-weight: 400;
-  }
-  
-  .homeTitle > h2 {
-      font-size: 24px;
-    font-weight: 400;
-  }
-  
-  .homeTitle > p {
-    text-align: left;
-    width: 80%;
-    line-height: normal;
-  }
-  
-  .tryButton {
-    outline: none;
-    border: none;
-    color: #fff;
-    margin-top: 5px;
-    font-size: 20px;
-    background-color: #E32C3E;
-    padding: 1.5rem 4rem;
-    text-decoration: none;
-  }
-  
-  .tryButton:hover {
-    background-color: #800;
-  }
-  
-  .donationLinks {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 2rem;
-  }
-  
-  .footerLink {
-    cursor: pointer;
-    margin: 0 2rem;
-    opacity: 0.8;
-    color: #fff;
-    font-family: 'Roboto';
+
+  .helpUsContent > h1 {
+    margin: 3rem 1rem;
     font-size: 24px;
-    font-weight: 300;
-    letter-spacing: 0.68px;
-    line-height: 28px;
-    text-decoration: none;
   }
   
-  .gitHubLink {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+  .helpUsContent > p {
+    margin: 3rem 1rem;
+    font-size: 18px;
   }
-  
-  @media (max-width: 500px) {
-  
-    .container{
-      align-items: center;
-    }
-  
-    .logoRed {
-      margin: 2rem 0rem 0rem 0rem;
-      width: 150px;
-      height: auto;
-    }
-  
-    .tryButton {
-      margin-top: 10px;
-      font-size: 15px;
-      padding: 1rem 2.5rem;
-    }
-  
-    .homeTitle > h1 {
-      font-size: 16px;
-      letter-spacing: 0.9px;
-      line-height: 29px;
-      width: 90%;
-    }
-  
-    .donationLinks {
-      flex-direction: row;
-      width: 80%;
-      justify-content: space-around;
-    }
-  
-    .footerLink {
-      font-size: 16px;
-    }
+
+  .donationLinks {
+    justify-content: space-around;
   }
-  
+
+  .footerLink {
+    font-size: 16px;
+    margin: 0 .5rem;
+  }
+}

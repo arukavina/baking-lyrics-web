@@ -34,8 +34,6 @@ const onSubmit = (values, dispatch) => {
 const formConfig = {
   onSubmit,
   form: 'wizard',
-  destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
 }
 export default connect(
   mapStateToProps,

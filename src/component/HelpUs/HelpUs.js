@@ -6,7 +6,7 @@ import logoRed from '../../static/images/logoRed.png'
 import './HelpUs.css'
 
 export default () => (
-  <div className="container">
+  <div className="helpUsContainer">
 		<Link className="header" to={'/'}>
 			<img className="logoRed" src={logoRed} alt="baking logo" />
 		</Link>
@@ -15,7 +15,10 @@ export default () => (
 				HELP US
 			</h1>
 			<p>
-				Baking-Lyrics is free, always evolving, user-supported service. But unfortunately it isn’t free to operate. We have salaries to pay and infrastructure costs to cover to make Baking-Lyrics available to our million users worldwide. Thankfully, many users do support us by donating what they can afford (💵), to help us support ongoing development. We ❤️ you, and couldn’t exist without you. Every donation helps! 
+        Baking-Lyrics is free, always evolving, user-supported service. But unfortunately it isn’t free to operate. 
+        We have salaries to pay and infrastructure costs to cover to make Baking-Lyrics available to our million users worldwide.<br/><br/>
+        Thankfully, many users do support us by donating what they can afford (💵), to help us support ongoing development.<br/>
+        We ❤️ you, and couldn’t exist without you. Every donation helps!
 			</p>
 		</div>
     <div className="donationLinks">

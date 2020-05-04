@@ -108,6 +108,11 @@
   cursor: pointer;
 }
 
+.link > svg:hover {
+  color: rgba(202, 194, 194, 0.781);
+}
+
+
 @media (max-width: 500px) {
 
   .generatedSongHeader {
