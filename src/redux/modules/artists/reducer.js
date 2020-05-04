@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
       }
     }
     case SAVE_COVER_IMAGE: {
-      const itemIndex = state.list.findIndex(x => x.name === action.payload.name)
+      const itemIndex = state.list.findIndex(x => x.id === action.payload.id)
       const newList = [...state.list]
       newList[itemIndex] = action.payload
       return {

@@ -4,7 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 import InfoBox from './InfoBox'
 import logoRed from '../../static/images/logoRed.png'
 import menu from '../../static/images/menu.png'
-import adrianaMauliniImg from '../../static/images/adrianaMaulini.png'
+import jonathanPerkesImg from '../../static/images/jonathanPerkes.jpeg'
 import andreiRukavinaImg from '../../static/images/andreiRukavina.png'
 import sergioBancheroImg from '../../static/images/sergioBanchero.png'
 import solanaSierraImg from '../../static/images/solanaSierra.png'
@@ -59,8 +59,8 @@ export default class extends Component {
       link: 'solana', 
       name: 'SOLANA SIERRA'
     },{ 
-      link: 'adriana', 
-      name: 'ADRIANA MAULINI'
+      link: 'jonathan', 
+      name: 'JONATHAN PERKES'
     },{ 
       link: 'nicolas', 
       name: 'NICOLAS CRIBIOLI'
@@ -167,22 +167,21 @@ export default class extends Component {
                 }}
               />
             </Element>
-            <Element name="adriana" className="aboutUsElementContainer">
+            <Element name="jonathan" className="aboutUsElementContainer">
               <InfoBox
-                name={'ADRIANA MAULINI'}
+                name={'JONATHAN PERKES'}
                 type={'secondary'}
                 roles={'Testing/Coverage'}
-                image={adrianaMauliniImg}
-                description={
-                  `Software engineer, c# and now "whatever it \n` +
-                  `comes" developer, master in engineering \n` +
-                  `candidate, because just one thesis is not \n` +
-                  `enough to cry, and of course a senior "crazy \n` +
-                  `cat lady"`
-                }
+                image={jonathanPerkesImg}
+                // description={
+                //   // `Software engineer, c# and now "whatever it \n` +
+                //   // `comes" developer, master in engineering \n` +
+                //   // `candidate, because just one thesis is not \n` +
+                //   // `enough to cry, and of course a senior "crazy \n` +
+                //   // `cat lady"`
+                // }
                 social={{
-                  linkedin: '/adriana-maulini-b-226278a4',
-
+                  // linkedin: '/adriana-maulini-b-226278a4'
                 }}
               />
             </Element>
