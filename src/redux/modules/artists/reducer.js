@@ -20,7 +20,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        list: action.payload
+        list: action.payload.artistList,
+        total: action.payload.total || state.total
       }
     }
     case SAVE_COVER_IMAGE: {

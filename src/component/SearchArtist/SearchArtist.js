@@ -98,7 +98,7 @@ export default class extends Component {
   }
 
   render () {
-    const { search, artists } = this.props
+    const { search, artists, total } = this.props
     
     return(
       <div className="searchArtistComponentcontainer">
@@ -110,9 +110,10 @@ export default class extends Component {
             <Field 
               component={renderField} 
               onChange={this.debouncedOnChange}
-              placeholder="Search for a band" 
+              placeholder="Search for an artist or a band" 
               name="search"
             />
+            {total && <span className="totalArtists">{`Searching in a database of ${total} artists`}</span>}
             <div className="showingResultsContainer">
               {
                 (search && artists.length !== 0) &&

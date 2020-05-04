@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
   return{
     search: selector(state, 'search'),
     artists: state.artists.list,
+    total: state.artists.total,
     isFetching: state.artists.isFetching
   }
 }

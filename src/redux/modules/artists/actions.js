@@ -34,10 +34,18 @@ export const getArtists = (filter = '') => async (dispatch) => {
         name: item.name.replace(/\-/g, ' ')
       }
     })
-    dispatch({
-      type: GET_ARTISTS_FULFILLED,
-      payload: newList || artistList
-    })
+    if (filter) {
+      dispatch({
+        type: GET_ARTISTS_FULFILLED,
+        payload: {artistList}
+      })
+    }
+    else {
+      dispatch({
+        type: GET_ARTISTS_FULFILLED,
+        payload: {artistList, total: artists.data.total}
+      })
+    }
   }
   catch (e) {
     dispatch({
