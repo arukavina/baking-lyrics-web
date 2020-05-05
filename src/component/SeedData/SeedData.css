@@ -104,6 +104,68 @@
   align-items: center;
 }
 
+.termsAndConditions {
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 20px;
+  width: 60%;
+  justify-content: space-around;
+}
+
+.termsAndConditions > span > a {
+  text-decoration: underline;
+  color: white;
+  font-weight: 600;
+}
+
+.checkbox {
+  display: inline-flex;
+  cursor: pointer;
+  position: relative;
+  color: #FFFFFF;
+  font-size: 20px;
+}
+
+.checkbox > span {
+  color: #FFFFFF;
+  padding: 0.5rem 0.25rem;
+}
+
+.checkbox > input {
+  height: 25px;
+  width: 25px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: 1px solid #FFFFFF;
+  transition-duration: 0.3s;
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+
+.checkbox > input:checked {
+  border: 1px solid #34495E;
+  background-color: #FFFFFF;
+}
+
+.checkbox > input:checked + span::before {
+  content: '\2713';
+  display: block;
+  font-size: x-large;
+  text-align: center;
+  font-weight: 900;
+  color: #34495E;
+  position: absolute;
+  left: 0.5rem;
+  top: 0.2rem;
+}
+
+.checkbox > input:active {
+  border: 2px solid #FFFFFF;
+}
+
 /* If the app is loading */
 
 .isFetching {
@@ -162,19 +224,26 @@
 
   .headerContainer {
     padding-bottom: 20px;
+    margin: 2rem 0;
   }
 
-  .headerSubTitle{
+  .headerSubTitle {
     margin: 0px;
     font-size: 20px;
+    text-align: center;
   }
 
-  .headerTitle{
-    font-size: 80px;
+  .headerTitle {
+    font-size: 60px;
+    text-align: center;
   }
 
-  .inputTitle{
+  .inputTitle {
     font-size: 25px;
+  }
+
+  .termsAndConditions {
+    width: 80%;
   }
 
   .buttonContainer {

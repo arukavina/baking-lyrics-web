@@ -30,21 +30,30 @@ export default () => (
         We wish you the best so play as much as you want, release your creativity, innovate,  copy & paste.<br/>
         <br/>
         Best regards,<br/>
-        The Baking-Lyrics band.
+        The Baking-Lyrics coding ⌨️ band.
       </p>
       <Link className="tryButton" to="artist" >{'TRY IT OUT'}</Link>
     </div>
     <footer className="mainFooter">
-      <a href="https://github.com/arukavina/baking-lyrics" className="gitHubLink">
-        <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
-        <span
-          className="footerLink"
-        >
-          {'GitHub'}
-        </span>
-      </a>
-      <Link className="footerLink" to="about-us" >{'About Us'}</Link>
-      <Link className="footerLink" to="help-us" >{'Help Us'}</Link>
+      <div className="homeLinks">
+        <a href="https://github.com/arukavina/baking-lyrics" className="githubLink">
+          <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
+          <span
+            className="footerLink"
+            >
+            {'GitHub'}
+          </span>
+        </a>
+        <Link className="footerLink" to="about-us" >{'About Us'}</Link>
+        <Link className="footerLink" to="help-us" >{'Help Us'}</Link>
+      </div>
+      <div className="bottomFooter">
+        <div>By using our Baking-Lyrics engine, you accept our T&C that can be found <a href="/terms-and-conditions" className="termsConditionsLink" target="_blank" >here.</a></div>
+        <div className="locationText">
+          2020.
+          San Nicolas de los Arroyos, 🇦🇷
+        </div>
+      </div>
     </footer>
   </div>
 )

@@ -27,13 +27,25 @@ const mapDispatchToProps = dispatch => ({
   changeSearch: value => dispatch(change('wizard', 'search', value)),
 })
 
+const validate = values => {
+  const errors = {}
+  console.log('values', values);
+  
+  if (!values.termsAndConditions) {
+    errors.termsAndConditions = 'Required'
+  }
+  return errors
+}
+
 const onSubmit = (values, dispatch) => {
+  values.termsAndConditions && localStorage.setItem('acceptedTandC', values.termsAndConditions)
   dispatch(generateSong(values.fistThreeWords, '100', values.artistId))
 }
 
 const formConfig = {
   onSubmit,
   form: 'wizard',
+  validate,
 }
 export default connect(
   mapStateToProps,

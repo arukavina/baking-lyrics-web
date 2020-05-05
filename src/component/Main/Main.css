@@ -26,7 +26,6 @@
 }
 
 .homeTitle {
-  width: 100%;
   padding-left: 0;
   display: flex;
   flex-flow: column;
@@ -41,24 +40,27 @@
 .homeTitle > h1 {
 	font-size: 45px;
   font-weight: 400;
+  width: 80%;
 }
 
 .homeTitle > h2 {
-	font-size: 24px;
+	font-size: 30px;
   font-weight: 400;
+  width: 60%;
 }
 
 .homeTitle > p {
-  text-align: left;
-  width: 80%;
+  text-align: center;
   line-height: normal;
+  font-size: 24px;
+  width: 50%;
 }
 
 .tryButton {
   outline: none;
   border: none;
   color: #fff;
-  margin: 10px 0;
+  margin: 2rem 0;
   font-size: 20px;
   background-color: #E32C3E;
   padding: 1.5rem 4rem;
@@ -70,9 +72,16 @@
 }
 
 .mainFooter {
+  color: #FFFFFF;
+  font-family: 'Roboto';
+  font-size: 24px;
+}
+
+.homeLinks {
   display: flex;
   justify-content: center;
   padding-bottom: 2rem;
+  align-items: center;
 }
 
 .footerLink {
@@ -88,10 +97,29 @@
   text-decoration: none;
 }
 
-.gitHubLink {
+.githubLink {
   display: flex;
   align-items: center;
   text-decoration: none;
+}
+
+.bottomFooter {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #000000;
+  background-color: #000000;
+  opacity: .3;
+  padding: 1.5rem 3rem;
+}
+
+.termsConditionsLink {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+.locationText {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 500px) {
@@ -113,14 +141,14 @@
   }
 
   .homeTitle > h1 {
-    font-size: 16px;
+    font-size: 22px;
     letter-spacing: 0.9px;
     line-height: 29px;
     width: 90%;
   }
 
   .homeTitle > h2 {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
   }
   
@@ -131,14 +159,41 @@
     line-height: normal;
   }
 
-  .mainFooter {
+  .homeLinks {
     flex-direction: row;
     width: 80%;
     justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding-bottom: 1rem;
   }
 
   .footerLink {
     font-size: 16px;
     margin: 0 .5rem;
+  }
+
+  .githubLink > svg {
+    width: 2rem !important;
+  }
+
+  .bottomFooter {
+    padding: 1rem;
+    font-size: 12px;
+  }
+
+  .bottomFooter > div {
+    width: 50%;
+  }
+  
+  .termsConditionsLink {
+    color: #FFFFFF;
+    text-decoration: underline;
+  }
+  
+  .locationText {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
   }
 }

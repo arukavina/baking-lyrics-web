@@ -3,15 +3,12 @@ import { Field } from "redux-form"
 import { Link } from "react-router-dom"
 import debounce from "lodash/debounce"
 import logoRed from '../../static/images/logoRed.png'
-import serchImage from '../../static/images/find.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSync, faSearch } from '@fortawesome/free-solid-svg-icons'
 import './SearchArtist.css'
 
-const renderField = (field) => (
-  <div className="searchBar">
-    <img className="serchImage" src={serchImage} alt="Search" />
-    <input {...field.input} maxLength={40} type="text" placeholder={field.placeholder}/>
-  </div>
-)
+
+const renderSearchField = field => <input {...field.input} maxLength={40} type="text" placeholder={field.placeholder}/>
 
 export default class extends Component {
   componentDidMount () {
@@ -35,7 +32,7 @@ export default class extends Component {
     ))
   }
 
-  onChange(event, newValue, previousValue) {
+  onChange(event) {
     const { getArtists } = this.props
     event.target.value.length > 2 ? getArtists(event.target.value.trimEnd()) : getArtists()
   }
@@ -98,21 +95,32 @@ export default class extends Component {
   }
 
   render () {
-    const { search, artists, total } = this.props
+    const { search, artists, total, getArtists } = this.props
     
     return(
       <div className="searchArtistComponentcontainer">
-        <Link className="header" to={'/'}>
-          <img className="logoRed" src={logoRed} alt="baking logo" />
-        </Link>
+        <div className="regularHeaderContainer">
+          <Link className="regularHeader" to={'/'}>
+            <img className="logoRed" src={logoRed} alt="baking logo" />
+          </Link>
+        </div>
         <div className="searchArtistContainer">
           <div className="searchArtist">
-            <Field 
-              component={renderField} 
-              onChange={this.debouncedOnChange}
-              placeholder="Search for an artist or a band" 
-              name="search"
-            />
+            <div className="searchBar">
+              <FontAwesomeIcon icon={faSearch} size="lg"/>
+              <Field 
+                component={renderSearchField}
+                onChange={this.debouncedOnChange}
+                placeholder="Search for an artist or a band" 
+                name="search"
+              />
+              <div onClick={() => {
+                getArtists()
+                this.props.change('search', '')
+              }}>
+                <FontAwesomeIcon icon={faSync} size="lg" title="Refresh list"/>
+              </div>
+            </div>
             {total && <span className="totalArtists">{`Searching in a database of ${total} artists`}</span>}
             <div className="showingResultsContainer">
               {

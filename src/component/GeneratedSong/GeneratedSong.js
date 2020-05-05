@@ -49,9 +49,11 @@ export default class extends Component {
     return (
       <div className="generatedSongContainer" style={sectionStyle}>
         <div className="generatedSongHeader">
-          <Link className="header" to={'/artist'}>
-            <img className="logoRed" src={logoRed} alt="baking logo" />
-          </Link>
+          <div className="regularHeaderContainer">
+            <Link className="regularHeader" to={'/artist'}>
+              <img className="logoRed" src={logoRed} alt="baking logo" />
+            </Link>
+          </div>
           <div className="bandNameContainer">
             <span className="bandNameTitle">
               {'LYRICS BASED IN'}
