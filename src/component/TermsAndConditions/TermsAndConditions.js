@@ -636,61 +636,6 @@ export default () => (
 	an absolute waiver of all civil liability in connection with the<br />
 	Program, unless a warranty or assumption of liability accompanies a<br />
 	copy of the Program in return for a fee.</p>
-	
-	<p> END OF TERMS AND CONDITIONS</p>
-	
-	<p> How to Apply These Terms to Your New Programs</p>
-	
-	<p> If you develop a new program, and you want it to be of the greatest<br />
-	possible use to the public, the best way to achieve this is to make it<br />
-	free software which everyone can redistribute and change under these terms.</p>
-	
-	<p> To do so, attach the following notices to the program. It is safest<br />
-	to attach them to the start of each source file to most effectively<br />
-	state the exclusion of warranty; and each file should have at least<br />
-	the &quot;copyright&quot; line and a pointer to where the full notice is found.</p>
-	
-	<p> {`<one line to give the program's name and a brief idea of what it does.>`}<br />
-	 Copyright (C) {`<year> <name of author>`}</p>
-	
-	<p> This program is free software: you can redistribute it and/or modify<br />
-	 it under the terms of the GNU General Public License as published by<br />
-	 the Free Software Foundation, either version 3 of the License, or<br />
-	 (at your option) any later version.</p>
-	
-	<p> This program is distributed in the hope that it will be useful,<br />
-	 but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
-	 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br />
-	 GNU General Public License for more details.</p>
-	
-	<p> You should have received a copy of the GNU General Public License<br />
-	 along with this program. If not, see {`<http://www.gnu.org/licenses/>.`}</p>
-	
-	<p>Also add information on how to contact you by electronic and paper mail.</p>
-	
-	<p> If the program does terminal interaction, make it output a short<br />
-	notice like this when it starts in an interactive mode:</p>
-	
-	<p> {`<program> Copyright (C) <year> <name of author>`}<br />
-	 This program comes with ABSOLUTELY NO WARRANTY; for details type &#96;show w'.<br />
-	 This is free software, and you are welcome to redistribute it<br />
-	 under certain conditions; type &#96;show c' for details.</p>
-	
-	<p>The hypothetical commands &#96;show w' and &#96;show c' should show the appropriate<br />
-	parts of the General Public License. Of course, your program's commands<br />
-	might be different; for a GUI interface, you would use an &quot;about box&quot;.</p>
-	
-	<p> You should also get your employer (if you work as a programmer) or school,<br />
-	if any, to sign a &quot;copyright disclaimer&quot; for the program, if necessary.<br />
-	For more information on this, and how to apply and follow the GNU GPL, see<br />
-	{`<http://www.gnu.org/licenses/>.`}</p>
-	
-	<p> The GNU General Public License does not permit incorporating your program<br />
-	into proprietary programs. If your program is a subroutine library, you<br />
-	may consider it more useful to permit linking proprietary applications with<br />
-	the library. If this is what you want to do, use the GNU Lesser General<br />
-	Public License instead of this License. But first, please read<br />
-	{`<http://www.gnu.org/philosophy/why-not-lgpl.html>.`}</p>
 	</div>
 		</div>
 	</div>
