@@ -15,6 +15,7 @@
   min-width: 50vw;
 }
 
+
 .regularHeaderContainer {
   display: flex;
   justify-content: flex-start;
@@ -27,27 +28,28 @@
 }
 
 .helpUsContent {
-  margin: 3rem 1rem;
-  color: #FFFFFF;
-  text-align: center;
+  padding-left: 0;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
+  color: #FFFFFF;
+  font-family: 'Montserrat Regular';
+  min-width: 50vw;
 }
 
 .helpUsContent > h1 {
 	font-size: 45px;
   font-weight: 400;
-  margin: 3rem 1rem;
+  width: 80%;
 }
 
 .helpUsContent > p {
-  margin: 3rem 1rem;
-  font-size: 30px;
-  max-width: 50%;
   text-align: center;
+  line-height: normal;
+  font-size: 24px;
+  width: 70%;
 }
 
 .donationLinks {
