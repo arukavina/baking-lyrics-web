@@ -7,9 +7,11 @@ import './HelpUs.css'
 
 export default () => (
   <div className="helpUsContainer">
-		<Link className="header" to={'/'}>
-			<img className="logoRed" src={logoRed} alt="baking logo" />
-		</Link>
+    <div className="regularHeaderContainer">
+      <Link className="regularHeader" to={'/'}>
+        <img className="logoRed" src={logoRed} alt="baking logo" />
+      </Link>
+    </div>
 		<div className="helpUsContent">
 			<h1>
 				HELP US

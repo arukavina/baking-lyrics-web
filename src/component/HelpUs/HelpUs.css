@@ -14,6 +14,11 @@
   font-family: 'Montserrat Regular';
   min-width: 50vw;
 }
+
+.regularHeaderContainer {
+  display: flex;
+  justify-content: flex-start;
+}
   
 .logoRed {
   margin: 50px 40px 0;
@@ -33,9 +38,9 @@
 }
 
 .helpUsContent > h1 {
+	font-size: 45px;
+  font-weight: 400;
   margin: 3rem 1rem;
-  font-size: 48px;
-  font-weight: normal;
 }
 
 .helpUsContent > p {
@@ -86,6 +91,14 @@
     align-items: center;
   }
 
+  .regularHeaderContainer {
+    justify-content: center;
+  }
+
+  .regularHeader {
+    width: unset;
+  }
+
   .logoRed {
     margin: 2rem 0rem 0rem 0rem;
     width: 150px;
@@ -93,13 +106,15 @@
   }
 
   .helpUsContent > h1 {
-    margin: 3rem 1rem;
+    margin: 1rem 0 2rem;
     font-size: 24px;
+    font-weight: 400;
   }
   
   .helpUsContent > p {
-    margin: 3rem 1rem;
+    margin: 0;
     font-size: 18px;
+    max-width: 70%;
   }
 
   .footerLink {

@@ -99,9 +99,11 @@ export default class extends Component {
     
     return(
       <div className="searchArtistComponentcontainer">
-        <Link className="header" to={'/'}>
-          <img className="logoRed" src={logoRed} alt="baking logo" />
-        </Link>
+        <div className="regularHeaderContainer">
+          <Link className="regularHeader" to={'/'}>
+            <img className="logoRed" src={logoRed} alt="baking logo" />
+          </Link>
+        </div>
         <div className="searchArtistContainer">
           <div className="searchArtist">
             <div className="searchBar">

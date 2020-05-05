@@ -7,6 +7,7 @@ import GeneratedSong from './component/GeneratedSong'
 import AboutUs from './component/AboutUs'
 import HelpUs from './component/HelpUs/HelpUs'
 import SearchArtist from './component/SearchArtist'
+import TermsAndConditions from './component/TermsAndConditions/TermsAndConditions'
 
 const Routes = () => (
   <App>
@@ -17,6 +18,7 @@ const Routes = () => (
       <Route exact path="/song/:songId" component={GeneratedSong} />
       <Route exact path="/about-us" component={AboutUs} />
       <Route exact path="/help-us" component={HelpUs} />
+      <Route exact path="/terms-and-conditions" component={TermsAndConditions} />
       {/* 404 */}
       <Route>
         <Redirect to="/" /> 

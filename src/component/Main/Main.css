@@ -115,14 +115,14 @@
   }
 
   .homeTitle > h1 {
-    font-size: 16px;
+    font-size: 22px;
     letter-spacing: 0.9px;
     line-height: 29px;
     width: 90%;
   }
 
   .homeTitle > h2 {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
   }
   
