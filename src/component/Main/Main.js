@@ -19,15 +19,16 @@ export default () => (
       </h1>
       <h2>OVERCOME YOUR WRITER'S BLOCK WITH JUST ONE CLICK</h2>
       <p>
-        Dear musicians 🎸 , music enthusiasts 🎶 , writers 🖊 , and all artists 👩‍🎤 et. al., <br/>
+        Dear musicians 🎸 , music enthusiasts 🎶 , writers 🖊 , artists 👩‍🎤 et. al., <br/>
         <br/>
         Be welcomed to Baking-Lyrics an Artificial Intelligence 🤖 song writing engine.<br/>
-        Come here to get the necessary inspiration to rock your writer’s blockade. This is your cure. Don’t let anybody stop you, not even yourself, don’t let your rage against the machine blur your vision. We are here now. Pick your favorite artists, enjoy the silence, put in some words (or don’t) and let this crazy train create a bizarre new songs for you. Want to get a more specific results? Play with the parameters. Want to go all the way? Take an entire song, make a few arrangements and add your music to it, everything here can be reused and it’s yours. Just be kind enough to mention us.<br/>
+        Come here to get the necessary inspiration to rock your writer’s block. This is your cure. Don’t let anybody stop you, not even yourself, don’t let your rage against the machine blur your vision. We are here now. Pick your favorite artists, enjoy the silence, put in some words (or don’t) and let this crazy train create bizarre new songs for you. Want to get more specific results? Play with the parameters. Want to go all the way? Take an entire song, make a few arrangements and add your music to it. Everything here can be reused and it’s yours. Just be kind enough to mention us.<br/>
         <br/>
-        This is an open source, side project created from the bottom of the world. (Bottom to be read as arse). Here is a map.<br/>
-        But is for everyone. Our humble contribution to those who make our lives wonderful freeing us from our own thoughts (for just a few minutes)<br/>
+        This is an open source, side project created from the bottom of the world. (Bottom to be read as arse). <br/>
+        But it is for everyone. It is our humble contribution to those who make our lives wonderful freeing us from our own thoughts (for just a few minutes).<br/>
         <br/>
         We wish you the best so play as much as you want, release your creativity, innovate,  copy & paste.<br/>
+        <br/>
         <br/>
         Best regards,<br/>
         The Baking-Lyrics coding ⌨️ band.
@@ -48,10 +49,10 @@ export default () => (
         <Link className="footerLink" to="help-us" >{'Help Us'}</Link>
       </div>
       <div className="bottomFooter">
-        <div>By using our Baking-Lyrics engine, you accept our T&C that can be found <a href="/terms-and-conditions" className="termsConditionsLink" target="_blank" >here.</a></div>
+        <div>By using our Baking-Lyrics engine, you accept our T&C that can be found <a href="/terms-and-conditions" className="termsConditionsLink" target="_blank" >here</a>.</div>
         <div className="locationText">
-          2020.
-          San Nicolas de los Arroyos, 🇦🇷
+          Baking Lyrics 🎼 2020.
+          San Nicolas de los Arroyos, Argentina 🇦🇷
         </div>
       </div>
     </footer>
