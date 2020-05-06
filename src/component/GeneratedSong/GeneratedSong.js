@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import logoRed from '../../static/images/logoRed.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitterSquare, faFacebook } from '@fortawesome/free-brands-svg-icons'
+import { faTwitterSquare, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import './GeneratedSong.css'
 
 export default class extends Component {
@@ -43,7 +43,6 @@ export default class extends Component {
     const sectionStyle = {
       background: `linear-gradient(rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%), url("${background}") no-repeat center center/cover`
     };
-    
     
     return (
       <div className="generatedSongContainer" style={sectionStyle}>
@@ -93,6 +92,9 @@ export default class extends Component {
               className="link"
             >
               <FontAwesomeIcon icon={faTwitterSquare} size="3x" color="white" />
+            </a>
+            <a href={`https://api.whatsapp.com/send?text=Check%20this%20out!%20I%20just%20generated%20the%20following%20lyrics%20using%20Artificial%20Intelligence:%0A${document.URL}`} target="_blank" className="link">
+              <FontAwesomeIcon icon={faWhatsapp} size="3x" color="white" />
             </a>
           </div>
         </div>
