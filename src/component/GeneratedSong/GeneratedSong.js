@@ -41,8 +41,7 @@ export default class extends Component {
     } = this.props
 
     const sectionStyle = {
-      background: `linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 100%), url("${background}") no-repeat center top fixed`,
-      backgroundSize: 'cover'
+      background: `linear-gradient(rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%), url("${background}") no-repeat center center/cover`
     };
     
     
