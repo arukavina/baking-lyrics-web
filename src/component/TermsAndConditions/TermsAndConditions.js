@@ -1,8 +1,8 @@
 import React from 'react'
-import logoRed from '../../static/images/logoRed.png'
+import {TinyButton as ScrollUpButton} from "react-scroll-up-button"
 import { Link } from 'react-router-dom'
+import logoRed from '../../static/images/logoRed.png'
 import './TermsAndConditions.css'
-
 
 export default () => (
 	<div className="containerLayout regularContainerImage termsAndConditionsContainer">
@@ -11,12 +11,13 @@ export default () => (
 				<img className="logoRed" src={logoRed} alt="baking logo" />
 			</Link>
 		</div>
+		<ScrollUpButton />
 		<div className="termsAndConditionsContent">
 			<h1 className="pageTitle">
 				TERMS AND CONDITIONS
 			</h1>
-			<div className="pageText">
-				<h4>Baking lyrics is licensed under the</h4>
+			<div className="termsAndConditionsLicense pageText">
+				<h4>Baking Lyrics is Licensed under the</h4>
 				<h3>GNU General Public License v3.0</h3>
 				<div class="licenseRules">
 					<div className="licenseRulesSection">
