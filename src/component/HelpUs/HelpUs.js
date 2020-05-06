@@ -6,21 +6,24 @@ import logoRed from '../../static/images/logoRed.png'
 import './HelpUs.css'
 
 export default () => (
-  <div className="helpUsContainer">
-    <div className="regularHeaderContainer">
-      <Link className="regularHeader" to={'/'}>
+  <div className="containerLayout regularContainerImage helpUsContainer">
+    <div className="regularHeader">
+      <Link className="regularHeaderLink" to={'/'}>
         <img className="logoRed" src={logoRed} alt="baking logo" />
       </Link>
     </div>
 		<div className="helpUsContent">
-			<h1>
+			<h1 className="pageTitle">
 				HELP US
 			</h1>
-			<p>
+			<p className="pageText">
         Baking-Lyrics is free, always evolving, user-supported service. But unfortunately it isn’t free to operate. 
-        We have salaries to pay and infrastructure costs to cover to make Baking-Lyrics available to our million users worldwide.<br/><br/>
-        Thankfully, many users do support us by donating what they can afford (💵), to help us support ongoing development.<br/>
-        We ❤️ you, and couldn’t exist without you. Every donation helps!<br/><br/>
+        We have salaries to pay and infrastructure costs to cover to make Baking-Lyrics available to our million users worldwide.
+        <br/><br/>
+        Thankfully, many users do support us by donating what they can afford (💵), to help us support ongoing development.
+        <br/><br/>
+        We ❤️ you, and couldn’t exist without you. Every donation helps!
+        <br/><br/>
         The Baking-Lyrics coding ⌨️ band.
 			</p>
 		</div>
