@@ -1,0 +1,25 @@
+.sharedFooter {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #000000;
+  background-color: #000000;
+  color: #FFFFFF;
+  opacity: .3;
+  padding: 1.5rem 3rem;
+  font-size: 18px;
+  width: 100%;
+}
+
+.sharedFooter > div {
+  width: 40%;
+}
+
+
+@media (max-width: 500px) {
+
+  .sharedFooter {
+    padding: 1rem;
+    font-size: 9px;
+  }
+
+}

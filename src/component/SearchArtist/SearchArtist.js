@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { Field } from "redux-form"
 import { Link } from "react-router-dom"
 import debounce from "lodash/debounce"
-import logoRed from '../../static/images/logoRed.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync, faSearch } from '@fortawesome/free-solid-svg-icons'
+import Footer from '../shared/Footer/Footer'
+import logoRed from '../../static/images/logoRed.png'
 import './SearchArtist.css'
 
 
@@ -52,10 +53,10 @@ export default class extends Component {
       return artists.map((item, index) => (
           (index <= 15) &&
             <div
+              style={{background: `linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%), url(${item.coverImg}) no-repeat center center/contain`}}
               onClick={() => this.onClickHandler(item.name, item.id)}
               key={index} className="artistContainer"
             >
-              {item.coverImg && <img className="artistLogo" src={item.coverImg} alt="foo logo" />}
               <span className="artistName">
                 {item.name}
               </span>
@@ -98,16 +99,16 @@ export default class extends Component {
     const { search, artists, total, getArtists } = this.props
     
     return(
-      <div className="searchArtistComponentcontainer">
-        <div className="regularHeaderContainer">
-          <Link className="regularHeader" to={'/'}>
+      <div className="containerLayout regularContainerImage">
+        <div className="regularHeader">
+          <Link to={'/'}>
             <img className="logoRed" src={logoRed} alt="baking logo" />
           </Link>
         </div>
         <div className="searchArtistContainer">
           <div className="searchArtist">
             <div className="searchBar">
-              <FontAwesomeIcon icon={faSearch} size="lg"/>
+              <FontAwesomeIcon icon={faSearch} color="black" size="lg"/>
               <Field 
                 component={renderSearchField}
                 onChange={this.debouncedOnChange}
@@ -118,10 +119,10 @@ export default class extends Component {
                 getArtists()
                 this.props.change('search', '')
               }}>
-                <FontAwesomeIcon icon={faSync} size="lg" title="Refresh list"/>
+                <FontAwesomeIcon icon={faSync} color="black" size="lg" title="Refresh list"/>
               </div>
             </div>
-            {total && <span className="totalArtists">{`Searching in a database of ${total} artists`}</span>}
+            {total ? <span className="totalArtists">{`Searching in a database of ${total} artists`}</span> : ''}
             <div className="showingResultsContainer">
               {
                 (search && artists.length !== 0) &&
@@ -139,6 +140,7 @@ export default class extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     )
   }

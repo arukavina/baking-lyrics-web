@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
-import logoRed from '../../static/images/logoRed.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitterSquare, faFacebook } from '@fortawesome/free-brands-svg-icons'
+import { faTwitterSquare, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import Footer from '../shared/Footer/Footer'
+import logoRed from '../../static/images/logoRed.png'
 import './GeneratedSong.css'
 
 export default class extends Component {
@@ -41,10 +42,8 @@ export default class extends Component {
     } = this.props
 
     const sectionStyle = {
-      background: `linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 100%), url("${background}") no-repeat center top fixed`,
-      backgroundSize: 'cover'
+      background: `linear-gradient(rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%), url("${background}") no-repeat center center/cover`
     };
-    
     
     return (
       <div className="generatedSongContainer" style={sectionStyle}>
@@ -95,8 +94,13 @@ export default class extends Component {
             >
               <FontAwesomeIcon icon={faTwitterSquare} size="3x" color="white" />
             </a>
+            <a href={`https://api.whatsapp.com/send?text=Check%20this%20out!%20I%20just%20generated%20the%20following%20lyrics%20using%20Artificial%20Intelligence:%0A${document.URL}`} target="_blank" className="link">
+              <FontAwesomeIcon icon={faWhatsapp} size="3x" color="white" />
+            </a>
           </div>
+          <Link className="tryButton" to="/artist" >{'ONE MORE TIME'}</Link>
         </div>
+        <Footer />
       </div>
     )
   }

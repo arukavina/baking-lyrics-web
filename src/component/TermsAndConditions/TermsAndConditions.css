@@ -1,0 +1,102 @@
+.termsAndConditionsContainer {
+	text-align: center;
+}
+
+.termsAndConditionsContent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 60%;
+}
+
+.licenseRules {
+	display: flex;
+	justify-content: center;
+	flex-wrap: nowrap;
+	margin: 1rem;
+}
+
+.licenseRulesSection {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 18px;
+}
+
+.pageText > h4 {
+	font-weight: normal;
+}
+
+.pageText > h3, .pageText > h4 {
+	text-align: center;
+}
+
+.licenseRulesSection:nth-child(2) {
+	margin: 0 2rem;
+	min-width: 200px;
+}
+
+.licenseRulesLabel {
+	margin-bottom: .5rem;
+}
+
+.licenseAttribute {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+}
+
+.licenseSprite {
+	width: 12px;
+	min-width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin-right: .3rem;
+}
+
+.limitations {
+	background-color: #C6403D;
+}
+
+.conditions {
+	background-color: #0099D6;
+}
+
+.permissions {
+	background-color: #3DC637;
+}
+
+.termsAndConditionsLicense {
+	width: 90% !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.license {
+	text-align: justify;
+	width: 95%;
+}
+
+.licenseTitle {
+	text-align: center;
+}
+
+@media (max-width: 500px) {
+
+	.licenseRulesSection {
+		font-size: 14px;
+		margin: 1.5rem 1rem 0;
+		min-width: 30%;
+	}
+
+	.licenseRulesSection:nth-child(2) {
+		margin: 1.5rem 1rem 0;
+		min-width: 30%;
+	}
+
+	.licenseAttribute {
+		font-size: 12px;
+	}
+
+}

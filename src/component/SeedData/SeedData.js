@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import logoRed from '../../static/images/logoRed.png'
 import { Field } from "redux-form"
 import { Link } from 'react-router-dom'
+import Footer from '../shared/Footer/Footer'
+import logoRed from '../../static/images/logoRed.png'
 import loading from '../../static/images/loading.png'
 import './SeedData.css'
 
@@ -69,7 +70,7 @@ export default class extends Component {
     const { search, handleSubmit, isFetching, errorMsg } = this.props
     
     return (
-      <div className="seedDataContainer" style={this.sectionStyle}>
+      <div className="containerLayout seedDataContainer" style={this.sectionStyle}>
         <div className="regularHeaderContainer">
           <Link className="regularHeader" to={'/'}>
             <img className="logoRed" src={logoRed} alt="baking logo" />
@@ -119,6 +120,7 @@ export default class extends Component {
             </div>)
           : null
         }
+        <Footer />
       </div>
     )
   }
