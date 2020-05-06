@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons'
+import Footer from '../shared/Footer/Footer'
 import logoRed from '../../static/images/logoRed.png'
 import './HelpUs.css'
 
@@ -45,5 +46,6 @@ export default () => (
         </span>
       </a>
     </div>
+    <Footer />
   </div>
 )

@@ -1,6 +1,7 @@
 import React from 'react'
 import {TinyButton as ScrollUpButton} from "react-scroll-up-button"
 import { Link } from 'react-router-dom'
+import Footer from '../shared/Footer/Footer';
 import logoRed from '../../static/images/logoRed.png'
 import './TermsAndConditions.css'
 
@@ -663,5 +664,6 @@ export default () => (
 				</div>
 			</div>
 		</div>
+		<Footer ignoreTandC />
 	</div>
 )

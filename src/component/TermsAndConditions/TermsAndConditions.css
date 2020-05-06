@@ -87,12 +87,12 @@
 	.licenseRulesSection {
 		font-size: 14px;
 		margin: 1.5rem 1rem 0;
-		min-width: 50%;
+		min-width: 30%;
 	}
 
 	.licenseRulesSection:nth-child(2) {
 		margin: 1.5rem 1rem 0;
-		min-width: 50%;
+		min-width: 30%;
 	}
 
 	.licenseAttribute {

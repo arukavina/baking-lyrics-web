@@ -52,9 +52,10 @@
   justify-content: center;
   padding-bottom: 2rem;
   align-items: center;
+  width: 100%;
 }
 
-.footerLink {
+.mainLinks {
   cursor: pointer;
   margin: 0 2rem;
   opacity: 0.8;
@@ -71,20 +72,6 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-}
-
-.bottomFooter {
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #000000;
-  background-color: #000000;
-  opacity: .3;
-  padding: 1.5rem 3rem;
-  font-size: 18px;
-}
-
-.bottomFooter > div {
-  width: 40%;
 }
 
 .termsConditionsLink, .sanNicolasLink {
@@ -116,7 +103,6 @@
   .homeContent > p {
     font-size: 12px;
     text-align: left;
-    width: 80%;
     line-height: normal;
   }
 
@@ -126,21 +112,16 @@
     justify-content: space-around;
     align-items: center;
     margin: 0 auto;
-    padding-bottom: 1rem;
+    padding: .5rem 0;
   }
 
-  .footerLink {
+  .mainLinks {
     font-size: 16px;
     margin: 0 .5rem;
   }
 
   .githubLink > svg {
     width: 2rem !important;
-  }
-
-  .bottomFooter {
-    padding: 1rem;
-    font-size: 9px;
   }
 
 }

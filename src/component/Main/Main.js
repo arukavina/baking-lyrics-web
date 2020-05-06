@@ -1,21 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Footer from '../shared/Footer/Footer';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import logoRed from '../../static/images/logoRed.png'
 import './Main.css'
 
-const sanNicolasLocationUrl = `https://goo.gl/maps/2h92kAcdU73BB5om7`
-
 export default class extends Component {
-
   componentDidMount() {
     fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:4000'}/ping`)
   }
 
   render() {
-
     return (
       <div className="containerLayout regularContainerImage">
         <div className="regularHeader">
@@ -49,27 +45,21 @@ export default class extends Component {
       </p>
           <Link className="tryButton" to="artist" >{'TRY IT OUT'}</Link>
         </div>
-        <footer className="mainFooter">
+        <div className="homeLinks">
           <div className="homeLinks">
             <a href="https://github.com/arukavina/baking-lyrics" className="githubLink">
               <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
               <span
-                className="footerLink"
+                className="mainLinks"
               >
                 {'GitHub'}
               </span>
             </a>
-            <Link className="footerLink" to="about-us" >{'About Us'}</Link>
-            <Link className="footerLink" to="help-us" >{'Help Us'}</Link>
+            <Link className="mainLinks" to="about-us" >{'About Us'}</Link>
+            <Link className="mainLinks" to="help-us" >{'Help Us'}</Link>
           </div>
-          <div className="bottomFooter">
-            <div>By using our Baking-Lyrics engine, you accept our T&C that can be found <a href="/terms-and-conditions" className="termsConditionsLink" target="_blank" >here</a>.</div>
-            <div className="locationText">
-              Baking Lyrics 🎼 2020.
-          <a href={sanNicolasLocationUrl} target="_blank" className="sanNicolasLink"> San Nicol&aacute;s de los Arroyos, Argentina 🇦🇷</a>
-            </div>
-          </div>
-        </footer>
+        </div>
+        <Footer />
       </div>
     )
   }

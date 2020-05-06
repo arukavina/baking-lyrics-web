@@ -10,7 +10,6 @@ import sergioBancheroImg from '../../static/images/sergioBanchero.png'
 import solanaSierraImg from '../../static/images/solanaSierra.png'
 import nicolasCribioliImg from '../../static/images/nicolasCribioli.png'
 import radiumLogo from '../../static/images/radium-logo.jpg'
-
 import './AboutUs.css'
 
 export default class extends Component {
@@ -20,6 +19,10 @@ export default class extends Component {
     this.state = {
       menuOpen: false
     }
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 80)
   }
 
   lineTitle = (title) => {

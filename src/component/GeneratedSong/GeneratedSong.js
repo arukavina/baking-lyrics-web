@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
-import logoRed from '../../static/images/logoRed.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitterSquare, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import Footer from '../shared/Footer/Footer'
+import logoRed from '../../static/images/logoRed.png'
 import './GeneratedSong.css'
 
 export default class extends Component {
@@ -99,6 +100,7 @@ export default class extends Component {
           </div>
           <Link className="tryButton" to="/artist" >{'ONE MORE TIME'}</Link>
         </div>
+        <Footer />
       </div>
     )
   }
