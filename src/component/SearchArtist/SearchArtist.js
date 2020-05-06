@@ -52,10 +52,10 @@ export default class extends Component {
       return artists.map((item, index) => (
           (index <= 15) &&
             <div
+              style={{background: `linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%), url(${item.coverImg}) no-repeat center center/contain`}}
               onClick={() => this.onClickHandler(item.name, item.id)}
               key={index} className="artistContainer"
             >
-              {item.coverImg && <img className="artistLogo" src={item.coverImg} alt="foo logo" />}
               <span className="artistName">
                 {item.name}
               </span>
