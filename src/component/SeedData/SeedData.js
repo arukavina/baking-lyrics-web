@@ -7,7 +7,7 @@ import loading from '../../static/images/loading.png'
 import './SeedData.css'
 
 export default class extends Component {
-  componentDidMount () {
+  componentDidMount() {
     if (!this.props.search) return this.props.history.push(`artist`)
     const acceptedTandC = localStorage.getItem('acceptedTandC') === 'true';
     this.setState({ acceptedTandC });
@@ -32,7 +32,7 @@ export default class extends Component {
       placeholder,
       meta: { touched, error }
     } = field
-    return(
+    return (
       <div className="inputContainer">
         <span className="inputTitle">{title}</span>
         <input
@@ -41,7 +41,7 @@ export default class extends Component {
           placeholder={placeholder}
         />
         {touched &&
-        error && <span className="errorMsg">{error}</span>}
+          error && <span className="errorMsg">{error}</span>}
       </div>
     )
   }
@@ -49,11 +49,11 @@ export default class extends Component {
   renderCheckboxField = (field) => {
     const {
       meta: { touched, error }
-    } = field 
+    } = field
     return (
       <div>
         <label class="checkbox">
-          <input {...field.input} type="checkbox" className={touched && error ? 'errorInput' : ''}/>
+          <input {...field.input} type="checkbox" className={touched && error ? 'errorInput' : ''} />
           <span></span>
         </label>
         {touched && error && <span className="errorMsg">{error}</span>}
@@ -65,12 +65,22 @@ export default class extends Component {
     background: `linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 100%), url("${this.props.background}") no-repeat center top fixed`,
     backgroundSize: 'cover'
   };
-  
+
   render() {
     const { search, handleSubmit, isFetching, errorMsg } = this.props
-    
+
     return (
       <div className="containerLayout seedDataContainer" style={this.sectionStyle}>
+        {
+          isFetching
+            ? (<div className="isFetching">
+              <img className="imgLoading" src={loading} alt="loading" />
+              <span className="textLoading">
+                baking lyrics...
+            </span>
+            </div>)
+            : null
+        }
         <div className="regularHeaderContainer">
           <Link className="regularHeader" to={'/'}>
             <img className="logoRed" src={logoRed} alt="baking logo" />
@@ -98,11 +108,11 @@ export default class extends Component {
                 !this.state.acceptedTandC && (
                   <div className="termsAndConditions">
                     <span htmlFor="termsAndConditions">I have read and accept the <a href="/terms-and-conditions" target="_blank" >Terms and Conditions</a></span>
-                    <Field name="termsAndConditions" id="termsAndConditions" component={this.renderCheckboxField} required/>
+                    <Field name="termsAndConditions" id="termsAndConditions" component={this.renderCheckboxField} required />
                   </div>
                 )
               }
-              
+
               {errorMsg && <span className="errorMsg">Failed trying to get a song</span>}
             </div>
           </div>
@@ -110,16 +120,6 @@ export default class extends Component {
         <div className="buttonContainer">
           <Link className="tryButton" to="song" onClick={handleSubmit}>{'GENERATE'}</Link>
         </div>
-        {
-          isFetching
-          ? (<div className="isFetching">
-              <img className="imgLoading" src={loading} alt="loading" />
-              <span className="textLoading">
-                baking lyrics...
-              </span>
-            </div>)
-          : null
-        }
         <Footer />
       </div>
     )

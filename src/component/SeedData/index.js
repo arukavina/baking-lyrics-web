@@ -29,8 +29,6 @@ const mapDispatchToProps = dispatch => ({
 
 const validate = values => {
   const errors = {}
-  console.log('values', values);
-  
   if (!values.termsAndConditions) {
     errors.termsAndConditions = 'Required'
   }

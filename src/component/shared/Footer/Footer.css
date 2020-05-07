@@ -1,25 +1,41 @@
 .sharedFooter {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border-top: 1px solid #000000;
   background-color: #000000;
   color: #FFFFFF;
   opacity: .3;
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 0;
   font-size: 18px;
   width: 100%;
 }
 
 .sharedFooter > div {
   width: 40%;
+  margin: 0 2rem;
+}
+  
+.locationText {
+  text-align: right;
 }
 
+.argentinaFlag {
+  vertical-align: middle;
+}
 
 @media (max-width: 500px) {
 
   .sharedFooter {
-    padding: 1rem;
+    padding: 1rem 0;
     font-size: 9px;
+  }
+
+  .sharedFooter > div {
+    margin: 0 1rem;
+  }
+
+  .locationText {
+    line-height: 1.3;
   }
 
 }

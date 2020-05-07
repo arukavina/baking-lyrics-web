@@ -32,8 +32,7 @@
 }
 
 .licenseRulesSection:nth-child(2) {
-	margin: 0 2rem;
-	min-width: 200px;
+	margin: 0 1.5rem;
 }
 
 .licenseRulesLabel {
@@ -84,15 +83,20 @@
 
 @media (max-width: 500px) {
 
+	.termsAndConditionsContent {
+		width: 100%;
+	}
+
+	.licenseRules {
+		margin: 1rem 0;
+	}
+	
 	.licenseRulesSection {
 		font-size: 14px;
-		margin: 1.5rem 1rem 0;
-		min-width: 30%;
 	}
 
 	.licenseRulesSection:nth-child(2) {
-		margin: 1.5rem 1rem 0;
-		min-width: 30%;
+		margin: 0 .5rem;
 	}
 
 	.licenseAttribute {

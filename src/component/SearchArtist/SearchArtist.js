@@ -9,10 +9,10 @@ import logoRed from '../../static/images/logoRed.png'
 import './SearchArtist.css'
 
 
-const renderSearchField = field => <input {...field.input} maxLength={40} type="text" placeholder={field.placeholder}/>
+const renderSearchField = field => <input {...field.input} maxLength={40} type="text" placeholder={field.placeholder} />
 
 export default class extends Component {
-  componentDidMount () {
+  componentDidMount() {
     const {
       changeSearch,
       getArtists,
@@ -47,21 +47,21 @@ export default class extends Component {
     history.push('start-text')
   }
 
-  artistList () {
+  artistList() {
     const { search, artists, isFetching } = this.props
     if (artists.length !== 0) {
       return artists.map((item, index) => (
-          (index <= 15) &&
-            <div
-              style={{background: `linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%), url(${item.coverImg}) no-repeat center center/contain`}}
-              onClick={() => this.onClickHandler(item.name, item.id)}
-              key={index} className="artistContainer"
-            >
-              <span className="artistName">
-                {item.name}
-              </span>
-            </div>
-        )
+        (index <= 15) &&
+        <div
+          style={{ background: `linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%), url(${item.coverImg}) no-repeat center center/contain` }}
+          onClick={() => this.onClickHandler(item.name, item.id)}
+          key={index} className="artistContainer"
+        >
+          <span className="artistName">
+            {item.name}
+          </span>
+        </div>
+      )
       )
     } else if (!isFetching) {
       return search ? (
@@ -77,13 +77,13 @@ export default class extends Component {
           </span>
         </div>
       )
-      : (
-        <div className="notFoundArtistAlertContainer">
-          <span className="notFoundArtistAlert">
-            Oops! We found no artist
+        : (
+          <div className="notFoundArtistAlertContainer">
+            <span className="notFoundArtistAlert">
+              Oops! We found no artist
           </span>
-        </div>
-      )
+          </div>
+        )
     } else {
       return (
         <div className="notFoundArtistAlertContainer">
@@ -95,49 +95,47 @@ export default class extends Component {
     }
   }
 
-  render () {
+  render() {
     const { search, artists, total, getArtists } = this.props
-    
-    return(
+
+    return (
       <div className="containerLayout regularContainerImage">
         <div className="regularHeader">
           <Link to={'/'}>
             <img className="logoRed" src={logoRed} alt="baking logo" />
           </Link>
         </div>
-        <div className="searchArtistContainer">
-          <div className="searchArtist">
-            <div className="searchBar">
-              <FontAwesomeIcon icon={faSearch} color="black" size="lg"/>
-              <Field 
-                component={renderSearchField}
-                onChange={this.debouncedOnChange}
-                placeholder="Search for an artist or a band" 
-                name="search"
-              />
-              <div onClick={() => {
-                getArtists()
-                this.props.change('search', '')
-              }}>
-                <FontAwesomeIcon icon={faSync} color="black" size="lg" title="Refresh list"/>
-              </div>
+        <div className="searchArtist">
+          <div className="searchBar">
+            <FontAwesomeIcon icon={faSearch} color="black" size="lg" />
+            <Field
+              component={renderSearchField}
+              onChange={this.debouncedOnChange}
+              placeholder="Search for an artist or a band"
+              name="search"
+            />
+            <div onClick={() => {
+              getArtists()
+              this.props.change('search', '')
+            }}>
+              <FontAwesomeIcon icon={faSync} color="black" size="lg" title="Refresh list" />
             </div>
-            {total ? <span className="totalArtists">{`Searching in a database of ${total} artists`}</span> : ''}
-            <div className="showingResultsContainer">
-              {
-                (search && artists.length !== 0) &&
-                <p className="showingResults">
-                  {'Showing results for "'}
-                  <span>
-                    {search}
-                  </span>
-                  {'"'}
-                </p>
-              }
-            </div>
-            <div className="listArtistContainer">
-              {this.artistList()}
-            </div>
+          </div>
+          {total ? <span className="totalArtists">{`Searching in a database of ${total} artists`}</span> : ''}
+          <div className="showingResultsContainer">
+            {
+              (search && artists.length !== 0) &&
+              <p className="showingResults">
+                {'Showing results for "'}
+                <span>
+                  {search}
+                </span>
+                {'"'}
+              </p>
+            }
+          </div>
+          <div className="listArtistContainer">
+            {this.artistList()}
           </div>
         </div>
         <Footer />
