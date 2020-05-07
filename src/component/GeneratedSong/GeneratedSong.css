@@ -123,6 +123,10 @@
   font-weight: bold;
 }
 
+.oneMoreTime {
+  margin-top: .5rem;
+}
+
 
 @media (max-width: 500px) {
 
@@ -141,6 +145,11 @@
 
   .montserratTextBold {
     font-size: 60px;
+  }
+
+  .oneMoreTime {
+    margin-top: .5rem;
+
   }
 
 }

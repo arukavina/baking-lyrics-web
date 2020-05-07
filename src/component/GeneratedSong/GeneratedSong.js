@@ -99,7 +99,7 @@ export default class extends Component {
             </a>
           </div>
           <div className="tryItText">Try it</div>
-          <Link className="tryButton" to="/artist" >{'ONE MORE TIME'}</Link>
+          <Link className="oneMoreTime tryButton" to="/artist" >{'ONE MORE TIME'}</Link>
         </div>
         <Footer />
       </div>

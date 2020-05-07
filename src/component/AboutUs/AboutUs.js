@@ -198,8 +198,10 @@ export default class extends Component {
                 roles={'DevOps'}
                 image={nicolasCribioliImg}
                 description={
-                  `Systems Analyst, SysAdmin, information\n` +
-                  `security. Barbecue guru & organizer`
+                  `System *, DevOps. Barbecue expert.\n` +
+                  `Handyperson, a.k.a.: Could you please fix my\n` +
+                  `{laptop | mobile | microwave | printer}?-guy.\n` + 
+                  `This is fine.`
                 }
                 social={{
                   linkedin: '/nicolas-cribioli',
