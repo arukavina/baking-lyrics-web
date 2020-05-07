@@ -1,15 +1,4 @@
 
-.header {
-  width: 207px;
-  height: auto;
-}
-
-.seedDataContainer {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
 .formContainer{
   display: flex;
   justify-content: center;
@@ -41,7 +30,8 @@
   font-size: 35px;
   font-weight: 300;
   font-family: Roboto;
-  color: #FFFFFF
+  color: #FFFFFF;
+  text-align: center;
 }
 
 .headerTitle{
@@ -51,6 +41,7 @@
   font-weight: bold;
   color: #FFFFFF;
   text-transform: capitalize;
+  text-align: center;
 }
 
 .inputContainer {
@@ -165,7 +156,7 @@
 
 .isFetching {
   display: flex;
-  position: absolute;
+  position: fixed;
   opacity: 0.9;
   background-color: black;
   width: 100%;
@@ -225,12 +216,10 @@
   .headerSubTitle {
     margin: 0px;
     font-size: 20px;
-    text-align: center;
   }
 
   .headerTitle {
     font-size: 60px;
-    text-align: center;
   }
 
   .inputTitle {

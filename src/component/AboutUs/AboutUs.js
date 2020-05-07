@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, Element } from 'react-scroll'
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom"
+import Footer from '../shared/Footer/Footer'
 import InfoBox from './InfoBox'
 import logoRed from '../../static/images/logoRed.png'
 import menu from '../../static/images/menu.png'
@@ -89,7 +90,7 @@ export default class extends Component {
 
   render() {
     return(
-      <div className="aboutUsContainer">
+      <div className="aboutUsContainer regularContainerImage">
         <div className="aboutUsHeader">
           <RouterLink to="/" className="aboutUsLogoContainer">
             <span className="aboutUsTitleImage">WE CREATED</span>
@@ -218,6 +219,7 @@ export default class extends Component {
             </Element>
           </div>
         </div>
+        <Footer />
       </div>
     )
   }

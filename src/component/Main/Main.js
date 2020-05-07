@@ -46,18 +46,12 @@ export default class extends Component {
           <Link className="tryButton" to="artist" >{'TRY IT OUT'}</Link>
         </div>
         <div className="homeLinks">
-          <div className="homeLinks">
-            <a href="https://github.com/arukavina/baking-lyrics" className="githubLink">
-              <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
-              <span
-                className="mainLinks"
-              >
-                {'GitHub'}
-              </span>
-            </a>
-            <Link className="mainLinks" to="about-us" >{'About Us'}</Link>
-            <Link className="mainLinks" to="help-us" >{'Help Us'}</Link>
-          </div>
+          <a href="https://github.com/arukavina/baking-lyrics" className="githubLink mainLink">
+            <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
+            .&nbsp;GitHub
+          </a>
+          <Link className="mainLink" to="about-us" >{'About Us'}</Link>
+          <Link className="mainLink" to="help-us" >{'Help Us'}</Link>
         </div>
         <Footer />
       </div>

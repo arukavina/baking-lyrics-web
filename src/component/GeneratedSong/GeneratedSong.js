@@ -98,6 +98,7 @@ export default class extends Component {
               <FontAwesomeIcon icon={faWhatsapp} size="3x" color="white" />
             </a>
           </div>
+          <div className="tryItText">Try it</div>
           <Link className="tryButton" to="/artist" >{'ONE MORE TIME'}</Link>
         </div>
         <Footer />
