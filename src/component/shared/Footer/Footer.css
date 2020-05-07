@@ -14,7 +14,14 @@
   width: 40%;
   margin: 0 2rem;
 }
+  
+.locationText {
+  text-align: right;
+}
 
+.argentinaFlag {
+  vertical-align: middle;
+}
 
 @media (max-width: 500px) {
 
@@ -25,6 +32,10 @@
 
   .sharedFooter > div {
     margin: 0 1rem;
+  }
+
+  .locationText {
+    line-height: 1.3;
   }
 
 }

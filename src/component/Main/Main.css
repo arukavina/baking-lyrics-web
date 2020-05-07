@@ -78,10 +78,6 @@
   color: #FFFFFF;
   text-decoration: underline;
 }
-  
-.locationText {
-  text-align: right;
-}
 
 @media (max-width: 500px) {
 

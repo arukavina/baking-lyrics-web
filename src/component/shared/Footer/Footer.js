@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import argentinaFlag from '../../../static/images/argentinaFlag.png'
 import './Footer.css'
 
 const sanNicolasLocationUrl = `https://goo.gl/maps/2h92kAcdU73BB5om7`
@@ -10,7 +11,7 @@ export default ({ignoreTandC}) => (
     <div className="locationText">
       Baking Lyrics 🎼 2020.&nbsp;
       <a href={sanNicolasLocationUrl} target="_blank" className="sanNicolasLink">San Nicol&aacute;s de los Arroyos</a>
-      , Argentina 🇦🇷
+      , Argentina <img className="argentinaFlag" src={argentinaFlag}/>
     </div>
   </div>
 )
