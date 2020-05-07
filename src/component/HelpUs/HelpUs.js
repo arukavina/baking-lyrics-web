@@ -19,7 +19,8 @@ export default () => (
 			</h1>
 			<p className="pageText">
         Baking-Lyrics is free, always evolving, user-supported service. But unfortunately it isn’t free to operate. 
-        We have salaries to pay and infrastructure costs to cover to make Baking-Lyrics available to our million users worldwide.
+        <br/><br/>
+        We have low salaries to pay and infrastructure costs to cover to make Baking-Lyrics available to our million users worldwide (error of ± 9*10^5).
         <br/><br/>
         Thankfully, many users do support us by donating what they can afford (💵), to help us support ongoing development.
         <br/><br/>
