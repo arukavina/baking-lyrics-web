@@ -99,9 +99,9 @@ export default class extends Component {
             <div className="inputContainer">
               <Field
                 component={this.renderField}
-                title="Words for the AI to be based on"
+                title="Give the AI a sentence to elaborate on. The more you write the better"
                 name="fistThreeWords"
-                placeholder="Type the first three words of your lyrics"
+                placeholder="Don’t be cheap, write at lest 6 words"
                 validate={[this.required, this.minLength10]}
               />
               {

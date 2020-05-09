@@ -57,8 +57,7 @@
   width: 100%;
   max-width: 620px;
   font-size: 35px;
-  font-style: italic;
-  font-family: Mattilda;
+  font-family: Montserrat Regular;
   color: #FFFFFF;
   margin-bottom: 5px;
 }
@@ -223,7 +222,11 @@
   }
 
   .inputTitle {
-    font-size: 25px;
+    font-size: 22px;
+  }
+
+  .input::placeholder {
+    font-size: 16px;
   }
 
   .termsAndConditions {
