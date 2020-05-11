@@ -101,7 +101,7 @@ export default class extends Component {
                 component={this.renderField}
                 title="Give the AI a sentence to elaborate on. The more you write the better"
                 name="fistThreeWords"
-                placeholder="Don’t be cheap, write at lest 6 words"
+                placeholder="Don’t be cheap, write at least 6 words"
                 validate={[this.required, this.minLength10]}
               />
               {
