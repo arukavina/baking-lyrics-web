@@ -173,12 +173,14 @@ describe('routes', () => {
     expect(await screen.findByText('some generated lyrics')).toBeInTheDocument()
     expect(screen.getByText('ego remix (Artificial)')).toBeInTheDocument()
     expect(screen.getByText('Beyonce Knowles')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Share on Facebook' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'One more time' })).toHaveAttribute('href', '/artist')
   })
 
   it('shows a friendly message for a missing song', async () => {
     mockFetch({ '/api/v1/artificial_songs/999': [404, { message: 'Lyric does not exist.' }] })
     renderApp('/song/999')
     expect(await screen.findByRole('alert')).toHaveTextContent(SONG_NOT_FOUND_MSG)
-    expect(screen.getByRole('link', { name: 'ONE MORE TIME' })).toHaveAttribute('href', '/artist')
+    expect(screen.getByRole('link', { name: 'One more time' })).toHaveAttribute('href', '/artist')
   })
 })
