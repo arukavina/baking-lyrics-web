@@ -63,6 +63,8 @@ export default function SeedData(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    // One generation at a time: ignore repeated submits while baking
+    if (isFetching) return
     setTouched({ fistThreeWords: true, termsAndConditions: true })
     const fistThreeWordsError = validateFistThreeWords(fistThreeWords)
     // The checkbox is only validated while it is rendered
@@ -76,7 +78,10 @@ export default function SeedData(props) {
 
   // Enter generates; the seed is one sentence, so new lines are not kept
   const onSeedKeyDown = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) handleSubmit(event)
+    if (event.key !== 'Enter' || event.shiftKey) return
+    // Let input methods (IME) confirm their composition with Enter
+    if (event.nativeEvent?.isComposing) return
+    handleSubmit(event)
   }
 
   const seedError = touched.fistThreeWords ? validateFistThreeWords(fistThreeWords) : undefined
