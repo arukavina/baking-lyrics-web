@@ -68,7 +68,7 @@
   content: '';
   background:
     radial-gradient(120% 90% at 20% 0%, var(--ember-20), transparent 60%),
-    radial-gradient(90% 80% at 100% 100%, rgba(255, 45, 85, 0.14), transparent 65%);
+    radial-gradient(90% 80% at 100% 100%, rgba(194, 31, 46, 0.14), transparent 65%);
 }
 
 @media (min-width: 640px) {
@@ -193,9 +193,9 @@
 
 @keyframes seed-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 90, 31, 0.45);
+    box-shadow: 0 0 0 0 rgba(234, 50, 65, 0.45);
   }
   100% {
-    box-shadow: 0 0 0 1.25rem rgba(255, 90, 31, 0);
+    box-shadow: 0 0 0 1.25rem rgba(234, 50, 65, 0);
   }
 }

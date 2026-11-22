@@ -96,7 +96,7 @@ body {
   color: var(--text-primary);
   font-family: var(--font-body);
   color-scheme: dark;
-  scrollbar-color: #ff5a1f33 transparent;
+  scrollbar-color: #ea324133 transparent;
 }
 
 ::selection {
@@ -118,13 +118,13 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ff5a1f33;
+  background-color: #ea324133;
   border-radius: 999px;
   border: 3px solid var(--color-ink);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #ff5a1f66;
+  background-color: #ea324166;
 }
 
 @keyframes fade-up {
@@ -318,13 +318,14 @@ body {
 
 .btn-primary {
   border: 0;
-  background-image: var(--gradient-primary);
+  background-color: var(--color-ember);
   color: var(--color-ink);
   box-shadow: var(--shadow-glow);
-  transition: transform var(--duration-fast) ease;
+  transition: transform var(--duration-fast) ease, background-color var(--duration-fast);
 }
 
 .btn-primary:hover {
+  background-color: var(--color-ember-hover);
   transform: scale(1.03);
 }
 

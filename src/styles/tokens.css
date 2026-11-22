@@ -14,9 +14,9 @@
   --color-ink: #0a0907;
   --color-bone: #f2ede4;
   --color-smoke: #8c8577;
-  --color-ember: #ff5a1f;
-  --color-blaze: #ff2d55;
-  --color-gold: #ffb84d;
+  --color-ember: #ea3241;
+  --color-blaze: #c21f2e;
+  --color-gold: #fd818e;
 
   /* Text */
   --text-primary: var(--color-bone);
@@ -33,16 +33,15 @@
   --border: rgba(255, 255, 255, 0.1);
   --border-strong: rgba(255, 255, 255, 0.2);
   --border-divider: rgba(255, 255, 255, 0.05);
-  --border-accent: rgba(255, 90, 31, 0.5);
+  --border-accent: rgba(234, 50, 65, 0.5);
 
   /* Accent tints */
-  --ember-10: rgba(255, 90, 31, 0.1);
-  --ember-20: rgba(255, 90, 31, 0.2);
-  --ember-30: rgba(255, 90, 31, 0.3);
+  --ember-10: rgba(234, 50, 65, 0.1);
+  --ember-20: rgba(234, 50, 65, 0.2);
+  --ember-30: rgba(234, 50, 65, 0.3);
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(to right, var(--color-ember), var(--color-blaze));
-  --gradient-ember-blaze: linear-gradient(115deg, #ff5a1f 0%, #ff2d55 60%, #ff2d55 100%);
+  /* Accent states: hover fill for solid red buttons */
+  --color-ember-hover: #f04452;
 
   /* Fonts */
   --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
@@ -85,7 +84,7 @@
   --radius-full: 999px;
 
   /* Shadows */
-  --shadow-glow: 0 8px 40px -14px var(--color-blaze);
+  --shadow-glow: 0 8px 28px -14px rgba(234, 50, 65, 0.55);
   --shadow-card: 0 14px 32px -18px var(--color-ember);
 
   /* Motion */

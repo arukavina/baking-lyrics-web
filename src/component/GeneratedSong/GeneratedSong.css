@@ -128,7 +128,7 @@
   content: '';
   background:
     radial-gradient(120% 90% at 20% 0%, var(--ember-20), transparent 60%),
-    radial-gradient(90% 80% at 100% 100%, rgba(255, 45, 85, 0.14), transparent 65%);
+    radial-gradient(90% 80% at 100% 100%, rgba(194, 31, 46, 0.14), transparent 65%);
 }
 
 .song-share .label {

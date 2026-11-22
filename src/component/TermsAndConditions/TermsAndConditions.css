@@ -39,7 +39,7 @@
 }
 
 .license-group--limitation {
-  --dot: var(--color-blaze);
+  --dot: var(--color-ember);
 }
 
 .license-chips {
