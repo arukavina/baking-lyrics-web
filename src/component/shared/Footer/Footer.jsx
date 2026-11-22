@@ -33,7 +33,7 @@ const Footer = () => {
       <Container className="site-footer__inner">
         <div className="site-footer__info">
           <p className="site-footer__tagline">
-            Baking Lyrics<span className="site-footer__dot">.</span> Lyrics by machines, since 2020.
+            Baking Lyrics<span className="site-footer__dot">.</span> Lyrics by machines, since 2018.
           </p>
           <BuildInfo />
           {showTerms ? (

@@ -30,7 +30,7 @@ const STEPS = [
 // Fixed facts, shown when the backend has no stats endpoint
 const FACTS = [
   { value: 'English', label: 'lyrics' },
-  { value: '2020', label: 'first batch baked' },
+  { value: '2018', label: 'first batch baked' },
   { value: 'GPL v3', label: 'open source' },
 ]
 
