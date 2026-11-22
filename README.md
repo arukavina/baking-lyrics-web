@@ -71,4 +71,4 @@ Repository secrets used by the deploy:
 
 To redeploy without a new commit, run the Deploy workflow manually from the Actions tab (`gh workflow run deploy.yml`).
 
-`vercel.json` serves `index.html` for every path so client side routes such as `/about-us` load directly, and caches the hashed files in `/assets` for a year. The backend is not hosted on Vercel yet; once it has a public URL, a rewrite from `/api/(.*)` to it goes before the catch all rewrite in `vercel.json`.
+`vercel.json` serves `index.html` for every path except `/api/` and `/assets/` so client side routes such as `/about-us` load directly while missing API routes and assets return a real 404, and caches the hashed files in `/assets` for a year. The backend is not hosted on Vercel yet; once it has a public URL, a rewrite from `/api/(.*)` to it goes before the catch all rewrite in `vercel.json`.
