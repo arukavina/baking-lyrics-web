@@ -1,127 +1,106 @@
-.logoRed {
-  margin: 50px 40px 0;
-  width: 207px;
-  height: 111px;
+/* Home: hero, how it works and the welcome letter */
+
+.home-hero {
+  padding-bottom: 5rem;
 }
 
-.buttonsContainer {
-  padding: 40px;
-  vertical-align: center;
+@media (min-width: 640px) {
+  .home-hero {
+    padding-bottom: 6rem;
+  }
 }
 
-.homeContent {
-  padding-left: 0;
+.home-hero__title {
+  max-width: 18ch;
+  margin-top: 0.75rem;
+}
+
+.home-hero__lead {
+  margin-top: 1.5rem;
+}
+
+.home-hero__actions {
   display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
-  text-align: center;
-  color: #FFFFFF;
-  min-width: 50vw;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
 }
 
-.homeContent > h2 {
-	font-size: 30px;
-  font-weight: 400;
-  width: 60%;
-}
-
-.tryButton {
-  outline: none;
-  border: none;
-  color: #fff;
-  margin: 2rem 0;
-  font-size: 20px;
-  background-color: #E32C3E;
-  padding: 1.5rem 4rem;
-  text-decoration: none;
-}
-
-.tryButton:hover {
-  background-color: #800;
-}
-
-.mainFooter {
-  color: #FFFFFF;
-  font-family: 'Roboto';
-  font-size: 24px;
-}
-
-.homeLinks {
+/* Mono stat row, value in bone and label in smoke */
+.home-stats {
   display: flex;
-  justify-content: center;
-  padding-bottom: 2rem;
-  align-items: center;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  margin-top: 4rem;
 }
 
-.mainLink {
-  cursor: pointer;
-  margin: 0 2rem;
-  opacity: 0.8;
-  color: #fff;
-  font-family: 'Roboto';
-  font-size: 24px;
-  font-weight: 300;
-  letter-spacing: 0.68px;
-  line-height: 28px;
-  text-decoration: none;
-}
-
-.githubLink {
+.home-stats__item {
   display: flex;
   align-items: center;
-  text-decoration: none;
+  gap: 0.5rem;
 }
 
-.termsConditionsLink, .sanNicolasLink {
-  color: #FFFFFF;
-  text-decoration: underline;
+.home-stats__value {
+  color: var(--color-bone);
 }
 
-@media (max-width: 500px) {
+.home-section-title {
+  margin-top: 0.75rem;
+}
 
-  .container{
-    align-items: center;
-  }
+/* Numbered steps: stacked on phones, three across from 768px */
+.home-steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
 
-  .tryButton {
-    margin: 10px 0;
-    font-size: 15px;
-    padding: 1rem 2.5rem;
+@media (min-width: 768px) {
+  .home-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
 
-  .homeContent > h2 {
-    font-size: 16px;
-    font-weight: 400;
-  }
-  
-  .homeContent > p {
-    font-size: 12px;
-    text-align: left;
-    line-height: normal;
-  }
+.home-step {
+  padding: 1.5rem;
+}
 
-  .homeLinks {
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    padding: 1rem 0;
-  }
+.home-step__n {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ember);
+}
 
-  .mainLink {
-    font-size: 16px;
-    margin: 0 .2rem;
-    min-width: 70px;
-    text-align: center;
-  }
+.home-step__title {
+  margin-top: 0.5rem;
+}
 
-  .githubLink {
-    min-width: 100px !important;
-  }
+.home-step__body {
+  margin-top: 0.5rem;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-smoke);
+}
 
-  .githubLink > svg {
-    width: 2rem !important;
-  }
+.home-letter {
+  margin-top: 1.5rem;
+}
 
+.home-letter__sign {
+  color: var(--color-bone);
+}
+
+.home-letter__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.home-letter__help {
+  font-size: var(--text-sm);
 }

@@ -22,15 +22,15 @@ describe('routes', () => {
   it('renders the home page and pings the backend', () => {
     const fetchMock = mockFetch({ '/api/v1/general/ping': [200, 'pong!'] })
     renderApp('/')
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/GENERATE/)
-    expect(screen.getByRole('link', { name: 'TRY IT OUT' })).toHaveAttribute('href', '/artist')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/generate/i)
+    expect(screen.getByRole('link', { name: 'Try it out' })).toHaveAttribute('href', '/artist')
     expect(requestedUrls(fetchMock)).toContain('/api/v1/general/ping')
   })
 
   it('redirects unknown routes to the home page', () => {
     mockFetch()
     renderApp('/does/not/exist')
-    expect(screen.getByRole('link', { name: 'TRY IT OUT' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Try it out' })).toBeInTheDocument()
   })
 
   it('searches for an artist and picks it', async () => {
