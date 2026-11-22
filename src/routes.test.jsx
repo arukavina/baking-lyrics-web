@@ -27,6 +27,42 @@ describe('routes', () => {
     expect(requestedUrls(fetchMock)).toContain('/api/v1/general/ping')
   })
 
+  it('shows the site stats on the home page', async () => {
+    mockFetch({
+      '/api/v1/general/stats': [200, {
+        artists: 1250,
+        songs_generated: 48213,
+        shares: 0,
+        top_artists: [
+          { id: 1, name: 'Beyonce Knowles', songs_generated: 30120 },
+          { id: 2, name: 'Adele', songs_generated: 9001 },
+          { id: 3, name: 'Queen', songs_generated: 1 },
+        ],
+      }],
+    })
+    renderApp('/')
+    const kpi = label => screen.getByText(label).nextElementSibling
+
+    expect(await screen.findByText('Songs generated')).toBeInTheDocument()
+    expect(kpi('Artists in the database')).toHaveTextContent('1,250')
+    expect(kpi('Songs generated')).toHaveTextContent('48,213')
+    expect(kpi('Shares')).toHaveTextContent('0')
+    expect(kpi('Most popular artist')).toHaveTextContent('Beyonce Knowles')
+    const runnersUp = screen.getByRole('list', { name: 'Runners up' })
+    expect(runnersUp).toHaveTextContent('Adele 9,001 songs')
+    expect(runnersUp).toHaveTextContent('Queen 1 song')
+  })
+
+  it('falls back to the artist count without the stats endpoint', async () => {
+    const fetchMock = mockFetch({ '/api/v1/artists/?page=1&per_page=2': [200, { items: [], total: 1 }] })
+    renderApp('/')
+
+    expect(await screen.findByText('artist in the database')).toBeInTheDocument()
+    expect(screen.queryByText('Songs generated')).not.toBeInTheDocument()
+    expect(screen.queryByText('Most popular artist')).not.toBeInTheDocument()
+    expect(requestedUrls(fetchMock)).toContain('/api/v1/general/stats')
+  })
+
   it('redirects unknown routes to the home page', () => {
     mockFetch()
     renderApp('/does/not/exist')

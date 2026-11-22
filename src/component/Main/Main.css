@@ -109,3 +109,96 @@
 .home-letter__help {
   font-size: var(--text-sm);
 }
+
+/* Live numbers from the stats endpoint: three counts in a row and the top
+   artist under them on phones, all four in one row from 768px */
+.home-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 60rem;
+  margin: 3.5rem auto 0;
+}
+
+@media (min-width: 768px) {
+  .home-kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* No top artist yet: the three counts fill the row */
+  .home-kpis--counts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.home-kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-1);
+  padding: 1rem 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .home-kpis {
+    gap: 1rem;
+  }
+
+  .home-kpi {
+    padding: 1.25rem 1rem;
+  }
+}
+
+.home-kpi .label {
+  order: 2;
+}
+
+/* The top artist tile takes a full row on phones, where names wrap */
+.home-kpi--top {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+  .home-kpi--top {
+    grid-column: auto;
+  }
+}
+
+.home-kpi__value {
+  order: 1;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-bone);
+}
+
+@media (min-width: 640px) {
+  .home-kpi__value {
+    font-size: var(--text-2xl);
+  }
+}
+
+.home-kpi__value--name {
+  font-size: var(--text-lg);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  color: var(--color-ember);
+}
+
+.home-kpi__more {
+  order: 3;
+}
+
+.home-kpi__runners {
+  list-style: decimal inside;
+  line-height: 1.6;
+}
+
+.home-kpi__count {
+  color: rgba(140, 133, 119, 0.7);
+}

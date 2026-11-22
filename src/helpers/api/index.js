@@ -1,6 +1,6 @@
 // Public surface of the backend API. Every function resolves to the parsed
 // JSON body and rejects with an ApiError (see ./client).
-import { ApiError, apiGet, isNotFound } from './client'
+import { ApiError, apiGet, apiPost, isNotFound } from './client'
 
 export { ApiError, isNotFound, isGeneratorOffline, API_URL } from './client'
 export { getWikipediaImage } from './wikipedia'
@@ -30,6 +30,23 @@ export const ping = () => apiGet('/general/ping')
  * @returns {Promise<{version: string, commit: string|null, date: string|null}|null>}
  */
 export const getVersion = () => apiGet('/general/version').catch(() => null)
+
+/**
+ * GET /general/stats: site wide numbers for the home page. Resolves to null on
+ * any error (older backends do not have the endpoint).
+ * @returns {Promise<{artists: number, songs_generated: number, shares: number,
+ *   top_artists: {id: number, name: string, songs_generated: number}[]}|null>}
+ */
+export const getStats = () => apiGet('/general/stats').catch(() => null)
+
+/**
+ * POST /artificial_songs/<id>/shares: counts one share of a song. Fire and
+ * forget: never rejects, so sharing works even when counting fails.
+ * @returns {Promise<void>}
+ */
+export const trackShare = (songId, network) =>
+  apiPost(`/artificial_songs/${encodeURIComponent(songId)}/shares`, { network })
+    .then(() => undefined, () => undefined)
 
 /** GET /artists/ (trailing slash on purpose: no slash gets a 308 redirect) */
 export const listArtists = ({ page = 1, perPage = 10 } = {}) =>

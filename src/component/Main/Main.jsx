@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { getArtistsTotal, ping } from '../../helpers/api'
+import { getArtistsTotal, getStats, ping } from '../../helpers/api'
 import Container from '../shared/Container'
 import './Main.css'
 
@@ -27,28 +27,92 @@ const STEPS = [
   },
 ]
 
-// Fixed facts, shown after the live artist count when the backend answers
+// Fixed facts, shown when the backend has no stats endpoint
 const FACTS = [
   { value: 'English', label: 'lyrics' },
   { value: '2020', label: 'first batch baked' },
   { value: 'GPL v3', label: 'open source' },
 ]
 
+const isCount = value => Number.isInteger(value) && value >= 0
+const formatCount = value => value.toLocaleString('en-US')
+
+// The stats endpoint answer, keeping only well formed values
+const cleanStats = (stats) => {
+  if (!stats || !isCount(stats.artists)) return null
+  const topArtists = (Array.isArray(stats.top_artists) ? stats.top_artists : [])
+    .filter(artist => artist && artist.name && isCount(artist.songs_generated))
+    .slice(0, 3)
+  return {
+    artists: stats.artists,
+    songs: isCount(stats.songs_generated) ? stats.songs_generated : 0,
+    shares: isCount(stats.shares) ? stats.shares : 0,
+    topArtists,
+  }
+}
+
+const KpiTiles = ({ stats }) => {
+  const [top, ...rest] = stats.topArtists
+  return (
+    <dl className={top ? 'home-kpis' : 'home-kpis home-kpis--counts'}>
+      <div className="home-kpi">
+        <dt className="label">Artists in the database</dt>
+        <dd className="home-kpi__value">{formatCount(stats.artists)}</dd>
+      </div>
+      <div className="home-kpi">
+        <dt className="label">Songs generated</dt>
+        <dd className="home-kpi__value">{formatCount(stats.songs)}</dd>
+      </div>
+      <div className="home-kpi">
+        <dt className="label">Shares</dt>
+        <dd className="home-kpi__value">{formatCount(stats.shares)}</dd>
+      </div>
+      {top ? (
+        <div className="home-kpi home-kpi--top">
+          <dt className="label">Most popular artist</dt>
+          <dd className="home-kpi__value home-kpi__value--name">{top.name}</dd>
+          {rest.length ? (
+            <dd className="home-kpi__more">
+              <ol className="home-kpi__runners meta" start={2} aria-label="Runners up">
+                {rest.map(artist => (
+                  <li key={artist.id ?? artist.name}>
+                    {artist.name} <span className="home-kpi__count">{`${formatCount(artist.songs_generated)} ${artist.songs_generated === 1 ? 'song' : 'songs'}`}</span>
+                  </li>
+                ))}
+              </ol>
+            </dd>
+          ) : null}
+        </div>
+      ) : null}
+    </dl>
+  )
+}
+
 export default function Main() {
+  const [stats, setStats] = useState(null)
   const [total, setTotal] = useState(null)
 
   useEffect(() => {
     let active = true
     // Fire and forget warm-up of the backend
     ping().catch(() => {})
-    getArtistsTotal()
-      .then((count) => { if (active && Number.isInteger(count) && count > 0) setTotal(count) })
-      .catch(() => {})
+    getStats().then((answer) => {
+      if (!active) return
+      const clean = cleanStats(answer)
+      if (clean) {
+        setStats(clean)
+        return
+      }
+      // Older backend: fall back to the artist count alone
+      getArtistsTotal()
+        .then((count) => { if (active && Number.isInteger(count) && count > 0) setTotal(count) })
+        .catch(() => {})
+    })
     return () => { active = false }
   }, [])
 
-  const stats = total
-    ? [{ value: String(total), label: total === 1 ? 'artist in the database' : 'artists in the database' }, ...FACTS]
+  const facts = total
+    ? [{ value: formatCount(total), label: total === 1 ? 'artist in the database' : 'artists in the database' }, ...FACTS]
     : FACTS
 
   return (
@@ -71,14 +135,16 @@ export default function Main() {
               </Link>
               <Link className="btn-secondary" to="/about-us">Meet the bakers</Link>
             </div>
-            <ul className="home-stats meta" aria-label="Baking Lyrics in numbers">
-              {stats.map(({ value, label }) => (
-                <li key={label} className="home-stats__item">
-                  <span className="home-stats__value">{value}</span>
-                  <span>{label}</span>
-                </li>
-              ))}
-            </ul>
+            {stats ? <KpiTiles stats={stats} /> : (
+              <ul className="home-stats meta" aria-label="Baking Lyrics in numbers">
+                {facts.map(({ value, label }) => (
+                  <li key={label} className="home-stats__item">
+                    <span className="home-stats__value">{value}</span>
+                    <span>{label}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </Container>
       </section>
