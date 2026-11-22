@@ -327,13 +327,14 @@ body {
 .btn-primary {
   border: 0;
   background-color: var(--color-ember);
+  background-image: var(--gradient-primary);
   color: var(--color-ink);
   box-shadow: var(--shadow-glow);
-  transition: transform var(--duration-fast) ease, background-color var(--duration-fast);
+  transition: transform var(--duration-fast) ease, filter var(--duration-fast);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-ember-hover);
+  filter: brightness(1.06);
   transform: scale(1.03);
 }
 

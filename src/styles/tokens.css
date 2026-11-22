@@ -40,8 +40,8 @@
   --ember-20: rgba(234, 50, 65, 0.2);
   --ember-30: rgba(234, 50, 65, 0.3);
 
-  /* Accent states: hover fill for solid red buttons */
-  --color-ember-hover: #f04452;
+  /* Primary buttons only: logo red to its pink highlight (ink text stays AA) */
+  --gradient-primary: linear-gradient(115deg, #ea3241 0%, #f0566a 55%, #fd818e 100%);
 
   /* Fonts */
   --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
