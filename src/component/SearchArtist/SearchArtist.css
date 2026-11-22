@@ -170,10 +170,6 @@
   margin-top: 0.5rem;
 }
 
-.artist-card .meta {
-  margin-top: 0.25rem;
-}
-
 .artist-card__cta {
   display: inline-flex;
   align-items: center;

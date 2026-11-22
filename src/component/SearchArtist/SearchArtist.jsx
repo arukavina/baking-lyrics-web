@@ -18,15 +18,8 @@ const initials = name => name
   .map(word => word[0].toUpperCase())
   .join('')
 
-// "US · since 1986", from whatever the artist record has
-const artistMeta = (artist) => {
-  const year = artist.formation_date ? artist.formation_date.slice(0, 4) : null
-  return [artist.country, year && `since ${year}`].filter(Boolean).join(' · ')
-}
-
 const ArtistCard = ({ artist, onPick }) => {
   const name = artistDisplayName(artist)
-  const meta = artistMeta(artist)
   return (
     <li>
       <Link to="/start-text" className="card artist-card" onClick={() => onPick(name, artist.id)}>
@@ -38,7 +31,6 @@ const ArtistCard = ({ artist, onPick }) => {
         <div className="artist-card__body">
           <span className="eyebrow">{artist.genre || 'Artist'}</span>
           <h2 className="card-title artist-card__name">{name}</h2>
-          {meta && <p className="meta">{meta}</p>}
           <span className="artist-card__cta">
             Write like them
             <FontAwesomeIcon icon={faArrowRight} className="artist-card__arrow" />
