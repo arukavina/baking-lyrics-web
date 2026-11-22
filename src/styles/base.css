@@ -169,8 +169,12 @@ body {
   padding-inline: var(--gutter);
 }
 
+/* Pages read on the center line: sections center their text, and blocks
+   with a measure (lead, body text) center themselves. Long reads (license,
+   letters) and forms opt back into left alignment. */
 .section {
   position: relative;
+  text-align: center;
   border-top: 1px solid var(--border-divider);
   padding: var(--section-y) var(--gutter);
 }
@@ -209,6 +213,7 @@ body {
 
 .page-title {
   font-family: var(--font-display);
+  text-wrap: balance;
   font-size: var(--text-5xl);
   font-weight: 500;
   line-height: var(--leading-tight);
@@ -245,6 +250,8 @@ body {
 
 .lead {
   max-width: var(--measure-lead);
+  margin-inline: auto;
+  text-wrap: pretty;
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
   color: var(--color-smoke);
@@ -258,6 +265,7 @@ body {
 
 .body-text {
   max-width: var(--measure-body);
+  margin-inline: auto;
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
   color: var(--text-soft);
@@ -362,6 +370,7 @@ body {
 /* Forms */
 .input {
   width: 100%;
+  text-align: left;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background-color: var(--surface-2);
@@ -436,6 +445,7 @@ button.card:hover,
 
 .notice {
   position: relative;
+  text-align: left;
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-md);
   background-color: var(--ember-10);

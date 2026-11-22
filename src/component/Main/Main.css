@@ -12,6 +12,7 @@
 
 .home-hero__title {
   max-width: 18ch;
+  margin-inline: auto;
   margin-top: 0.75rem;
 }
 
@@ -23,6 +24,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   margin-top: 2.25rem;
 }
@@ -31,6 +33,7 @@
 .home-stats {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem 2rem;
   margin-top: 4rem;
 }
@@ -86,6 +89,7 @@
 }
 
 .home-letter {
+  text-align: left;
   margin-top: 1.5rem;
 }
 
@@ -97,6 +101,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem 1.5rem;
   margin-top: 2.5rem;
 }

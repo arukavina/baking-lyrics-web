@@ -75,14 +75,4 @@
   .site-footer {
     padding: 2.5rem;
   }
-
-  .site-footer__inner {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
-
-  .site-footer__info {
-    align-items: flex-start;
-  }
 }

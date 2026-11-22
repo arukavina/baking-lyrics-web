@@ -45,6 +45,7 @@
 .license-chips {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
   margin-top: 0.875rem;
 }
@@ -80,6 +81,7 @@
 }
 
 .license__body {
+  text-align: left;
   margin-top: 2rem;
 }
 

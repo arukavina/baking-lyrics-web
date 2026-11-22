@@ -82,6 +82,9 @@ export default function GeneratedSong(props) {
     <section className="section section--first song-page">
       <Container>
         <header className="song-head fade-up">
+          <div className="song-thumb" aria-hidden="true">
+            {background && <img src={background} alt="" />}
+          </div>
           <span className="eyebrow">Generated lyrics</span>
           {title
             ? <h1 className="page-title song-title">{formatTitle(title)}</h1>
@@ -103,9 +106,6 @@ export default function GeneratedSong(props) {
           </article>
 
           <aside className="song-aside">
-            <div className="song-thumb" aria-hidden="true">
-              {background && <img src={background} alt="" />}
-            </div>
             <div className="song-share">
               <span className="label">Share these lyrics</span>
               <div className="song-share__buttons">
