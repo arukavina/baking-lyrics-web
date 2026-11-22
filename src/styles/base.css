@@ -288,7 +288,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: var(--tracking-label);
-  color: rgba(140, 133, 119, 0.8);
+  color: var(--color-smoke);
 }
 
 .meta {
