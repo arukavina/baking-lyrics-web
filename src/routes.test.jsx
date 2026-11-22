@@ -129,6 +129,42 @@ describe('routes', () => {
     expect(requestedUrls(fetchMock).filter(url => url.includes('/generate/'))).toEqual([])
   })
 
+  it('generates a song and shows it on its own page', async () => {
+    const generateUrl = '/api/v1/artificial_songs/generate/en/seed/never%20gonna%20give%20you%20up/words/100/artist/1/'
+    const fetchMock = mockFetch({
+      [generateUrl]: [200, artificialSong],
+      '/api/v1/artificial_songs/7': [200, artificialSong],
+    })
+    const user = userEvent.setup()
+    renderApp('/start-text', { store: seedPageStore() })
+    await user.type(screen.getByPlaceholderText(/write at least 6 words/), 'never gonna give you up')
+    await user.click(screen.getByRole('checkbox'))
+    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+
+    expect(await screen.findByText('some generated lyrics')).toBeInTheDocument()
+    expect(screen.getByText('ego remix (Artificial)')).toBeInTheDocument()
+    expect(screen.queryByText('CREATE RANDOM LYRICS LIKE')).not.toBeInTheDocument()
+    expect(requestedUrls(fetchMock)).toContain(generateUrl)
+    expect(localStorage.getItem('acceptedTandC')).toBe('true')
+  })
+
+  it('skips the terms checkbox once they were accepted', async () => {
+    localStorage.setItem('acceptedTandC', 'true')
+    const generateUrl = '/api/v1/artificial_songs/generate/en/seed/never%20gonna%20give%20you%20up/words/100/artist/1/'
+    const fetchMock = mockFetch({ [generateUrl]: [503, { message: 'ML models are not loaded' }] })
+    const user = userEvent.setup()
+    renderApp('/start-text', { store: seedPageStore() })
+
+    expect(screen.queryByRole('checkbox')).not.toBeInTheDocument()
+    expect(screen.queryByText(/I have read and accept/)).not.toBeInTheDocument()
+    await user.type(screen.getByPlaceholderText(/write at least 6 words/), 'never gonna give you up')
+    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(GENERATOR_OFFLINE_MSG)
+    expect(requestedUrls(fetchMock)).toContain(generateUrl)
+    expect(screen.queryByText('Required')).not.toBeInTheDocument()
+  })
+
   it('shows a generated song', async () => {
     mockFetch({ '/api/v1/artificial_songs/7': [200, artificialSong] })
     renderApp('/song/7')
