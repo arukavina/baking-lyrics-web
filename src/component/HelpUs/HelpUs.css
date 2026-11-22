@@ -1,67 +1,71 @@
-.helpUsContainer {
-  background: linear-gradient(
-		rgba(0, 0, 0, 0.5),
-		rgba(0, 0, 0, 0.5)
-	), url("../../static/images/background.png") no-repeat center top;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	overflow-x: hidden;
+/* Help us: donations and other ways to help */
+
+.help-title {
+  margin-top: 0.75rem;
 }
 
-.helpUsContent {
-  padding-left: 0;
+.help-lead {
+  margin-top: 1.5rem;
+}
+
+.help-text {
+  margin-top: 1.5rem;
+}
+
+.help-text sup {
+  font-size: 0.7em;
+  line-height: 0;
+}
+
+.help-sign {
+  color: var(--color-bone);
+}
+
+.help-donate {
   display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: center;
-  color: #FFFFFF;
-  min-width: 50vw;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
 }
 
-.donationLinks {
-  display: flex;
-  justify-content: center;
-  margin-top: 6rem;
+.help-other-lead {
+  margin-top: 0.5rem;
+  font-size: var(--text-sm);
+  color: var(--color-smoke);
 }
 
-.paypalLink, .patreonLink {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
+/* Panels with an ember dot, two across from 640px */
+.help-ways {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
-.aboutUsFooterLink {
-  cursor: pointer;
-  margin: 1rem 2rem;
-  opacity: 0.8;
-  color: #fff;
-  font-family: 'Roboto';
-  font-size: 24px;
-  font-weight: 300;
-  letter-spacing: 0.68px;
-  line-height: 28px;
-  text-decoration: none;
-}
-
-.paypalLink > svg:hover {
-  color: rgba(202, 194, 194, 0.781);
-}
-
-.patreonLink > svg:hover {
-  color: rgba(202, 194, 194, 0.781);
-}
-
-@media (max-width: 500px) {
-
-  .helpUsContainer {
-    justify-content: space-around;
+@media (min-width: 640px) {
+  .help-ways {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
-  .footerLink {
-    font-size: 16px;
-  }
+.help-way {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-1);
+  padding: 0.75rem 1rem;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-smoke);
+}
+
+.help-way__dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 0.5rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-ember);
 }
