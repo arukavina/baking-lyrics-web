@@ -7,7 +7,7 @@ import logoRed from '../../static/images/logoRed.png'
 import { ping } from '../../helpers/api'
 import './Main.css'
 
-export default class extends Component {
+export default class Main extends Component {
   componentDidMount() {
     // Fire and forget warm-up of the backend
     ping().catch(() => {})
@@ -27,7 +27,7 @@ export default class extends Component {
             </strong>
             {'WITH ARTIFICIAL INTELLIGENCE!'}
           </h1>
-          <h2>OVERCOME YOUR WRITER'S BLOCK WITH JUST ONE CLICK</h2>
+          <h2>OVERCOME YOUR WRITER&apos;S BLOCK WITH JUST ONE CLICK</h2>
           <p className="pageText">
             Dear musicians 🎸 , writers 🖊 , artists 👩‍🎤 , music enthusiasts 🎶, et. al.,
         <br /><br />

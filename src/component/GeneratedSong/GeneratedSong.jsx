@@ -14,19 +14,15 @@ const formatTitle = title => (title
 
 export default function GeneratedSong(props) {
   const { songId } = useParams()
+  const { getGeneratedSong } = props
+  const loadedSongId = props.generatedSong.lyrics ? String(props.generatedSong.id) : null
 
   useEffect(() => {
-    const {
-      getGeneratedSong,
-      generatedSong,
-    } = props
-
     // Skip the request when the song was just generated on the previous page
-    if (!generatedSong.lyrics || String(generatedSong.id) !== String(songId)) {
+    if (loadedSongId !== String(songId)) {
       getGeneratedSong(songId)
     }
-    // Runs on mount only, like the former componentDidMount
-  }, [])
+  }, [songId, loadedSongId, getGeneratedSong])
 
   const openURLInPopup = (url) => {
     window.open(
@@ -112,7 +108,7 @@ export default function GeneratedSong(props) {
           >
             <FontAwesomeIcon icon={faTwitterSquare} size="3x" color="white" />
           </a>
-          <a href={`https://api.whatsapp.com/send?text=Check%20this%20out!%20I%20just%20generated%20the%20following%20lyrics%20using%20Artificial%20Intelligence:%0A${document.URL}`} target="_blank" className="link">
+          <a href={`https://api.whatsapp.com/send?text=Check%20this%20out!%20I%20just%20generated%20the%20following%20lyrics%20using%20Artificial%20Intelligence:%0A${document.URL}`} target="_blank" rel="noreferrer" className="link">
             <FontAwesomeIcon icon={faWhatsapp} size="3x" color="white" />
           </a>
         </div>

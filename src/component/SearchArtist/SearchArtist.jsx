@@ -29,14 +29,15 @@ export default function SearchArtist(props) {
     getArtistsTotal()
     clearSong()
     changeSearch('')
-    // Runs on mount only, like the former componentDidMount
-  }, [])
+    // The action creators are bound once by connect, so this runs on mount only
+  }, [getArtists, getArtistsTotal, clearSong, changeSearch])
 
-  const searchArtists = (value) => {
+  const debouncedSearch = useMemo(() => debounce((value) => {
     const query = value.trim()
-    query.length >= MIN_SEARCH_LENGTH ? getArtists(query) : getArtists()
-  }
-  const debouncedSearch = useMemo(() => debounce(value => searchArtists(value), 1000), [])
+    if (query.length >= MIN_SEARCH_LENGTH) getArtists(query)
+    else getArtists()
+  }, 1000), [getArtists])
+  useEffect(() => () => debouncedSearch.cancel(), [debouncedSearch])
 
   const onSearchChange = (event) => {
     const { value } = event.target
@@ -82,7 +83,7 @@ export default function SearchArtist(props) {
             {search}
           </span>
           <span className="notFoundArtistAlert">
-            "
+            &quot;
           </span>
         </div>
       )

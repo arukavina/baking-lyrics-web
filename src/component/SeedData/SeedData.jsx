@@ -53,7 +53,7 @@ const renderCheckboxField = (field) => {
   } = field
   return (
     <div>
-      <label class="checkbox">
+      <label className="checkbox">
         <input name={name} id={id} checked={checked} onChange={onChange} onBlur={onBlur} type="checkbox" className={touched && error ? 'errorInput' : ''} />
         <span></span>
       </label>
@@ -77,7 +77,7 @@ export default function SeedData(props) {
     generateSong,
   } = props
   const navigate = useNavigate()
-  const [acceptedTandC, setAcceptedTandC] = useState(false)
+  const [acceptedTandC] = useState(() => localStorage.getItem('acceptedTandC') === 'true')
   const [touched, setTouched] = useState({
     fistThreeWords: false,
     termsAndConditions: false,
@@ -89,13 +89,11 @@ export default function SeedData(props) {
   }))
 
   useEffect(() => {
-    if (!search) {
-      navigate('/artist')
-    } else {
-      setAcceptedTandC(localStorage.getItem('acceptedTandC') === 'true')
-    }
+    if (!search) navigate('/artist')
     // The form values used to be destroyed on unmount by redux-form
     return () => resetWizard()
+    // Mount and unmount only: re-running it would reset the form mid-edit
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Go to the generated song once it arrives (skips the initial render,
@@ -107,7 +105,7 @@ export default function SeedData(props) {
       return
     }
     if (songId) navigate(`/song/${songId}`)
-  }, [songId])
+  }, [songId, navigate])
 
   const touch = name => setTouched(current => ({ ...current, [name]: true }))
 
