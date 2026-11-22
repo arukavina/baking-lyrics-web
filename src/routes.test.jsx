@@ -44,8 +44,9 @@ describe('routes', () => {
     const { store } = renderApp('/artist')
 
     // No cover artists in the database: the page copes with an empty list
-    expect(await screen.findByText('Oops! We found no artist')).toBeInTheDocument()
-    expect(await screen.findByText('Searching in a database of 1 artists')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Pick an artist')
+    expect(await screen.findByText('No artists to show yet')).toBeInTheDocument()
+    expect(await screen.findByText('Searching in a database of 1 artist')).toBeInTheDocument()
 
     await user.type(screen.getByPlaceholderText('Search for an artist or a band'), 'bey')
     await act(async () => { vi.advanceTimersByTime(1000) })
@@ -72,7 +73,8 @@ describe('routes', () => {
 
     const input = screen.getByPlaceholderText('Search for an artist or a band')
     await user.type(input, 'adel')
-    // The refresh control is the icon wrapper right after the input
+    // The refresh control is the button right after the input
+    expect(input.nextElementSibling).toBe(screen.getByRole('button', { name: 'Refresh list' }))
     await user.click(input.nextElementSibling)
     await act(async () => { vi.advanceTimersByTime(2000) })
 
