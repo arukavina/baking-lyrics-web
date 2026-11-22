@@ -4,7 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitterSquare, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import Footer from '../shared/Footer/Footer'
 import logoRed from '../../static/images/logoRed.png'
+import { artistDisplayName } from '../../helpers/api'
 import './GeneratedSong.css'
+
+// "ego-remix(Artificial)" -> "ego remix (Artificial)"
+const formatTitle = title => (title
+  ? title.replace(/-/g, ' ').replace(/\s*\(Artificial\)$/, ' (Artificial)')
+  : '')
 
 export default function GeneratedSong(props) {
   const { songId } = useParams()
@@ -12,10 +18,11 @@ export default function GeneratedSong(props) {
   useEffect(() => {
     const {
       getGeneratedSong,
-      lyrics,
+      generatedSong,
     } = props
 
-    if (!lyrics) {
+    // Skip the request when the song was just generated on the previous page
+    if (!generatedSong.lyrics || String(generatedSong.id) !== String(songId)) {
       getGeneratedSong(songId)
     }
     // Runs on mount only, like the former componentDidMount
@@ -34,13 +41,15 @@ export default function GeneratedSong(props) {
       artificialTitle: {
         title
       },
-      baseArtist: {
-        name
-      },
+      baseArtist,
       lyrics
     },
     background,
+    isFetching,
+    errorMsg,
   } = props
+  const name = artistDisplayName(baseArtist)
+  const showError = !isFetching && !!errorMsg
 
   const sectionStyle = {
     background: `linear-gradient(rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%), url("${background}") no-repeat center center/cover`
@@ -59,18 +68,26 @@ export default function GeneratedSong(props) {
             {'LYRICS BASED IN'}
           </span>
           <span className="bandNameTitle montserratTextBold">
-            {name && name.replace(/\-/g, ' ')}
+            {name}
           </span>
         </div>
       </div>
       <div className="textSongFlexContainer">
         <div className="textSongContainer">
-          <span className="textSongTitle">
-            {title && title.replace(/\-/g, ' ')}
-          </span>
-          <p className="textSong">
-            {lyrics}
-          </p>
+          {showError ? (
+            <p className="textSong" role="alert">
+              {errorMsg}
+            </p>
+          ) : (
+            <>
+              <span className="textSongTitle">
+                {formatTitle(title)}
+              </span>
+              <p className="textSong">
+                {lyrics}
+              </p>
+            </>
+          )}
         </div>
       </div>
       <div className="generatedSongFooterContainer">

@@ -1,69 +1,68 @@
-import get from "lodash/get"
 import {
   GET_ARTISTS_FULFILLED,
   GET_ARTISTS_PENDING,
   GET_ARTISTS_REJECTED,
   SAVE_COVER_IMAGE,
+  SET_ARTISTS_TOTAL,
 } from './const'
-import { getArtistsData, getRandomArtists } from '../../../helpers/api/artists'
+import {
+  MIN_SEARCH_LENGTH,
+  artistDisplayName,
+  getArtistsTotal as getArtistsTotalApi,
+  getRandomArtists,
+  getWikipediaImage,
+  searchArtists,
+} from '../../../helpers/api'
 
+export const RANDOM_ARTISTS_COUNT = 16
+export const ARTISTS_ERROR_MSG = 'We could not load artists right now. Please try again later.'
 
+// Only the latest request may update the list (a slow search must not
+// overwrite the result of a newer one).
+let latestRequest = 0
+
+// Searches when the filter has at least MIN_SEARCH_LENGTH characters,
+// otherwise loads random cover artists. Only one backend call per load.
 export const getArtists = (filter = '') => async (dispatch) => {
-  dispatch({
-    type: GET_ARTISTS_PENDING
-  })
+  const query = filter.trim()
+  const requestId = ++latestRequest
+  dispatch({ type: GET_ARTISTS_PENDING })
+  let list
   try {
-    const artists = await getArtistsData(filter.replace(' ', '-'))
-    const randomArtists = await getRandomArtists()
-    if (filter && filter.length > 3) {
-      artists.data.forEach(async (item) => {
-        const name = item.name.replace(/\-/g, '%20')
-        const res = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&origin=*&redirects=1&format=json&piprop=original&titles=${name}`, { "Content-Type": "application/json charset=UTF-8" })
-        const json = await res.json()
-        const firstElement = Object.keys(json.query.pages)[0]
-        const coverImg = get(json.query.pages[firstElement], 'original.source')
-        dispatch({
-          type: SAVE_COVER_IMAGE,
-          payload: {
-            ...item,
-            name: item.name.replace(/\-/g, ' '),
-            coverImg,
-          }
-        })
-      })
-      dispatch({
-        type: GET_ARTISTS_FULFILLED,
-        payload: {list: artists.data}
-      })
-    }
-    else {
-      randomArtists.data.forEach(async (item) => {
-        const name = item.name.replace(/\-/g, '%20')
-        const res = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&origin=*&redirects=1&format=json&piprop=original&titles=${name}`, { "Content-Type": "application/json charset=UTF-8" })
-        const json = await res.json()
-        const firstElement = Object.keys(json.query.pages)[0]
-        const coverImg = get(json.query.pages[firstElement], 'original.source')
-        dispatch({
-          type: SAVE_COVER_IMAGE,
-          payload: {
-            ...item,
-            name: item.name.replace(/\-/g, ' '),
-            coverImg,
-          }
-        })
-      })
-      dispatch({
-        type: GET_ARTISTS_FULFILLED,
-        payload: {list: randomArtists.data, total: artists.data.total}
-      })
-    }
-  }
-  catch (e) {
+    list = query.length >= MIN_SEARCH_LENGTH
+      ? await searchArtists(query)
+      : await getRandomArtists(RANDOM_ARTISTS_COUNT)
+  } catch (e) {
+    if (requestId !== latestRequest) return
     dispatch({
       type: GET_ARTISTS_REJECTED,
       payload: {
-        errorMsg: `Failed trying to get artists ${e}`
-      }
+        errorMsg: ARTISTS_ERROR_MSG,
+        status: typeof e?.status === 'number' ? e.status : null,
+      },
     })
+    return
+  }
+  if (requestId !== latestRequest) return
+  dispatch({ type: GET_ARTISTS_FULFILLED, payload: { list } })
+
+  // Cover images are a best effort lookup; failures leave the tile without one.
+  // Wikipedia resolves the display name (clean_name) far better than the slug.
+  list.forEach(async (item) => {
+    const coverImg = await getWikipediaImage(artistDisplayName(item))
+    if (coverImg) {
+      dispatch({ type: SAVE_COVER_IMAGE, payload: { id: item.id, coverImg } })
+    }
+  })
+}
+
+// Size of the artist database, shown under the search bar. Loaded once;
+// a failure only hides the counter.
+export const getArtistsTotal = () => async (dispatch) => {
+  try {
+    const total = await getArtistsTotalApi()
+    dispatch({ type: SET_ARTISTS_TOTAL, payload: { total } })
+  } catch {
+    // ignored on purpose
   }
 }

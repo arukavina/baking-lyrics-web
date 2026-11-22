@@ -10,6 +10,8 @@ const mapStateToProps = (state) => {
 
   return{
     generatedSong: state.song.generatedSong,
+    isFetching: state.song.isFetching,
+    errorMsg: state.song.errorMsg,
     background: selectedArtist ? selectedArtist.coverImg : state.song.generatedSong.coverImg
   }
 }

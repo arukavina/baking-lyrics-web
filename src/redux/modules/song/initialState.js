@@ -5,7 +5,8 @@ const initialState = {
     lyrics: ''
   },
   isFetching: false,
-  errorMsg: ''
+  errorMsg: '',
+  status: null
 }
-  
+
 export default initialState

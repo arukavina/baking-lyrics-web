@@ -121,7 +121,7 @@ export default function SeedData(props) {
       : validateTermsAndConditions(termsAndConditions)
     if (fistThreeWordsError || termsAndConditionsError) return
     termsAndConditions && localStorage.setItem('acceptedTandC', termsAndConditions)
-    generateSong(fistThreeWords, '100', artistId)
+    generateSong({ artistId, seed: fistThreeWords, numberWords: 100 })
   }
 
   return (
@@ -179,7 +179,7 @@ export default function SeedData(props) {
               )
             }
 
-            {errorMsg && <span className="errorMsg">Failed trying to get a song</span>}
+            {errorMsg && <span className="errorMsg" role="alert">{errorMsg}</span>}
           </div>
         </div>
       </div>

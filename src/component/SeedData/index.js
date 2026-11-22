@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   changeField: (field, value) => dispatch(changeField({ field, value })),
   resetWizard: () => dispatch(resetWizard()),
-  generateSong: (seed, numberWords, artistId) => dispatch(generateSong(seed, numberWords, artistId)),
+  generateSong: song => dispatch(generateSong(song)),
 })
 
 export default connect(

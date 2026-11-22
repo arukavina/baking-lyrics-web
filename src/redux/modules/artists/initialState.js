@@ -2,7 +2,8 @@ const initialState = {
   list: [],
   isFetching: false,
   total: 0,
-  errorMsg: ''
+  errorMsg: '',
+  status: null,
 }
 
 export default initialState

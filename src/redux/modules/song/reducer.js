@@ -14,6 +14,7 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: true,
         errorMsg: '',
+        status: null
       }
     }
     case GET_SONG_FULFILLED: {
@@ -21,6 +22,7 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: false,
         errorMsg: '',
+        status: null,
         generatedSong: {
           artificialTitle: {...action.payload.artificial_title},
           baseArtist: {...action.payload.base_artist},
@@ -34,12 +36,15 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        errorMsg: action.payload.errorMsg
+        errorMsg: action.payload.errorMsg,
+        status: action.payload.status ?? null
       }
     }
     case CLEAR_SONG: {
       return {
         ...state,
+        errorMsg: '',
+        status: null,
         generatedSong: {
           artificialTitle: {},
           baseArtist: {},

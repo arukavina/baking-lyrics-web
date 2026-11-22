@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync, faSearch } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../shared/Footer/Footer'
 import logoRed from '../../static/images/logoRed.png'
+import { MIN_SEARCH_LENGTH, artistDisplayName } from '../../helpers/api'
 import './SearchArtist.css'
 
 
@@ -14,7 +15,9 @@ export default function SearchArtist(props) {
     artists,
     total,
     isFetching,
+    errorMsg,
     getArtists,
+    getArtistsTotal,
     clearSong,
     changeSearch,
     setSearch,
@@ -23,13 +26,15 @@ export default function SearchArtist(props) {
 
   useEffect(() => {
     getArtists()
+    getArtistsTotal()
     clearSong()
     changeSearch('')
     // Runs on mount only, like the former componentDidMount
   }, [])
 
   const searchArtists = (value) => {
-    value.length > 2 ? getArtists(value.trimEnd()) : getArtists()
+    const query = value.trim()
+    query.length >= MIN_SEARCH_LENGTH ? getArtists(query) : getArtists()
   }
   const debouncedSearch = useMemo(() => debounce(value => searchArtists(value), 1000), [])
 
@@ -50,14 +55,22 @@ export default function SearchArtist(props) {
         (index <= 15) &&
         <div
           style={{ background: `linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%), url(${item.coverImg}) no-repeat center center/contain` }}
-          onClick={() => onClickHandler(item.name, item.id)}
-          key={index} className="artistContainer"
+          onClick={() => onClickHandler(artistDisplayName(item), item.id)}
+          key={item.id} className="artistContainer"
         >
           <span className="artistName">
-            {item.name}
+            {artistDisplayName(item)}
           </span>
         </div>
       )
+      )
+    } else if (!isFetching && errorMsg) {
+      return (
+        <div className="notFoundArtistAlertContainer">
+          <span className="notFoundArtistAlert">
+            {errorMsg}
+          </span>
+        </div>
       )
     } else if (!isFetching) {
       return search ? (

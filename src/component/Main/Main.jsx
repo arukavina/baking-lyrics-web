@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Footer from '../shared/Footer/Footer';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import logoRed from '../../static/images/logoRed.png'
+import { ping } from '../../helpers/api'
 import './Main.css'
 
 export default class extends Component {
   componentDidMount() {
-    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/ping`)
+    // Fire and forget warm-up of the backend
+    ping().catch(() => {})
   }
 
   render() {
