@@ -12,14 +12,15 @@
   gap: 1rem;
 }
 
-/* Photo in a framed square, like the artist thumb on the seed page */
+/* Photo in a circular frame; some sources are square, others pre-cut circles,
+   so the circle is applied here to keep every member consistent */
 .team-card__photo {
   flex-shrink: 0;
   width: 6rem;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: 50%;
   padding: 0.25rem;
   background-color: var(--surface-2);
 }
@@ -27,7 +28,7 @@
 .team-card__photo img {
   width: 100%;
   height: 100%;
-  border-radius: var(--radius-md);
+  border-radius: 50%;
   object-fit: cover;
   object-position: center 20%;
   filter: saturate(0.85);
