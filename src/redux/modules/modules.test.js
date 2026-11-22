@@ -20,6 +20,7 @@ import {
   GENERATOR_ERROR_MSG,
   GENERATOR_OFFLINE_MSG,
   RATE_LIMITED_MSG,
+  SEED_INVALID_MSG,
   NETWORK_ERROR_MSG,
   SONG_NOT_FOUND_MSG,
   generateErrorMessage,
@@ -147,6 +148,7 @@ describe('song reducer and errors', () => {
     expect(generateErrorMessage(404)).toBe(ARTIST_UNUSABLE_MSG)
     expect(generateErrorMessage(0)).toBe(NETWORK_ERROR_MSG)
     expect(generateErrorMessage(429)).toBe(RATE_LIMITED_MSG)
+    expect(generateErrorMessage(411)).toBe(SEED_INVALID_MSG)
     expect(getSongErrorMessage(404)).toBe(SONG_NOT_FOUND_MSG)
   })
 })

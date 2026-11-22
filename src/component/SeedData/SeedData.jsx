@@ -122,6 +122,7 @@ export default function SeedData(props) {
               id="seed"
               name="fistThreeWords"
               rows={3}
+              maxLength={300}
               className="input seed-field__input"
               value={fistThreeWords || ''}
               onChange={event => changeField('fistThreeWords', event.target.value.replace(/[\r\n]+/g, ' '))}
