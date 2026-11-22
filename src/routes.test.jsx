@@ -55,7 +55,7 @@ describe('routes', () => {
     expect(requestedUrls(fetchMock)).toContain('/api/v1/artists/search/bey')
 
     await user.click(tile)
-    expect(await screen.findByText('CREATE RANDOM LYRICS LIKE')).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: 'Create random lyrics like Beyonce Knowles' })).toBeInTheDocument()
     expect(screen.getByText('Beyonce Knowles')).toBeInTheDocument()
     expect(store.getState().wizard).toMatchObject({ search: 'Beyonce Knowles', artistId: 1 })
   })
@@ -97,11 +97,11 @@ describe('routes', () => {
     renderApp('/start-text', { store })
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), 'never gonna give you up')
     await user.click(screen.getByRole('checkbox'))
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(await screen.findByRole('alert')).toHaveTextContent(GENERATOR_OFFLINE_MSG)
     expect(requestedUrls(fetchMock)).toContain(generateUrl)
-    expect(screen.queryByText('baking lyrics...')).not.toBeInTheDocument()
+    expect(screen.queryByText('Baking lyrics...')).not.toBeInTheDocument()
   })
 
   it.each([
@@ -113,7 +113,7 @@ describe('routes', () => {
     renderApp('/start-text', { store: seedPageStore() })
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), seed)
     await user.click(screen.getByRole('checkbox'))
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(screen.getByText('Required')).toBeInTheDocument()
     expect(requestedUrls(fetchMock).filter(url => url.includes('/generate/'))).toEqual([])
@@ -125,7 +125,7 @@ describe('routes', () => {
     renderApp('/start-text', { store: seedPageStore() })
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), '  a/b/c/d   ')
     await user.click(screen.getByRole('checkbox'))
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(screen.getByText('Must be 10 characters or more')).toBeInTheDocument()
     expect(requestedUrls(fetchMock).filter(url => url.includes('/generate/'))).toEqual([])
@@ -141,11 +141,11 @@ describe('routes', () => {
     renderApp('/start-text', { store: seedPageStore() })
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), 'never gonna give you up')
     await user.click(screen.getByRole('checkbox'))
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(await screen.findByText('some generated lyrics')).toBeInTheDocument()
     expect(screen.getByText('ego remix (Artificial)')).toBeInTheDocument()
-    expect(screen.queryByText('CREATE RANDOM LYRICS LIKE')).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /Create random lyrics like/ })).not.toBeInTheDocument()
     expect(requestedUrls(fetchMock)).toContain(generateUrl)
     expect(localStorage.getItem('acceptedTandC')).toBe('true')
   })
@@ -160,7 +160,7 @@ describe('routes', () => {
     expect(screen.queryByRole('checkbox')).not.toBeInTheDocument()
     expect(screen.queryByText(/I have read and accept/)).not.toBeInTheDocument()
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), 'never gonna give you up')
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(await screen.findByRole('alert')).toHaveTextContent(GENERATOR_OFFLINE_MSG)
     expect(requestedUrls(fetchMock)).toContain(generateUrl)
