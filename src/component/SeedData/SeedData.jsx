@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Field } from "redux-form"
 import { Link } from 'react-router-dom'
 import Footer from '../shared/Footer/Footer'
 import logoRed from '../../static/images/logoRed.png'
@@ -15,9 +14,17 @@ export default class extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.songId) return this.props.history.push(`song/${nextProps.songId}`)
   }
+  componentWillUnmount() {
+    // The form values used to be destroyed on unmount by redux-form
+    this.props.resetWizard()
+  }
 
   state = {
-    acceptedTandC: false
+    acceptedTandC: false,
+    touched: {
+      fistThreeWords: false,
+      termsAndConditions: false,
+    },
   };
 
   required = value => (value || typeof value === 'number' ? undefined : 'Required')
@@ -26,17 +33,44 @@ export default class extends Component {
     value && value.length < min ? `Must be ${min} characters or more` : undefined
   minLength10 = this.minLength(10)
 
+  validateFistThreeWords = value => this.required(value) || this.minLength10(value)
+  validateTermsAndConditions = value => (value ? undefined : 'Required')
+
+  touch = name => this.setState(({ touched }) => ({ touched: { ...touched, [name]: true } }))
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const { fistThreeWords, termsAndConditions, artistId, generateSong } = this.props
+    this.setState({ touched: { fistThreeWords: true, termsAndConditions: true } })
+    const fistThreeWordsError = this.validateFistThreeWords(fistThreeWords)
+    // The checkbox is only validated while it is rendered
+    const termsAndConditionsError = this.state.acceptedTandC
+      ? undefined
+      : this.validateTermsAndConditions(termsAndConditions)
+    if (fistThreeWordsError || termsAndConditionsError) return
+    termsAndConditions && localStorage.setItem('acceptedTandC', termsAndConditions)
+    generateSong(fistThreeWords, '100', artistId)
+  }
+
   renderField = (field) => {
     const {
       title,
       placeholder,
-      meta: { touched, error }
+      name,
+      value,
+      onChange,
+      onBlur,
+      touched,
+      error,
     } = field
     return (
       <div className="inputContainer">
         <span className="inputTitle">{title}</span>
         <input
-          {...field.input}
+          name={name}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
           className={touched && error ? 'errorInput' : 'input'}
           placeholder={placeholder}
         />
@@ -48,12 +82,18 @@ export default class extends Component {
 
   renderCheckboxField = (field) => {
     const {
-      meta: { touched, error }
+      name,
+      id,
+      checked,
+      onChange,
+      onBlur,
+      touched,
+      error,
     } = field
     return (
       <div>
         <label class="checkbox">
-          <input {...field.input} type="checkbox" className={touched && error ? 'errorInput' : ''} />
+          <input name={name} id={id} checked={checked} onChange={onChange} onBlur={onBlur} type="checkbox" className={touched && error ? 'errorInput' : ''} />
           <span></span>
         </label>
         {touched && error && <span className="errorMsg">{error}</span>}
@@ -67,7 +107,8 @@ export default class extends Component {
   };
 
   render() {
-    const { search, handleSubmit, isFetching, errorMsg } = this.props
+    const { search, isFetching, errorMsg, fistThreeWords, termsAndConditions, changeField } = this.props
+    const { touched } = this.state
 
     return (
       <div className="containerLayout seedDataContainer" style={this.sectionStyle}>
@@ -97,18 +138,29 @@ export default class extends Component {
               </span>
             </div>
             <div className="inputContainer">
-              <Field
-                component={this.renderField}
-                title="Give the AI a sentence to elaborate on. The more you write the better"
-                name="fistThreeWords"
-                placeholder="Don’t be cheap, write at least 6 words"
-                validate={[this.required, this.minLength10]}
-              />
+              {this.renderField({
+                title: "Give the AI a sentence to elaborate on. The more you write the better",
+                name: "fistThreeWords",
+                placeholder: "Don’t be cheap, write at least 6 words",
+                value: fistThreeWords || '',
+                onChange: event => changeField('fistThreeWords', event.target.value),
+                onBlur: () => this.touch('fistThreeWords'),
+                touched: touched.fistThreeWords,
+                error: this.validateFistThreeWords(fistThreeWords),
+              })}
               {
                 !this.state.acceptedTandC && (
                   <div className="termsAndConditions">
                     <span htmlFor="termsAndConditions">I have read and accept the <a href="/terms-and-conditions" target="_blank" >Terms and Conditions</a></span>
-                    <Field name="termsAndConditions" id="termsAndConditions" component={this.renderCheckboxField} required />
+                    {this.renderCheckboxField({
+                      name: "termsAndConditions",
+                      id: "termsAndConditions",
+                      checked: !!termsAndConditions,
+                      onChange: event => changeField('termsAndConditions', event.target.checked),
+                      onBlur: () => this.touch('termsAndConditions'),
+                      touched: touched.termsAndConditions,
+                      error: this.validateTermsAndConditions(termsAndConditions),
+                    })}
                   </div>
                 )
               }
@@ -118,7 +170,7 @@ export default class extends Component {
           </div>
         </div>
         <div className="buttonContainer">
-          <Link className="tryButton" to="song" onClick={handleSubmit}>{'GENERATE'}</Link>
+          <Link className="tryButton" to="song" onClick={this.handleSubmit}>{'GENERATE'}</Link>
         </div>
         <Footer />
       </div>

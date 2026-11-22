@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Field } from "redux-form"
 import { Link } from "react-router-dom"
 import debounce from "lodash/debounce"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,8 +7,6 @@ import Footer from '../shared/Footer/Footer'
 import logoRed from '../../static/images/logoRed.png'
 import './SearchArtist.css'
 
-
-const renderSearchField = field => <input {...field.input} maxLength={40} type="text" placeholder={field.placeholder} />
 
 export default class extends Component {
   componentDidMount() {
@@ -22,7 +19,13 @@ export default class extends Component {
     clearSong()
     changeSearch('')
   }
-  debouncedOnChange = debounce(this.onChange, 1000).bind(this)
+  debouncedSearch = debounce(this.searchArtists, 1000).bind(this)
+
+  onSearchChange = (event) => {
+    const { value } = event.target
+    this.props.setSearch(value)
+    this.debouncedSearch(value)
+  }
 
   listArtists = () => {
     const { artists } = this.props
@@ -33,9 +36,9 @@ export default class extends Component {
     ))
   }
 
-  onChange(event) {
+  searchArtists(value) {
     const { getArtists } = this.props
-    event.target.value.length > 2 ? getArtists(event.target.value.trimEnd()) : getArtists()
+    value.length > 2 ? getArtists(value.trimEnd()) : getArtists()
   }
 
   onClickHandler = (name, artistId) => {
@@ -108,15 +111,17 @@ export default class extends Component {
         <div className="searchArtist">
           <div className="searchBar">
             <FontAwesomeIcon icon={faSearch} color="black" size="lg" />
-            <Field
-              component={renderSearchField}
-              onChange={this.debouncedOnChange}
+            <input
+              value={search || ''}
+              onChange={this.onSearchChange}
+              maxLength={40}
+              type="text"
               placeholder="Search for an artist or a band"
               name="search"
             />
             <div onClick={() => {
               getArtists()
-              this.props.change('search', '')
+              this.props.setSearch('')
             }}>
               <FontAwesomeIcon icon={faSync} color="black" size="lg" title="Refresh list" />
             </div>
