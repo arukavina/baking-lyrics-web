@@ -1,17 +1,9 @@
 import React from 'react'
 import ScrollUpButton from "../shared/ScrollUpButton/ScrollUpButton"
-import { Link } from 'react-router'
-import Footer from '../shared/Footer/Footer';
-import logoRed from '../../static/images/logoRed.png'
 import './TermsAndConditions.css'
 
 const TermsAndConditions = () => (
 	<div className="containerLayout regularContainerImage termsAndConditionsContainer">
-		<div className="regularHeader">
-			<Link className="regularHeaderLink" to={'/'}>
-				<img className="logoRed" src={logoRed} alt="baking logo" />
-			</Link>
-		</div>
 		<ScrollUpButton />
 		<div className="termsAndConditionsContent">
 			<h1 className="pageTitle">
@@ -664,7 +656,6 @@ const TermsAndConditions = () => (
 				</div>
 			</div>
 		</div>
-		<Footer ignoreTandC />
 	</div>
 )
 export default TermsAndConditions

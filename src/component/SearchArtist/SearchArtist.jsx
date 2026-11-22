@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router"
 import debounce from "lodash/debounce"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync, faSearch } from '@fortawesome/free-solid-svg-icons'
-import Footer from '../shared/Footer/Footer'
-import logoRed from '../../static/images/logoRed.png'
 import { MIN_SEARCH_LENGTH, artistDisplayName } from '../../helpers/api'
 import './SearchArtist.css'
 
@@ -107,11 +105,6 @@ export default function SearchArtist(props) {
 
   return (
     <div className="containerLayout regularContainerImage">
-      <div className="regularHeader">
-        <Link to={'/'}>
-          <img className="logoRed" src={logoRed} alt="baking logo" />
-        </Link>
-      </div>
       <div className="searchArtist">
         <div className="searchBar">
           <FontAwesomeIcon icon={faSearch} color="black" size="lg" />
@@ -149,7 +142,6 @@ export default function SearchArtist(props) {
           {artistList()}
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

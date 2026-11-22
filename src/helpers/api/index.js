@@ -24,6 +24,13 @@ export const artistDisplayName = artist =>
 /** GET /general/ping, resolves to "pong!" */
 export const ping = () => apiGet('/general/ping')
 
+/**
+ * GET /general/version: the backend build. Resolves to null on any error
+ * (older backends do not have the endpoint), so callers can just skip it.
+ * @returns {Promise<{version: string, commit: string|null, date: string|null}|null>}
+ */
+export const getVersion = () => apiGet('/general/version').catch(() => null)
+
 /** GET /artists/ (trailing slash on purpose: no slash gets a 308 redirect) */
 export const listArtists = ({ page = 1, perPage = 10 } = {}) =>
   apiGet('/artists/', { query: { page, per_page: perPage } })

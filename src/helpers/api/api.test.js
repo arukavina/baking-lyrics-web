@@ -8,6 +8,7 @@ import {
   getArtistsTotal,
   getGeneratedSong,
   getRandomArtists,
+  getVersion,
   getWikipediaImage,
   ping,
   searchArtists,
@@ -224,5 +225,21 @@ describe('getWikipediaImage', () => {
     vi.stubGlobal('fetch', vi.fn(async () => { throw new TypeError('offline') }))
     await expect(getWikipediaImage('x')).resolves.toBeUndefined()
     await expect(getWikipediaImage('')).resolves.toBeUndefined()
+  })
+})
+
+describe('getVersion', () => {
+  it('resolves to the backend build info', async () => {
+    const build = { version: '0.5.0', commit: 'abc1234', date: '2026-11-22T12:00:00+00:00' }
+    const fetchMock = mockFetch({ '/api/v1/general/version': [200, build] })
+    await expect(getVersion()).resolves.toEqual(build)
+    expect(requestedUrls(fetchMock)).toEqual(['/api/v1/general/version'])
+  })
+
+  it('resolves to null when the backend has no version endpoint or is down', async () => {
+    mockFetch({ '/api/v1/general/version': [404, { message: 'Not Found' }] })
+    await expect(getVersion()).resolves.toBeNull()
+    vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('Failed to fetch'))))
+    await expect(getVersion()).resolves.toBeNull()
   })
 })

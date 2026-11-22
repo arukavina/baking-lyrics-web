@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Footer from '../shared/Footer/Footer';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import logoRed from '../../static/images/logoRed.png'
 import { ping } from '../../helpers/api'
 import './Main.css'
 
@@ -16,9 +14,6 @@ export default class Main extends Component {
   render() {
     return (
       <div className="containerLayout regularContainerImage">
-        <div className="regularHeader">
-          <img className="logoRed" src={logoRed} alt="baking logo" />
-        </div>
         <div className="homeContent">
           <h1 className="pageTitle">
             {'GENERATE'}
@@ -55,7 +50,6 @@ export default class Main extends Component {
           <Link className="mainLink" to="/about-us" >{'About Us'}</Link>
           <Link className="mainLink" to="/help-us" >{'Help Us'}</Link>
         </div>
-        <Footer />
       </div>
     )
   }

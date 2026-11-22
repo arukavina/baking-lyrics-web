@@ -1,18 +1,10 @@
 import React from 'react'
-import { Link } from "react-router"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons'
-import Footer from '../shared/Footer/Footer'
-import logoRed from '../../static/images/logoRed.png'
 import './HelpUs.css'
 
 const HelpUs = () => (
   <div className="containerLayout regularContainerImage helpUsContainer">
-    <div className="regularHeader">
-      <Link className="regularHeaderLink" to={'/'}>
-        <img className="logoRed" src={logoRed} alt="baking logo" />
-      </Link>
-    </div>
 		<div className="helpUsContent">
 			<h1 className="pageTitle">
 				HELP US
@@ -47,7 +39,6 @@ const HelpUs = () => (
         </span>
       </a>
     </div>
-    <Footer />
   </div>
 )
 export default HelpUs

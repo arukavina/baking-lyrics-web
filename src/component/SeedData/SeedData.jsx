@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import Footer from '../shared/Footer/Footer'
 import { cleanSeed } from '../../helpers/api'
-import logoRed from '../../static/images/logoRed.png'
 import loading from '../../static/images/loading.png'
 import './SeedData.css'
 
@@ -140,11 +138,6 @@ export default function SeedData(props) {
           </div>)
           : null
       }
-      <div className="regularHeaderContainer">
-        <Link className="regularHeader" to={'/'}>
-          <img className="logoRed" src={logoRed} alt="baking logo" />
-        </Link>
-      </div>
       <div className="formContainer">
         <div className="form">
           <div className="headerContainer">
@@ -190,7 +183,6 @@ export default function SeedData(props) {
       <div className="buttonContainer">
         <Link className="tryButton" to="/song" onClick={handleSubmit}>{'GENERATE'}</Link>
       </div>
-      <Footer />
     </div>
   )
 }

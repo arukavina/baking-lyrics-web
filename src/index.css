@@ -35,7 +35,7 @@
 
 .containerLayout {
 	width: 100%;
-	min-height: 100vh;
+	flex: 1;
   padding-left: 0;
   color: #FFFFFF;
   min-width: 50vw;
@@ -56,16 +56,6 @@
   overflow-x: hidden;
 }
 
-.regularHeader {
-  align-self: flex-start;
-}
-
-.logoRed {
-  margin: 50px 40px 0;
-  width: 207px;
-  height: 111px;
-}
-
 .pageTitle {
 	font-size: 45px;
   font-weight: 400;
@@ -82,16 +72,6 @@
 
 @media (max-width: 500px) {
   
-  .regularHeader {
-    align-self: center;
-  }
-
-  .logoRed {
-    margin: 2rem 0rem 0rem 0rem;
-    width: 150px;
-    height: auto;
-  }
-
   .pageTitle {
     font-size: 22px;
     letter-spacing: 0.9px;

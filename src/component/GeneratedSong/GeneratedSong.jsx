@@ -2,8 +2,6 @@ import React, { useEffect } from 'react'
 import { Link, useParams } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitterSquare, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-import Footer from '../shared/Footer/Footer'
-import logoRed from '../../static/images/logoRed.png'
 import { artistDisplayName } from '../../helpers/api'
 import './GeneratedSong.css'
 
@@ -54,11 +52,6 @@ export default function GeneratedSong(props) {
   return (
     <div className="generatedSongContainer" style={sectionStyle}>
       <div className="generatedSongHeader">
-        <div className="regularHeaderContainer">
-          <Link className="regularHeader" to={'/artist'}>
-            <img className="logoRed" src={logoRed} alt="baking logo" />
-          </Link>
-        </div>
         <div className="bandNameContainer">
           <span className="bandNameTitle">
             {'LYRICS BASED IN'}
@@ -115,7 +108,6 @@ export default function GeneratedSong(props) {
         <div className="tryItText">Try it</div>
         <Link className="oneMoreTime tryButton" to="/artist" >{'ONE MORE TIME'}</Link>
       </div>
-      <Footer />
     </div>
   )
 }
