@@ -1,0 +1,70 @@
+.site-header {
+  position: relative;
+  z-index: var(--z-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem var(--gutter);
+}
+
+.site-header__logo {
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+}
+
+.site-header__logo img {
+  width: auto;
+  height: 2.75rem;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.site-nav__link {
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.5rem;
+  font-size: var(--text-sm);
+  line-height: 1.25rem;
+  color: var(--color-smoke);
+  transition: color var(--duration-fast);
+}
+
+.site-nav__link:hover {
+  color: var(--color-bone);
+}
+
+/* Current page: bone text with a small ember mark underneath */
+.site-nav__link.is-active {
+  color: var(--color-bone);
+  background-image: linear-gradient(var(--color-ember), var(--color-ember));
+  background-repeat: no-repeat;
+  background-size: 1rem 2px;
+  background-position: center calc(100% - 0.375rem);
+}
+
+@media (min-width: 640px) {
+  .site-header {
+    padding: 1.5rem 2.5rem;
+  }
+
+  .site-header__logo img {
+    height: 3.25rem;
+  }
+
+  .site-nav {
+    gap: 1rem;
+  }
+
+  .site-nav__link {
+    padding: 0.5rem;
+  }
+
+  .site-nav__link.is-active {
+    background-position: center calc(100% - 0.125rem);
+  }
+}

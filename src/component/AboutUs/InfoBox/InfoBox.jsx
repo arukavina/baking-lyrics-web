@@ -1,98 +1,53 @@
-import React, { Component } from 'react'
-import './InfoBox.css'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFirefoxBrowser, faLinkedinIn, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faInstagram, faLinkedinIn, faXTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faGlobe } from '@fortawesome/free-solid-svg-icons'
+import './InfoBox.css'
 
-export default class InfoBox extends Component {
+// Known networks, in display order
+const NETWORKS = [
+  { key: 'twitter', label: 'X', icon: faXTwitter },
+  { key: 'github', label: 'GitHub', icon: faGithub },
+  { key: 'instagram', label: 'Instagram', icon: faInstagram },
+  { key: 'linkedin', label: 'LinkedIn', icon: faLinkedinIn },
+  { key: 'web', label: 'website', icon: faGlobe },
+]
 
-  socialLogoHandler = () => {
-    const {
-      twitter,
-      github,
-      instagram,
-      linkedin,
-      type,
-      web,
-    } = this.props.social
-    return(
-      <div className="aboutUsSectionSocialContainer">
-        {
-          twitter &&
-            <div className="infoBoxLogoContainer">
-              <FontAwesomeIcon icon={faTwitter} size="lg" color="white" />
-              <a href={`https://twitter.com/${twitter.replace('@', '')}`}>
-                <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
-                  {twitter}
-                </span>
-              </a>
-            </div>
-        }
-        {
-          github &&
-            <div className="infoBoxLogoContainer">
-              <FontAwesomeIcon icon={faGithub} size="lg" color="white" />
-              <a href={github}>
-                <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
-                  {github}
-                </span>
-              </a>
-            </div>
-        }
-        {
-          instagram &&
-            <div className="infoBoxLogoContainer">
-              <FontAwesomeIcon icon={faInstagram} size="lg" color="white" />
-              <a href={`https://instagram.com/${instagram}`}>
-                <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
-                  {instagram}
-                </span>
-              </a>
-            </div>
-        }
-        {
-          linkedin &&
-            <div className="infoBoxLogoContainer">
-              <FontAwesomeIcon icon={faLinkedinIn} size="lg" color="white" />
-              <a href={`https://linkedin.com/in${linkedin}`}>
-                <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
-                  {linkedin}
-                </span>
-              </a>
-            </div>
-        }
-        {
-          web &&
-            <div className="infoBoxLogoContainer">
-              <FontAwesomeIcon icon={faFirefoxBrowser} size="lg" color="white" />
-              <a href={web}>
-                <span className={ type === 'primary' ? "aboutUsSocialName" : "secondAboutUsSocialName"}>
-                  {web}
-                </span>
-              </a>
-            </div>
-        }
+// One team member: framed photo, role, name, a short bio and social links
+const InfoBox = ({ name, roles, image, description, social = {} }) => {
+  const links = NETWORKS.filter(({ key }) => social[key])
+  return (
+    <article className="card team-card">
+      <div className="team-card__head">
+        <div className="team-card__photo">
+          <img src={image} alt={name} loading="lazy" />
+        </div>
+        <div>
+          <span className="eyebrow">{roles}</span>
+          <h3 className="card-title team-card__name">{name}</h3>
+        </div>
       </div>
-    )
-  }
-
-  render() {
-    const {
-      name,
-      description,
-      image,
-      roles,
-      type,
-    } = this.props
-    return (
-      <div className={ type === 'primary' ? "aboutUsSectionData" : "secondAboutUsSectionData"}>
-        <img className={ type === 'primary' ? "aboutUsSectionImage" : "secondAboutUsSectionImage"} src={image} alt="devsImage" />
-        <span className={ type === 'primary' ? "aboutUsSectionName" : "secondAboutUsSectionName"}>{name}</span>
-        <span className={ type === 'primary' ? "aboutUsSectionRole" : "secondAboutUsSectionRole"}>{roles}</span>
-        <p className={ type === 'primary' ? "aboutUsSectionDescription" : "secondAboutUsSectionDescription"}>
-          {description}
-        </p>
-        {this.socialLogoHandler()}
-      </div>
-    )
-  }
+      {description ? <p className="team-card__bio">{description}</p> : null}
+      {links.length ? (
+        <ul className="team-card__social">
+          {links.map(({ key, label, icon }) => (
+            <li key={key}>
+              <a
+                href={social[key]}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="team-card__link"
+                aria-label={`${name} on ${label}`}
+                title={label}
+              >
+                <FontAwesomeIcon icon={icon} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </article>
+  )
 }
+
+export default InfoBox

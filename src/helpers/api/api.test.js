@@ -8,9 +8,12 @@ import {
   getArtistsTotal,
   getGeneratedSong,
   getRandomArtists,
+  getStats,
+  getVersion,
   getWikipediaImage,
   ping,
   searchArtists,
+  trackShare,
 } from '.'
 
 describe('apiGet', () => {
@@ -224,5 +227,58 @@ describe('getWikipediaImage', () => {
     vi.stubGlobal('fetch', vi.fn(async () => { throw new TypeError('offline') }))
     await expect(getWikipediaImage('x')).resolves.toBeUndefined()
     await expect(getWikipediaImage('')).resolves.toBeUndefined()
+  })
+})
+
+describe('getVersion', () => {
+  it('resolves to the backend build info', async () => {
+    const build = { version: '0.5.0', commit: 'abc1234', date: '2026-11-22T12:00:00+00:00' }
+    const fetchMock = mockFetch({ '/api/v1/general/version': [200, build] })
+    await expect(getVersion()).resolves.toEqual(build)
+    expect(requestedUrls(fetchMock)).toEqual(['/api/v1/general/version'])
+  })
+
+  it('resolves to null when the backend has no version endpoint or is down', async () => {
+    mockFetch({ '/api/v1/general/version': [404, { message: 'Not Found' }] })
+    await expect(getVersion()).resolves.toBeNull()
+    vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('Failed to fetch'))))
+    await expect(getVersion()).resolves.toBeNull()
+  })
+})
+
+describe('getStats', () => {
+  it('resolves to the site stats', async () => {
+    const stats = { artists: 1, songs_generated: 12, shares: 3, top_artists: [{ id: 1, name: 'Beyonce Knowles', songs_generated: 12 }] }
+    const fetchMock = mockFetch({ '/api/v1/general/stats': [200, stats] })
+    await expect(getStats()).resolves.toEqual(stats)
+    expect(requestedUrls(fetchMock)).toEqual(['/api/v1/general/stats'])
+  })
+
+  it('resolves to null when the backend has no stats endpoint or is down', async () => {
+    mockFetch()
+    await expect(getStats()).resolves.toBeNull()
+    vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('Failed to fetch'))))
+    await expect(getStats()).resolves.toBeNull()
+  })
+})
+
+describe('trackShare', () => {
+  it('posts the network as json to the song shares endpoint', async () => {
+    const fetchMock = mockFetch({
+      '/api/v1/artificial_songs/7/shares': [201, { artificial_song_id: 7, network: 'whatsapp', shares: 4 }],
+    })
+    await expect(trackShare(7, 'whatsapp')).resolves.toBeUndefined()
+    expect(fetchMock).toHaveBeenCalledWith('/api/v1/artificial_songs/7/shares', expect.objectContaining({
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ network: 'whatsapp' }),
+    }))
+  })
+
+  it('never rejects, whatever the backend answers', async () => {
+    mockFetch({ '/api/v1/artificial_songs/999/shares': [404, { message: 'Lyric does not exist.' }] })
+    await expect(trackShare(999, 'facebook')).resolves.toBeUndefined()
+    vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('Failed to fetch'))))
+    await expect(trackShare(7, 'twitter')).resolves.toBeUndefined()
   })
 })

@@ -1,244 +1,196 @@
+/* Seed form: step 2 of the generator */
 
-.formContainer{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.form {
-  padding-top: 55px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 90%;
-  max-width: 900px;
-  height: auto;
-}
-
-.headerContainer{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  padding-bottom: 40px;
-}
-
-.headerSubTitle{
-  font-size: 35px;
-  font-weight: 300;
-  font-family: Roboto;
-  color: #FFFFFF;
-  text-align: center;
-}
-
-.headerTitle{
-  font-size: 120px;
-  font-weight: 300;
-  font-family: Montserrat Regular;
-  font-weight: bold;
-  color: #FFFFFF;
-  text-transform: capitalize;
-  text-align: center;
-}
-
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 900px;
-}
-
-.inputTitle {
-  width: 100%;
-  max-width: 620px;
-  font-size: 35px;
-  font-family: Montserrat Regular;
-  color: #FFFFFF;
-  margin-bottom: 5px;
-}
-
-.input {
-  background-color: rgba(255,255,255, 0.3);
-  color: #FFFFFF;
-  padding: 12px 10px;
-  width: 100%;
-  max-width: 600px;
-  font-size: 20px;
-  margin-bottom: 30px;
-  border-color: transparent;
-}
-
-.input::placeholder {
-  color: #FFFFFF;
-  font-family: Roboto;
-  font-size: 20px;
-  font-weight: 300;
-  letter-spacing: 0.68px;
-}
-
-.buttonContainer {
-  margin: 0 0 140px 0;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-.termsAndConditions {
-  display: flex;
-  align-items: center;
-  color: #FFFFFF;
-  font-size: 20px;
-  width: 60%;
-  justify-content: space-around;
-}
-
-.termsAndConditions > span > a {
-  text-decoration: underline;
-  color: white;
-  font-weight: 600;
-}
-
-.checkbox {
+.seed-back {
   display: inline-flex;
-  cursor: pointer;
-  position: relative;
-  color: #FFFFFF;
-  font-size: 20px;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--text-sm);
+  color: var(--color-smoke);
+  transition: color var(--duration-fast);
 }
 
-.checkbox > span {
-  color: #FFFFFF;
-  padding: 0.5rem 0.25rem;
+.seed-back:hover {
+  color: var(--color-bone);
 }
 
-.checkbox > input {
-  height: 25px;
-  width: 25px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  appearance: none;
-  border: 1px solid #FFFFFF;
-  transition-duration: 0.3s;
-  background-color: #FFFFFF;
-  cursor: pointer;
+.seed-back__icon {
+  width: 0.75rem;
+  height: 0.75rem;
 }
 
-.checkbox > input:checked {
-  border: 1px solid #34495E;
-  background-color: #FFFFFF;
-}
-
-.checkbox > input:checked + span::before {
-  content: '\2713';
-  display: block;
-  font-size: x-large;
-  text-align: center;
-  font-weight: 900;
-  color: #34495E;
-  position: absolute;
-  left: 0.5rem;
-  top: 0.2rem;
-}
-
-.checkbox > input:active {
-  border: 2px solid #FFFFFF;
-}
-
-/* If the app is loading */
-
-.isFetching {
+/* Title with the artist cover framed next to it (above it on phones) */
+.seed-head {
   display: flex;
-  position: fixed;
-  opacity: 0.9;
-  background-color: black;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.seed-head .page-title {
+  margin-top: 0.75rem;
+}
+
+.seed-head .accent {
+  overflow-wrap: anywhere;
+}
+
+.seed-thumb {
+  flex-shrink: 0;
+  width: 4.5rem;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0.25rem;
+  background-color: var(--surface-2);
+}
+
+.seed-thumb img,
+.seed-thumb:empty::after {
+  display: block;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+.seed-thumb:empty::after {
+  content: '';
+  background:
+    radial-gradient(120% 90% at 20% 0%, var(--ember-20), transparent 60%),
+    radial-gradient(90% 80% at 100% 100%, rgba(194, 31, 46, 0.14), transparent 65%);
+}
+
+@media (min-width: 640px) {
+  .seed-thumb {
+    width: 8.5rem;
+  }
+}
+
+/* The form panel */
+.seed-panel {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 1.75rem;
+  max-width: var(--measure-lead);
+  margin-inline: auto;
+  text-align: left;
+  margin-top: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background-color: var(--surface-1);
+  padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .seed-panel {
+    padding: 2rem;
+  }
+}
+
+.seed-field .label {
+  margin-bottom: 0.625rem;
+}
+
+.seed-field__input.input {
+  min-height: 6.5rem;
+  padding: 0.875rem 1rem;
+  font-size: var(--text-base);
+}
+
+.seed-field__input[aria-invalid='true'] {
+  border-color: var(--border-accent);
+}
+
+.seed-field__help {
+  margin-top: 0.625rem;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-smoke);
+}
+
+.seed-field__error {
+  margin-top: 0.5rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-ember);
+}
+
+.seed-terms__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+
+.seed-terms__row label {
+  cursor: pointer;
+}
+
+.seed-terms__check {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.0625rem;
+  accent-color: var(--color-ember);
+  cursor: pointer;
+}
+
+.seed-terms .seed-field__error {
+  margin-left: 1.875rem;
+}
+
+.seed-actions {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  gap: 1rem 1.25rem;
+  border-top: 1px solid var(--border-divider);
+  padding-top: 1.5rem;
 }
 
-.imgLoading {
-  margin-bottom: 10px;
-  height: 115px;
-  width: 100px;
+/* Full screen overlay while the song is generated */
+.seed-loading {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-header) + 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: rgba(10, 9, 7, 0.88);
+  backdrop-filter: blur(6px);
+  animation: fade-up 0.4s var(--ease-out-expo) both;
 }
 
-.textLoading {
-  color: #FFFFFF;
-  font-family: Montserrat Regular;
-  font-size: 48px;
-  letter-spacing: 0.9px;
-  line-height: 58px;
+.seed-loading__dot {
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-bottom: 0.5rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-ember);
+  box-shadow: 0 0 0 0 var(--ember-30);
+  animation: seed-pulse 1.4s ease-out infinite;
 }
 
-.errorInput {
-  background-color: rgba(255,255,255, 0.3);
-  color: #FFFFFF;
-  padding: 12px 10px;
-  width: 100%;
-  max-width: 600px;
-  font-size: 20px;
-  margin-bottom: 30px;
-  border-color: #d61e0e;
+.seed-loading__text {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  color: var(--color-bone);
 }
 
-.errorMsg {
-  color: #d61e0e;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-@media (max-width: 500px) {
-
-  .SeedDataContainer{
-    align-items: center;
+@keyframes seed-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(234, 50, 65, 0.45);
   }
-
-  .form {
-    padding: 0px;
+  100% {
+    box-shadow: 0 0 0 1.25rem rgba(234, 50, 65, 0);
   }
-
-  .headerContainer {
-    padding-bottom: 20px;
-    margin: 2rem 0;
-  }
-
-  .headerSubTitle {
-    margin: 0px;
-    font-size: 20px;
-  }
-
-  .headerTitle {
-    font-size: 60px;
-  }
-
-  .inputTitle {
-    font-size: 22px;
-  }
-
-  .input::placeholder {
-    font-size: 16px;
-  }
-
-  .termsAndConditions {
-    width: 80%;
-  }
-
-  .buttonContainer {
-    margin: 0px 0px 15px;
-  }
-
-  .textLoading {
-    font-size: 25px;
-  }
-
 }

@@ -1,0 +1,98 @@
+/*
+  Design tokens for Baking Lyrics, modelled on algorithmic-art-frames.
+  Every color, font, radius and shadow a component needs comes from here.
+
+  Breakpoints (custom properties cannot be used in media queries, so these
+  are the only widths components should use):
+    sm  >= 640px   larger type, roomier section padding
+    lg  >= 1024px  container narrows to two thirds of the viewport
+*/
+:root {
+  color-scheme: dark;
+
+  /* Palette */
+  --color-ink: #0a0907;
+  --color-bone: #f2ede4;
+  --color-smoke: #8c8577;
+  --color-ember: #ea3241;
+  --color-blaze: #c21f2e;
+  --color-gold: #fd818e;
+
+  /* Text */
+  --text-primary: var(--color-bone);
+  --text-soft: rgba(242, 237, 228, 0.8);
+  --text-muted: var(--color-smoke);
+  --text-accent: var(--color-ember);
+
+  /* Surfaces (white over ink) */
+  --surface-1: rgba(255, 255, 255, 0.02);
+  --surface-2: rgba(255, 255, 255, 0.03);
+  --surface-3: rgba(255, 255, 255, 0.05);
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --border-divider: rgba(255, 255, 255, 0.05);
+  --border-accent: rgba(234, 50, 65, 0.5);
+
+  /* Accent tints */
+  --ember-10: rgba(234, 50, 65, 0.1);
+  --ember-20: rgba(234, 50, 65, 0.2);
+  --ember-30: rgba(234, 50, 65, 0.3);
+
+  /* Primary buttons only: logo red to its pink highlight (ink text stays AA) */
+  --gradient-primary: linear-gradient(115deg, #ea3241 0%, #f0566a 55%, #fd818e 100%);
+
+  /* Fonts */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Type scale */
+  --text-2xs: 0.6875rem; /* 11px: eyebrows, labels */
+  --text-xs: 0.75rem;    /* 12px: meta, build info */
+  --text-sm: 0.875rem;   /* 14px: nav, buttons, small body */
+  --text-base: 1rem;     /* 16px: body */
+  --text-lg: 1.125rem;   /* 18px: lead at sm */
+  --text-xl: 1.25rem;    /* 20px: card title */
+  --text-2xl: 1.5rem;    /* 24px: section title */
+  --text-5xl: 3rem;      /* 48px: page title */
+  --text-6xl: 3.75rem;   /* 60px: page title at sm */
+
+  --leading-tight: 1.05;
+  --leading-snug: 1.333;
+  --leading-relaxed: 1.625;
+  --leading-lyrics: 1.8;
+
+  --tracking-tight: -0.025em;
+  --tracking-label: 0.14em;
+  --tracking-eyebrow: 0.18em;
+
+  /* Spacing */
+  --gutter: 1.5rem;          /* 24px page gutter */
+  --section-y: 4rem;         /* 64px */
+  --section-y-sm: 5rem;      /* 80px at sm */
+
+  /* Measures */
+  --measure-lead: 36rem;
+  --measure-body: 42rem;
+
+  /* Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-glow: 0 8px 28px -14px rgba(234, 50, 65, 0.55);
+  --shadow-card: 0 14px 32px -18px var(--color-ember);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+
+  /* Layers */
+  --z-header: 10;
+  --z-grain: 999;
+}

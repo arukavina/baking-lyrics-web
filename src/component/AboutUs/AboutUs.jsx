@@ -1,228 +1,116 @@
-import React, { Component } from 'react'
-import { Link, Element } from 'react-scroll'
-import { Link as RouterLink } from "react-router"
-import Footer from '../shared/Footer/Footer'
+import React from 'react'
+import { Link } from 'react-router'
 import InfoBox from './InfoBox'
-import logoRed from '../../static/images/logoRed.png'
-import menu from '../../static/images/menu.png'
-import jonathanPerkesImg from '../../static/images/jonathanPerkes.jpeg'
-import andreiRukavinaImg from '../../static/images/andreiRukavina.png'
-import sergioBancheroImg from '../../static/images/sergioBanchero.png'
-import solanaSierraImg from '../../static/images/solanaSierra.png'
-import nicolasCribioliImg from '../../static/images/nicolasCribioli.png'
-import radiumLogo from '../../static/images/radium-logo.jpg'
+import Container from '../shared/Container'
+import jonathanPerkesImg from '../../static/images/jonathanPerkes.webp'
+import andreiRukavinaImg from '../../static/images/andreiRukavina.webp'
+import sergioBancheroImg from '../../static/images/sergioBanchero.webp'
+import solanaSierraImg from '../../static/images/solanaSierra.webp'
+import nicolasCribioliImg from '../../static/images/nicolasCribioli.webp'
+import radiumLogo from '../../static/images/radium-logo.webp'
 import './AboutUs.css'
 
-export default class AboutUs extends Component {
+const TEAM = [
+  {
+    name: 'Sergio Banchero',
+    roles: 'AI',
+    image: sergioBancheroImg,
+    description:
+      "Electronics engineer gone data scientist. Won't fix what's not broken, but everything seems broken to me. " +
+      'Can identify the hex RGB of a color just from looking at it.',
+    social: {
+      linkedin: 'https://linkedin.com/in/sergio-banchero',
+    },
+  },
+  {
+    name: 'Andrei Rukavina',
+    roles: 'AI, backend, DevOps',
+    image: andreiRukavinaImg,
+    description:
+      'Software engineer, data scientist and InfoVis enthusiast with an outlandish taste for yerba mate. ' +
+      'Member of the Python / R purifiers fictitious society. I can speak really loud.',
+    social: {
+      twitter: 'https://twitter.com/andrei_rukavina',
+      github: 'https://github.com/arukavina',
+      linkedin: 'https://linkedin.com/in/andreirukavina',
+    },
+  },
+  {
+    name: 'Solana Sierra',
+    roles: 'UX design',
+    image: solanaSierraImg,
+    description:
+      'Interaction designer. Expert in user experience and user interface. Member of the Interaction Design ' +
+      'Foundation. Ravenclaw Potterhead and undercover unicorn.',
+    social: {
+      instagram: 'https://instagram.com/solisierra',
+      linkedin: 'https://linkedin.com/in/solanasierra',
+    },
+  },
+  {
+    name: 'Jonathan Perkes',
+    roles: 'Testing and coverage',
+    image: jonathanPerkesImg,
+    description:
+      "Computer engineer, data scientist. I've been particularly interested in Fourier analysis and DSP as of " +
+      "late. I once saw the Necronomicon's copy at my university library and I can create origami versions of " +
+      'flowers I casually see during the day.',
+    social: {
+      linkedin: 'https://linkedin.com/in/jonathan-perkes',
+    },
+  },
+  {
+    name: 'Nicolas Cribioli',
+    roles: 'DevOps',
+    image: nicolasCribioliImg,
+    description:
+      'System *, DevOps. Barbecue expert. Handyperson, a.k.a. the could you please fix my ' +
+      '{laptop | mobile | microwave | printer}? guy. This is fine.',
+    social: {
+      linkedin: 'https://linkedin.com/in/nicolas-cribioli',
+    },
+  },
+  {
+    name: 'Radium Rocket',
+    roles: 'Web',
+    image: radiumLogo,
+    social: {
+      web: 'http://radiumrocket.com/',
+    },
+  },
+]
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      menuOpen: false
-    }
-  }
+const AboutUs = () => (
+  <>
+    <section className="section section--first">
+      <Container>
+        <header className="fade-up">
+          <span className="eyebrow">About us</span>
+          <h1 className="page-title about-title">We are the <span className="accent">bakers</span></h1>
+          <p className="lead about-lead">
+            Baking Lyrics is an open source side project made by a small band of engineers, data scientists and
+            designers from the bottom of the world, who love music as much as they love machines.
+          </p>
+        </header>
+      </Container>
+    </section>
 
-  componentDidMount() {
-    window.scrollTo(0, 80)
-  }
+    <section className="section" aria-labelledby="team">
+      <Container>
+        <h2 id="team" className="section-title">The team</h2>
+        <ul className="team-grid">
+          {TEAM.map(member => (
+            <li key={member.name}>
+              <InfoBox {...member} />
+            </li>
+          ))}
+        </ul>
+        <p className="about-help body-text">
+          Want to lend a hand? <Link className="text-link" to="/help-us">See how you can help us</Link>.
+        </p>
+      </Container>
+    </section>
+  </>
+)
 
-  lineTitle = () => {
-    return(
-      <div className="aboutUsSectionSeparatorContainer">
-        <div className="aboutUsSectionSeparator"/>
-      </div>
-    )
-  }
-
-  generateLinks = (devs) => {
-    return devs.map(dev => (
-      <span className="aboutUsMenuTitle" key={dev.name}>
-        <Link
-          activeClass="active"
-          to={dev.link}
-          spy={true}
-          offset={-200}
-          smooth={true}
-          duration={500}
-        >
-          {dev.name}
-        </Link>
-      </span>
-    ))
-  }
-
-  menu = (classSelected) => {
-
-    const devs = [{ 
-      link: 'sergio', 
-      name: 'SERGIO BANCHERO'
-    },{ 
-      link: 'andrei', 
-      name: 'ANDREI RUKAVINA'
-    },{ 
-      link: 'solana', 
-      name: 'SOLANA SIERRA'
-    },{ 
-      link: 'jonathan', 
-      name: 'JONATHAN PERKES'
-    },{ 
-      link: 'nicolas', 
-      name: 'NICOLAS CRIBIOLI'
-    },{ 
-      link: 'radium', 
-      name: 'RADIUM ROCKET'
-    }]
-
-    return(
-      <div className={classSelected}>
-        {this.generateLinks(devs)}
-      </div>
-    )
-  }
-
-  showMenu = (aboutUsMenu) => {
-    if (this.state.menuOpen) {
-      return(
-        this.menu(aboutUsMenu)
-      )
-    }
-  }
-
-  render() {
-    return(
-      <div className="aboutUsContainer regularContainerImage">
-        <div className="aboutUsHeader">
-          <RouterLink to="/" className="aboutUsLogoContainer">
-            <span className="aboutUsTitleImage">WE CREATED</span>
-            <img className="aboutUsLogoRed" src={logoRed} alt="baking logo" />
-          </RouterLink>
-          <div className="aboutUsMenuContainer">
-            <div
-              className="menuButton"
-              onClick={() => this.setState({
-                menuOpen: !this.state.menuOpen
-                })
-              }
-            >
-              <img className="menu" src={menu} alt="baking logo" />
-            </div>
-            <nav>
-
-            </nav>
-            {this.menu('aboutUsMenuFullScreen')}
-            {this.showMenu('aboutUsMenu')}
-          </div>
-        </div>
-        <div className="aboutUsSectionContainer">
-          <Element name="sergio" className="aboutUsElementContainer">
-            <div className="aboutUsSectionDataContainer">
-              <InfoBox
-                name={'SERGIO BANCHERO'}
-                type={'primary'}
-                roles={'AI'}
-                image={sergioBancheroImg}
-                description={
-                  `Electronics Engineer gone Data Scientist.\n` +
-                  `Won't fix what's not broken, but everything\n` +
-                  `seems broken to me. Can identify the hex RGB\n` +
-                  `of a color just from looking at it.`
-                }
-                social={{
-                  linkedin: '/sergio-banchero',
-                }}
-              />
-              <Element name="andrei" >
-                <InfoBox
-                  name={'ANDREI RUKAVINA'}
-                  type={'primary'}
-                  roles={'AI, Backend, DevOps'}
-                  image={andreiRukavinaImg}
-                  description={
-                    `Software Engineer, Data scientist & InfoVis \n` +
-                    `enthusiastic with an outlandish taste for\n` +
-                    `yerba mate. Member of the Python / R purifiers \n` +
-                    `fictitious society. I can speak really loud`
-                  }
-                  social={{
-                    twitter: '@andrei_rukavina',
-                    github: 'https://github.com/arukavina',
-                    linkedin: '/andreirukavina',
-                  }}
-                />
-              </Element>
-            </div>
-          </Element>
-          <div className="aboutUsSecondSectionDataContainer">
-            <Element name="solana" className="aboutUsElementContainer">
-              <InfoBox
-                name={'SOLANA SIERRA'}
-                type={'secondary'}
-                roles={'UXD'}
-                image={solanaSierraImg}
-                description={
-                  `Interaction designer. Expert in User\n` +
-                  `Experience and User Interface\n` +
-                  `Member of the Interaction Design foundation.\n` +
-                  `Ravenclaw Potterhead & undercover unicorn.`
-                }
-                social={{
-                  instagram: '@solisierra',
-                  linkedin: '/solanasierra',
-
-                }}
-              />
-            </Element>
-            <Element name="jonathan" className="aboutUsElementContainer">
-              <InfoBox
-                name={'JONATHAN PERKES'}
-                type={'secondary'}
-                roles={'Testing/Coverage'}
-                image={jonathanPerkesImg}
-                description={
-                  `Computer Engineer, Data Scientist. I’ve \n` +
-                  `been particularly interested in Fourier Analysis \n` +
-                  `and DSP as of late. I once saw the Necronomicon’s \n` +
-                  `copy at my university library and I can create \n` +
-                  `origami versions of flowers I casually see during \n` +
-                  `the day.`
-                }
-                social={{
-                  linkedin: '/jonathan-perkes'
-                }}
-              />
-            </Element>
-            <Element name="nicolas" className="aboutUsElementContainer">
-              <InfoBox
-                name={'NICOLAS CRIBIOLI'}
-                type={'secondary'}
-                roles={'DevOps'}
-                image={nicolasCribioliImg}
-                description={
-                  `System *, DevOps. Barbecue expert.\n` +
-                  `Handyperson, a.k.a.: Could you please fix my\n` +
-                  `{laptop | mobile | microwave | printer}?-guy.\n` + 
-                  `This is fine.`
-                }
-                social={{
-                  linkedin: '/nicolas-cribioli',
-                }}
-              />
-            </Element>
-            <Element name="radium" className="aboutUsElementContainer">
-              <InfoBox
-                name={'RADIUM ROCKET'}
-                type={'secondary'}
-                roles={'Web'}
-                image={radiumLogo}
-                social={{
-                  web: 'http://radiumrocket.com/',
-                }}
-              />
-            </Element>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    )
-  }
-}
+export default AboutUs

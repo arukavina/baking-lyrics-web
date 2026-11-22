@@ -1,0 +1,4 @@
+/* Global styles entry: fonts, tokens, then base. Imported once by src/index.jsx. */
+@import './fonts.css';
+@import './tokens.css';
+@import './base.css';

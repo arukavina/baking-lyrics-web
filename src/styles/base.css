@@ -1,0 +1,482 @@
+/*
+  Base styles: a modern minimal reset, the global look (ink background, bone
+  text, ember focus and selection) and the shared utility classes pages
+  compose. Values come from tokens.css.
+*/
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: 1.2;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#root {
+  isolation: isolate;
+}
+
+/* Global look */
+body {
+  background-color: var(--color-ink);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  color-scheme: dark;
+  scrollbar-color: #ea324133 transparent;
+}
+
+::selection {
+  background-color: var(--ember-30);
+  color: var(--color-bone);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ea324133;
+  border-radius: 999px;
+  border: 3px solid var(--color-ink);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ea324166;
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.7s var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: 66.667%;
+  }
+}
+
+/* Horizontal page gutter, for blocks that sit outside a .section */
+.gutter {
+  padding-inline: var(--gutter);
+}
+
+/* Pages read on the center line: sections center their text, and blocks
+   with a measure (lead, body text) center themselves. Long reads (license,
+   letters) and forms opt back into left alignment. */
+.section {
+  position: relative;
+  text-align: center;
+  border-top: 1px solid var(--border-divider);
+  padding: var(--section-y) var(--gutter);
+}
+
+@media (min-width: 640px) {
+  .gutter {
+    padding-inline: 2.5rem;
+  }
+
+  .section {
+    padding: var(--section-y-sm) 2.5rem;
+  }
+}
+
+/* First section of a page: no hairline, sits right under the header */
+.section--first {
+  border-top: 0;
+  padding-top: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .section--first {
+    padding-top: 4rem;
+  }
+}
+
+/* Typography */
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--color-ember);
+}
+
+.page-title {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  font-size: var(--text-5xl);
+  font-weight: 500;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-bone);
+}
+
+.page-title .accent {
+  font-weight: 600;
+  color: var(--color-ember);
+}
+
+@media (min-width: 640px) {
+  .page-title {
+    font-size: var(--text-6xl);
+  }
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  line-height: 2rem;
+  color: var(--color-bone);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-bone);
+}
+
+.lead {
+  max-width: var(--measure-lead);
+  margin-inline: auto;
+  text-wrap: pretty;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-smoke);
+}
+
+@media (min-width: 640px) {
+  .lead {
+    font-size: var(--text-lg);
+  }
+}
+
+.body-text {
+  max-width: var(--measure-body);
+  margin-inline: auto;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text-soft);
+}
+
+@media (min-width: 640px) {
+  .body-text {
+    font-size: var(--text-base);
+  }
+}
+
+.body-text > * + * {
+  margin-top: 1em;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-smoke);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-smoke);
+}
+
+.text-link {
+  color: var(--color-ember);
+  transition: color var(--duration-fast);
+}
+
+.text-link:hover {
+  color: var(--color-gold);
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.25rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn-primary {
+  border: 0;
+  background-color: var(--color-ember);
+  background-image: var(--gradient-primary);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-glow);
+  transition: transform var(--duration-fast) ease, filter var(--duration-fast);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.06);
+  transform: scale(1.03);
+}
+
+/* Slot for an inline arrow (or any) icon after the label */
+.btn-primary .btn-icon,
+.btn-secondary .btn-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  background-color: var(--surface-1);
+  color: var(--color-bone);
+  transition: border-color var(--duration-fast), background-color var(--duration-fast),
+    color var(--duration-fast);
+}
+
+.btn-secondary:hover {
+  border-color: var(--border-accent);
+  background-color: var(--surface-3);
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-primary[aria-disabled='true'],
+.btn-secondary[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.4;
+  transform: none;
+}
+
+/* Forms */
+.input {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-2);
+  padding: 0.625rem 1rem;
+  font-size: var(--text-sm);
+  line-height: 1.25rem;
+  color: var(--color-bone);
+  transition: border-color var(--duration-fast);
+}
+
+.input::placeholder {
+  color: var(--color-smoke);
+}
+
+.input:focus {
+  border-color: var(--border-accent);
+}
+
+.input:focus:not(:focus-visible) {
+  outline: none;
+}
+
+textarea.input {
+  resize: vertical;
+  line-height: var(--leading-relaxed);
+}
+
+/* Surfaces */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-1);
+  transition: transform var(--duration-base), border-color var(--duration-base),
+    box-shadow var(--duration-base);
+}
+
+/* Interactive cards (links and buttons) lift on hover */
+a.card:hover,
+button.card:hover,
+.card--interactive:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-card);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.empty-state > :first-child {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-bone);
+}
+
+.empty-state > p:not(:first-child) {
+  max-width: 24rem;
+  font-size: var(--text-sm);
+  color: var(--color-smoke);
+}
+
+.notice {
+  position: relative;
+  text-align: left;
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  background-color: var(--ember-10);
+  padding: 0.875rem 1rem 0.875rem 2rem;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-bone);
+}
+
+/* Small ember dot marking the notice, aligned with the first line */
+.notice::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: calc(0.875rem + 0.8125em - 3px);
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-ember);
+}
+
+/* Visually hidden, still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

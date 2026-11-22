@@ -20,14 +20,17 @@ const NETWORK_ERROR_MSG = 'Network error: backend unreachable'
 // than the backend. 503 is left out: the backend uses it for "generator offline".
 const GATEWAY_STATUSES = new Set([500, 502, 504])
 
-export async function apiGet(path, { query, signal } = {}) {
+async function apiRequest(path, { method = 'GET', query, data, signal } = {}) {
   const qs = query ? `?${new URLSearchParams(query)}` : ''
+  const init = { headers: { Accept: 'application/json' }, signal }
+  if (method !== 'GET') init.method = method
+  if (data !== undefined) {
+    init.headers['Content-Type'] = 'application/json'
+    init.body = JSON.stringify(data)
+  }
   let res
   try {
-    res = await fetch(`${API_URL}${path}${qs}`, {
-      headers: { Accept: 'application/json' },
-      signal,
-    })
+    res = await fetch(`${API_URL}${path}${qs}`, init)
   } catch (e) {
     if (e?.name === 'AbortError') throw e
     throw new ApiError(0, NETWORK_ERROR_MSG, null)
@@ -50,5 +53,10 @@ export async function apiGet(path, { query, signal } = {}) {
   throw new ApiError(res.status, body?.message || res.statusText || `HTTP ${res.status}`, body)
 }
 
-export const isNotFound = e => e instanceof ApiError && e.status === 404
+export const apiGet = (path, { query, signal } = {}) => apiRequest(path, { query, signal })
+
+/** POSTs `data` as JSON; resolves and rejects like apiGet */
+export const apiPost = (path, data, { signal } = {}) => apiRequest(path, { method: 'POST', data, signal })
+
+export const isNotFound =e => e instanceof ApiError && e.status === 404
 export const isGeneratorOffline = e => e instanceof ApiError && e.status === 503

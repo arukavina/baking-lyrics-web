@@ -1,53 +1,84 @@
 import React from 'react'
-import { Link } from "react-router"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons'
-import Footer from '../shared/Footer/Footer'
-import logoRed from '../../static/images/logoRed.png'
+import Container from '../shared/Container'
+import ExternalLink from '../shared/Footer/ExternalLink'
 import './HelpUs.css'
 
+const BACK_REPO_URL = 'https://github.com/arukavina/baking-lyrics'
+const FRONT_REPO_URL = 'https://github.com/arukavina/baking-lyrics-web'
+
+const DONATIONS = [
+  { label: 'Support us on Patreon', href: 'https://www.patreon.com/baking_lyrics', icon: faPatreon },
+  { label: 'Donate with PayPal', href: 'https://paypal.me/bakinglyrics', icon: faPaypal },
+]
+
+const OTHER_WAYS = [
+  { text: 'Star the project on GitHub, so more people find it.', href: BACK_REPO_URL, link: 'Star the repo' },
+  { text: 'Found a bug or have an idea? Tell us about it.', href: `${BACK_REPO_URL}/issues`, link: 'Open an issue' },
+  { text: 'Send a pull request: the backend and the website are both open source.', href: FRONT_REPO_URL, link: 'Read the code' },
+  { text: 'Share the songs you bake. Every share brings in a new musician.', href: null, link: null },
+]
+
 const HelpUs = () => (
-  <div className="containerLayout regularContainerImage helpUsContainer">
-    <div className="regularHeader">
-      <Link className="regularHeaderLink" to={'/'}>
-        <img className="logoRed" src={logoRed} alt="baking logo" />
-      </Link>
-    </div>
-		<div className="helpUsContent">
-			<h1 className="pageTitle">
-				HELP US
-			</h1>
-			<p className="pageText">
-        Baking-Lyrics is free, always evolving, user-supported service. But unfortunately it isn’t free to operate. 
-        <br/><br/>
-        We have low salaries to pay and infrastructure costs to cover to make Baking-Lyrics available to our million users worldwide (error of ± 9*10^5).
-        <br/><br/>
-        Thankfully, many users do support us by donating what they can afford (💵), to help us support ongoing development.
-        <br/><br/>
-        We ❤️ you, and couldn’t exist without you. Every donation helps!
-        <br/><br/>
-        The Baking-Lyrics coding ⌨️ band.
-			</p>
-		</div>
-    <div className="donationLinks">
-      <a href="https://www.patreon.com/baking_lyrics" className="patreonLink" target="_blank" rel="noreferrer">
-        <FontAwesomeIcon icon={faPatreon} size="4x" color="white"/>
-        <span
-          className="aboutUsFooterLink footerLink"
-        >
-          {'Patreon'}
-        </span>
-      </a>
-      <a href="https://paypal.me/bakinglyrics" className="paypalLink" target="_blank" rel="noreferrer">
-        <FontAwesomeIcon icon={faPaypal} size="4x" color="white"/>
-        <span
-          className="aboutUsFooterLink footerLink"
-        >
-          {'Paypal'}
-        </span>
-      </a>
-    </div>
-    <Footer />
-  </div>
+  <>
+    <section className="section section--first">
+      <Container>
+        <header className="fade-up">
+          <span className="eyebrow">Help us</span>
+          <h1 className="page-title help-title">Keep the oven <span className="accent">warm</span></h1>
+          <p className="lead help-lead">
+            Baking Lyrics is a free, always evolving, user supported service. Unfortunately it isn&apos;t free to
+            run.
+          </p>
+        </header>
+
+        <div className="body-text help-text">
+          <p>
+            We have low salaries to pay and infrastructure costs to cover to keep Baking Lyrics available to our
+            million users worldwide (error of &plusmn; 9&times;10<sup>5</sup>).
+          </p>
+          <p>
+            Thankfully, many users support us by donating what they can afford, to help us keep developing it. We
+            love you, and we couldn&apos;t exist without you. Every donation helps!
+          </p>
+          <p className="help-sign">The Baking Lyrics coding band</p>
+        </div>
+
+        <div className="help-donate">
+          {DONATIONS.map(({ label, href, icon }) => (
+            <ExternalLink key={href} href={href} className="btn-secondary">
+              <FontAwesomeIcon icon={icon} className="btn-icon" />
+              {label}
+            </ExternalLink>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section className="section" aria-labelledby="other-ways">
+      <Container>
+        <h2 id="other-ways" className="section-title">Other ways to help</h2>
+        <p className="help-other-lead">No money needed for these.</p>
+        <ul className="help-ways">
+          {OTHER_WAYS.map(({ text, href, link }) => (
+            <li key={text} className="help-way">
+              <span className="help-way__dot" aria-hidden="true" />
+              <span>
+                {text}
+                {href ? (
+                  <>
+                    {' '}
+                    <ExternalLink href={href} className="text-link">{link}</ExternalLink>
+                  </>
+                ) : null}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
+  </>
 )
+
 export default HelpUs

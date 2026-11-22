@@ -22,15 +22,51 @@ describe('routes', () => {
   it('renders the home page and pings the backend', () => {
     const fetchMock = mockFetch({ '/api/v1/general/ping': [200, 'pong!'] })
     renderApp('/')
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/GENERATE/)
-    expect(screen.getByRole('link', { name: 'TRY IT OUT' })).toHaveAttribute('href', '/artist')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/generate/i)
+    expect(screen.getByRole('link', { name: 'Try it out' })).toHaveAttribute('href', '/artist')
     expect(requestedUrls(fetchMock)).toContain('/api/v1/general/ping')
+  })
+
+  it('shows the site stats on the home page', async () => {
+    mockFetch({
+      '/api/v1/general/stats': [200, {
+        artists: 1250,
+        songs_generated: 48213,
+        shares: 0,
+        top_artists: [
+          { id: 1, name: 'Beyonce Knowles', songs_generated: 30120 },
+          { id: 2, name: 'Adele', songs_generated: 9001 },
+          { id: 3, name: 'Queen', songs_generated: 1 },
+        ],
+      }],
+    })
+    renderApp('/')
+    const kpi = label => screen.getByText(label).nextElementSibling
+
+    expect(await screen.findByText('Songs generated')).toBeInTheDocument()
+    expect(kpi('Artists in the database')).toHaveTextContent('1,250')
+    expect(kpi('Songs generated')).toHaveTextContent('48,213')
+    expect(kpi('Shares')).toHaveTextContent('0')
+    expect(kpi('Most popular artist')).toHaveTextContent('Beyonce Knowles')
+    const runnersUp = screen.getByRole('list', { name: 'Runners up' })
+    expect(runnersUp).toHaveTextContent('Adele 9,001 songs')
+    expect(runnersUp).toHaveTextContent('Queen 1 song')
+  })
+
+  it('falls back to the artist count without the stats endpoint', async () => {
+    const fetchMock = mockFetch({ '/api/v1/artists/?page=1&per_page=2': [200, { items: [], total: 1 }] })
+    renderApp('/')
+
+    expect(await screen.findByText('artist in the database')).toBeInTheDocument()
+    expect(screen.queryByText('Songs generated')).not.toBeInTheDocument()
+    expect(screen.queryByText('Most popular artist')).not.toBeInTheDocument()
+    expect(requestedUrls(fetchMock)).toContain('/api/v1/general/stats')
   })
 
   it('redirects unknown routes to the home page', () => {
     mockFetch()
     renderApp('/does/not/exist')
-    expect(screen.getByRole('link', { name: 'TRY IT OUT' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Try it out' })).toBeInTheDocument()
   })
 
   it('searches for an artist and picks it', async () => {
@@ -44,8 +80,9 @@ describe('routes', () => {
     const { store } = renderApp('/artist')
 
     // No cover artists in the database: the page copes with an empty list
-    expect(await screen.findByText('Oops! We found no artist')).toBeInTheDocument()
-    expect(await screen.findByText('Searching in a database of 1 artists')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Pick an artist')
+    expect(await screen.findByText('No artists to show yet')).toBeInTheDocument()
+    expect(await screen.findByText('Searching in a database of 1 artist')).toBeInTheDocument()
 
     await user.type(screen.getByPlaceholderText('Search for an artist or a band'), 'bey')
     await act(async () => { vi.advanceTimersByTime(1000) })
@@ -54,7 +91,7 @@ describe('routes', () => {
     expect(requestedUrls(fetchMock)).toContain('/api/v1/artists/search/bey')
 
     await user.click(tile)
-    expect(await screen.findByText('CREATE RANDOM LYRICS LIKE')).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: 'Create random lyrics like Beyonce Knowles' })).toBeInTheDocument()
     expect(screen.getByText('Beyonce Knowles')).toBeInTheDocument()
     expect(store.getState().wizard).toMatchObject({ search: 'Beyonce Knowles', artistId: 1 })
   })
@@ -72,7 +109,8 @@ describe('routes', () => {
 
     const input = screen.getByPlaceholderText('Search for an artist or a band')
     await user.type(input, 'adel')
-    // The refresh control is the icon wrapper right after the input
+    // The refresh control is the button right after the input
+    expect(input.nextElementSibling).toBe(screen.getByRole('button', { name: 'Refresh list' }))
     await user.click(input.nextElementSibling)
     await act(async () => { vi.advanceTimersByTime(2000) })
 
@@ -95,11 +133,11 @@ describe('routes', () => {
     renderApp('/start-text', { store })
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), 'never gonna give you up')
     await user.click(screen.getByRole('checkbox'))
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(await screen.findByRole('alert')).toHaveTextContent(GENERATOR_OFFLINE_MSG)
     expect(requestedUrls(fetchMock)).toContain(generateUrl)
-    expect(screen.queryByText('baking lyrics...')).not.toBeInTheDocument()
+    expect(screen.queryByText('Baking lyrics...')).not.toBeInTheDocument()
   })
 
   it.each([
@@ -111,7 +149,7 @@ describe('routes', () => {
     renderApp('/start-text', { store: seedPageStore() })
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), seed)
     await user.click(screen.getByRole('checkbox'))
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(screen.getByText('Required')).toBeInTheDocument()
     expect(requestedUrls(fetchMock).filter(url => url.includes('/generate/'))).toEqual([])
@@ -123,7 +161,7 @@ describe('routes', () => {
     renderApp('/start-text', { store: seedPageStore() })
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), '  a/b/c/d   ')
     await user.click(screen.getByRole('checkbox'))
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(screen.getByText('Must be 10 characters or more')).toBeInTheDocument()
     expect(requestedUrls(fetchMock).filter(url => url.includes('/generate/'))).toEqual([])
@@ -139,11 +177,11 @@ describe('routes', () => {
     renderApp('/start-text', { store: seedPageStore() })
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), 'never gonna give you up')
     await user.click(screen.getByRole('checkbox'))
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(await screen.findByText('some generated lyrics')).toBeInTheDocument()
     expect(screen.getByText('ego remix (Artificial)')).toBeInTheDocument()
-    expect(screen.queryByText('CREATE RANDOM LYRICS LIKE')).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /Create random lyrics like/ })).not.toBeInTheDocument()
     expect(requestedUrls(fetchMock)).toContain(generateUrl)
     expect(localStorage.getItem('acceptedTandC')).toBe('true')
   })
@@ -158,7 +196,7 @@ describe('routes', () => {
     expect(screen.queryByRole('checkbox')).not.toBeInTheDocument()
     expect(screen.queryByText(/I have read and accept/)).not.toBeInTheDocument()
     await user.type(screen.getByPlaceholderText(/write at least 6 words/), 'never gonna give you up')
-    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+    await user.click(screen.getByRole('link', { name: 'Generate' }))
 
     expect(await screen.findByRole('alert')).toHaveTextContent(GENERATOR_OFFLINE_MSG)
     expect(requestedUrls(fetchMock)).toContain(generateUrl)
@@ -171,12 +209,41 @@ describe('routes', () => {
     expect(await screen.findByText('some generated lyrics')).toBeInTheDocument()
     expect(screen.getByText('ego remix (Artificial)')).toBeInTheDocument()
     expect(screen.getByText('Beyonce Knowles')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Share on Facebook' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'One more time' })).toHaveAttribute('href', '/artist')
+  })
+
+  it.each([
+    ['Share on Facebook', 'facebook'],
+    ['Share on X', 'twitter'],
+    ['Share on WhatsApp', 'whatsapp'],
+  ])('counts a share when "%s" is clicked', async (name, network) => {
+    const fetchMock = mockFetch({
+      '/api/v1/artificial_songs/7': [200, artificialSong],
+      '/api/v1/artificial_songs/7/shares': [201, { artificial_song_id: 7, network, shares: 1 }],
+    })
+    const openMock = vi.fn()
+    vi.stubGlobal('open', openMock)
+    const user = userEvent.setup()
+    renderApp('/song/7')
+    await screen.findByText('some generated lyrics')
+
+    const control = screen.getByRole(network === 'whatsapp' ? 'link' : 'button', { name })
+    // jsdom cannot follow the WhatsApp link; only the click handler matters here
+    control.addEventListener('click', event => event.preventDefault())
+    await user.click(control)
+
+    const shareCalls = fetchMock.mock.calls.filter(([url]) => String(url).endsWith('/shares'))
+    expect(shareCalls).toHaveLength(1)
+    expect(shareCalls[0][0]).toBe('/api/v1/artificial_songs/7/shares')
+    expect(shareCalls[0][1]).toMatchObject({ method: 'POST', body: JSON.stringify({ network }) })
+    if (network !== 'whatsapp') expect(openMock).toHaveBeenCalledTimes(1)
   })
 
   it('shows a friendly message for a missing song', async () => {
     mockFetch({ '/api/v1/artificial_songs/999': [404, { message: 'Lyric does not exist.' }] })
     renderApp('/song/999')
     expect(await screen.findByRole('alert')).toHaveTextContent(SONG_NOT_FOUND_MSG)
-    expect(screen.getByRole('link', { name: 'ONE MORE TIME' })).toHaveAttribute('href', '/artist')
+    expect(screen.getByRole('link', { name: 'One more time' })).toHaveAttribute('href', '/artist')
   })
 })

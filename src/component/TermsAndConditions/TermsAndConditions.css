@@ -1,106 +1,113 @@
-.termsAndConditionsContainer {
-	text-align: center;
+/* Terms and conditions: GPL summary chips and the license as an article */
+
+.terms-title {
+  margin-top: 0.75rem;
 }
 
-.termsAndConditionsContent {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 60%;
+.terms-lead {
+  margin-top: 1.5rem;
 }
 
-.licenseRules {
-	display: flex;
-	justify-content: center;
-	flex-wrap: nowrap;
-	margin: 1rem;
+/* Summary: three groups, stacked on phones and side by side from 768px */
+.license-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
 }
 
-.licenseRulesSection {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	font-size: 18px;
+@media (min-width: 768px) {
+  .license-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-.pageText > h4 {
-	font-weight: normal;
+.license-group {
+  --dot: var(--color-ember);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-1);
+  padding: 1.25rem;
 }
 
-.pageText > h3, .pageText > h4 {
-	text-align: center;
+.license-group--permission {
+  --dot: #5ccf7d;
 }
 
-.licenseRulesSection:nth-child(2) {
-	margin: 0 1.5rem;
+.license-group--condition {
+  --dot: #52b4e8;
 }
 
-.licenseRulesLabel {
-	margin-bottom: .5rem;
+.license-group--limitation {
+  --dot: var(--color-ember);
 }
 
-.licenseAttribute {
-	display: flex;
-	align-items: center;
-	font-size: 16px;
+.license-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
 }
 
-.licenseSprite {
-	width: 12px;
-	min-width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	margin-right: .3rem;
+.license-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background-color: var(--surface-2);
+  padding: 0.3125rem 0.75rem;
+  font-size: var(--text-xs);
+  line-height: 1.25rem;
+  color: var(--color-bone);
 }
 
-.limitations {
-	background-color: #C6403D;
+.license-chip__dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--dot);
 }
 
-.conditions {
-	background-color: #0099D6;
+.terms-summary-note {
+  margin-top: 1rem;
 }
 
-.permissions {
-	background-color: #3DC637;
+/* Full license: one readable column */
+.license__version {
+  margin-top: 0.5rem;
 }
 
-.termsAndConditionsLicense {
-	width: 90% !important;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.license__body {
+  text-align: left;
+  margin-top: 2rem;
 }
 
-.license {
-	text-align: justify;
-	width: 95%;
+.license__body .license__part {
+  margin-top: 2.5rem;
 }
 
-.licenseTitle {
-	text-align: center;
+.license__heading {
+  margin-top: 2.5em;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-bone);
 }
 
-@media (max-width: 500px) {
+.license__body .license__heading + p {
+  margin-top: 0.75em;
+}
 
-	.termsAndConditionsContent {
-		width: 100%;
-	}
+/* Lettered sub items, indented under their paragraph */
+.license__item {
+  padding-left: 1.25rem;
+}
 
-	.licenseRules {
-		margin: 1rem 0;
-	}
-	
-	.licenseRulesSection {
-		font-size: 14px;
-	}
-
-	.licenseRulesSection:nth-child(2) {
-		margin: 0 .5rem;
-	}
-
-	.licenseAttribute {
-		font-size: 12px;
-	}
-
+.terms-back {
+  margin-top: 3rem;
+  font-size: var(--text-sm);
 }
