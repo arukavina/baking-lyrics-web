@@ -53,7 +53,7 @@ export const post = (
 export const patch = (
   endpoint,
   data = {},
-  opts?
+  opts
 ) => fetch(endpoint, { method: 'PATCH', body: data, ...opts })
   .then(result => parseResponse(result))
   .catch(err => Promise.reject(JSON.parse(err.message)))
@@ -67,7 +67,7 @@ export const put = (
 
 export const del = (
   endpoint,
-  opts?
+  opts
 ) => fetch(endpoint, { method: 'DELETE', ...opts })
   .then(result => parseResponse(result))
   .catch(err => Promise.reject(JSON.parse(err.message)))

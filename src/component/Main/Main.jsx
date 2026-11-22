@@ -8,7 +8,7 @@ import './Main.css'
 
 export default class extends Component {
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:4000'}/ping`)
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/ping`)
   }
 
   render() {

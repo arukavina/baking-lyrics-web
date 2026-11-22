@@ -2,7 +2,7 @@ import {
   get
 } from '..'
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000'
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
 
 export const getSong = (seed, numberWords, artistId) => {
   const url = new URL(`${API_URL}/generate`),
