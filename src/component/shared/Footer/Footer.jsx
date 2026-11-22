@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import argentinaFlag from '../../../static/images/argentinaFlag.png'
 import './Footer.css'
 

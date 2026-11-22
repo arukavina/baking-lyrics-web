@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, Redirect } from 'react-router'
+import { Routes as RouterRoutes, Route, Navigate } from 'react-router'
 import App from './App'
 import Main from './component/Main'
 import SeedData from './component/SeedData'
@@ -11,19 +11,17 @@ import TermsAndConditions from './component/TermsAndConditions/TermsAndCondition
 
 const Routes = () => (
   <App>
-    <Switch>
-      <Route exact path="/" component={Main} />
-      <Route exact path="/artist" component={SearchArtist} />
-      <Route exact path="/start-text" component={SeedData} />
-      <Route exact path="/song/:songId" component={GeneratedSong} />
-      <Route exact path="/about-us" component={AboutUs} />
-      <Route exact path="/help-us" component={HelpUs} />
-      <Route exact path="/terms-and-conditions" component={TermsAndConditions} />
+    <RouterRoutes>
+      <Route path="/" element={<Main />} />
+      <Route path="/artist" element={<SearchArtist />} />
+      <Route path="/start-text" element={<SeedData />} />
+      <Route path="/song/:songId" element={<GeneratedSong />} />
+      <Route path="/about-us" element={<AboutUs />} />
+      <Route path="/help-us" element={<HelpUs />} />
+      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       {/* 404 */}
-      <Route>
-        <Redirect to="/" /> 
-      </Route>
-    </Switch>
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </RouterRoutes>
   </App>
 )
 

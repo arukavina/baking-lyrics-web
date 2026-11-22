@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Footer from '../shared/Footer/Footer';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
@@ -43,15 +43,15 @@ export default class extends Component {
         Best regards,<br />
         The Baking-Lyrics coding ⌨️ band.
       </p>
-          <Link className="tryButton" to="artist" >{'TRY IT OUT'}</Link>
+          <Link className="tryButton" to="/artist" >{'TRY IT OUT'}</Link>
         </div>
         <div className="homeLinks">
           <a href="https://github.com/arukavina/baking-lyrics" className="githubLink mainLink">
             <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
             &nbsp;GitHub
           </a>
-          <Link className="mainLink" to="about-us" >{'About Us'}</Link>
-          <Link className="mainLink" to="help-us" >{'Help Us'}</Link>
+          <Link className="mainLink" to="/about-us" >{'About Us'}</Link>
+          <Link className="mainLink" to="/help-us" >{'Help Us'}</Link>
         </div>
         <Footer />
       </div>

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Link } from "react-router-dom"
+import React, { useEffect, useMemo } from 'react'
+import { Link, useNavigate } from "react-router"
 import debounce from "lodash/debounce"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync, faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -8,56 +8,49 @@ import logoRed from '../../static/images/logoRed.png'
 import './SearchArtist.css'
 
 
-export default class extends Component {
-  componentDidMount() {
-    const {
-      changeSearch,
-      getArtists,
-      clearSong,
-    } = this.props
+export default function SearchArtist(props) {
+  const {
+    search,
+    artists,
+    total,
+    isFetching,
+    getArtists,
+    clearSong,
+    changeSearch,
+    setSearch,
+  } = props
+  const navigate = useNavigate()
+
+  useEffect(() => {
     getArtists()
     clearSong()
     changeSearch('')
-  }
-  debouncedSearch = debounce(this.searchArtists, 1000).bind(this)
+    // Runs on mount only, like the former componentDidMount
+  }, [])
 
-  onSearchChange = (event) => {
-    const { value } = event.target
-    this.props.setSearch(value)
-    this.debouncedSearch(value)
-  }
-
-  listArtists = () => {
-    const { artists } = this.props
-    artists && artists.map(art => (
-      <span key={art.id}>
-        {art.name}
-      </span>
-    ))
-  }
-
-  searchArtists(value) {
-    const { getArtists } = this.props
+  const searchArtists = (value) => {
     value.length > 2 ? getArtists(value.trimEnd()) : getArtists()
   }
+  const debouncedSearch = useMemo(() => debounce(value => searchArtists(value), 1000), [])
 
-  onClickHandler = (name, artistId) => {
-    const {
-      changeSearch,
-      history,
-    } = this.props
-    changeSearch(name, artistId)
-    history.push('start-text')
+  const onSearchChange = (event) => {
+    const { value } = event.target
+    setSearch(value)
+    debouncedSearch(value)
   }
 
-  artistList() {
-    const { search, artists, isFetching } = this.props
+  const onClickHandler = (name, artistId) => {
+    changeSearch(name, artistId)
+    navigate('/start-text')
+  }
+
+  const artistList = () => {
     if (artists.length !== 0) {
       return artists.map((item, index) => (
         (index <= 15) &&
         <div
           style={{ background: `linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%), url(${item.coverImg}) no-repeat center center/contain` }}
-          onClick={() => this.onClickHandler(item.name, item.id)}
+          onClick={() => onClickHandler(item.name, item.id)}
           key={index} className="artistContainer"
         >
           <span className="artistName">
@@ -98,53 +91,49 @@ export default class extends Component {
     }
   }
 
-  render() {
-    const { search, artists, total, getArtists } = this.props
-
-    return (
-      <div className="containerLayout regularContainerImage">
-        <div className="regularHeader">
-          <Link to={'/'}>
-            <img className="logoRed" src={logoRed} alt="baking logo" />
-          </Link>
-        </div>
-        <div className="searchArtist">
-          <div className="searchBar">
-            <FontAwesomeIcon icon={faSearch} color="black" size="lg" />
-            <input
-              value={search || ''}
-              onChange={this.onSearchChange}
-              maxLength={40}
-              type="text"
-              placeholder="Search for an artist or a band"
-              name="search"
-            />
-            <div onClick={() => {
-              getArtists()
-              this.props.setSearch('')
-            }}>
-              <FontAwesomeIcon icon={faSync} color="black" size="lg" title="Refresh list" />
-            </div>
-          </div>
-          {total ? <span className="totalArtists">{`Searching in a database of ${total} artists`}</span> : ''}
-          <div className="showingResultsContainer">
-            {
-              (search && artists.length !== 0) &&
-              <p className="showingResults">
-                {'Showing results for "'}
-                <span>
-                  {search}
-                </span>
-                {'"'}
-              </p>
-            }
-          </div>
-          <div className="listArtistContainer">
-            {this.artistList()}
-          </div>
-        </div>
-        <Footer />
+  return (
+    <div className="containerLayout regularContainerImage">
+      <div className="regularHeader">
+        <Link to={'/'}>
+          <img className="logoRed" src={logoRed} alt="baking logo" />
+        </Link>
       </div>
-    )
-  }
+      <div className="searchArtist">
+        <div className="searchBar">
+          <FontAwesomeIcon icon={faSearch} color="black" size="lg" />
+          <input
+            value={search || ''}
+            onChange={onSearchChange}
+            maxLength={40}
+            type="text"
+            placeholder="Search for an artist or a band"
+            name="search"
+          />
+          <div onClick={() => {
+            getArtists()
+            setSearch('')
+          }}>
+            <FontAwesomeIcon icon={faSync} color="black" size="lg" title="Refresh list" />
+          </div>
+        </div>
+        {total ? <span className="totalArtists">{`Searching in a database of ${total} artists`}</span> : ''}
+        <div className="showingResultsContainer">
+          {
+            (search && artists.length !== 0) &&
+            <p className="showingResults">
+              {'Showing results for "'}
+              <span>
+                {search}
+              </span>
+              {'"'}
+            </p>
+          }
+        </div>
+        <div className="listArtistContainer">
+          {artistList()}
+        </div>
+      </div>
+      <Footer />
+    </div>
+  )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
-import {TinyButton as ScrollUpButton} from "react-scroll-up-button"
-import { Link } from 'react-router-dom'
+import ScrollUpButton from "../shared/ScrollUpButton/ScrollUpButton"
+import { Link } from 'react-router'
 import Footer from '../shared/Footer/Footer';
 import logoRed from '../../static/images/logoRed.png'
 import './TermsAndConditions.css'

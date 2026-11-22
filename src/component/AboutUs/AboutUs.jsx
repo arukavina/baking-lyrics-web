@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Element } from 'react-scroll'
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink } from "react-router"
 import Footer from '../shared/Footer/Footer'
 import InfoBox from './InfoBox'
 import logoRed from '../../static/images/logoRed.png'
