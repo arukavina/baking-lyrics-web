@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Footer from '../shared/Footer/Footer';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import logoRed from '../../static/images/logoRed.png'
+import { ping } from '../../helpers/api'
 import './Main.css'
 
-export default class extends Component {
+export default class Main extends Component {
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:4000'}/ping`)
+    // Fire and forget warm-up of the backend
+    ping().catch(() => {})
   }
 
   render() {
@@ -25,7 +27,7 @@ export default class extends Component {
             </strong>
             {'WITH ARTIFICIAL INTELLIGENCE!'}
           </h1>
-          <h2>OVERCOME YOUR WRITER'S BLOCK WITH JUST ONE CLICK</h2>
+          <h2>OVERCOME YOUR WRITER&apos;S BLOCK WITH JUST ONE CLICK</h2>
           <p className="pageText">
             Dear musicians 🎸 , writers 🖊 , artists 👩‍🎤 , music enthusiasts 🎶, et. al.,
         <br /><br />
@@ -43,15 +45,15 @@ export default class extends Component {
         Best regards,<br />
         The Baking-Lyrics coding ⌨️ band.
       </p>
-          <Link className="tryButton" to="artist" >{'TRY IT OUT'}</Link>
+          <Link className="tryButton" to="/artist" >{'TRY IT OUT'}</Link>
         </div>
         <div className="homeLinks">
           <a href="https://github.com/arukavina/baking-lyrics" className="githubLink mainLink">
             <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
             &nbsp;GitHub
           </a>
-          <Link className="mainLink" to="about-us" >{'About Us'}</Link>
-          <Link className="mainLink" to="help-us" >{'Help Us'}</Link>
+          <Link className="mainLink" to="/about-us" >{'About Us'}</Link>
+          <Link className="mainLink" to="/help-us" >{'Help Us'}</Link>
         </div>
         <Footer />
       </div>

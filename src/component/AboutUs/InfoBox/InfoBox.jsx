@@ -3,7 +3,7 @@ import './InfoBox.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFirefoxBrowser, faLinkedinIn, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
-export default class extends Component {
+export default class InfoBox extends Component {
 
   socialLogoHandler = () => {
     const {

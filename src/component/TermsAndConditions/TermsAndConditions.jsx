@@ -1,11 +1,11 @@
 import React from 'react'
-import {TinyButton as ScrollUpButton} from "react-scroll-up-button"
-import { Link } from 'react-router-dom'
+import ScrollUpButton from "../shared/ScrollUpButton/ScrollUpButton"
+import { Link } from 'react-router'
 import Footer from '../shared/Footer/Footer';
 import logoRed from '../../static/images/logoRed.png'
 import './TermsAndConditions.css'
 
-export default () => (
+const TermsAndConditions = () => (
 	<div className="containerLayout regularContainerImage termsAndConditionsContainer">
 		<div className="regularHeader">
 			<Link className="regularHeaderLink" to={'/'}>
@@ -20,10 +20,10 @@ export default () => (
 			<div className="termsAndConditionsLicense pageText">
 				<h4>Baking-Lyrics is Licensed under the:</h4>
 				<h3>GNU General Public License v3.0</h3>
-				<div class="licenseRules">
+				<div className="licenseRules">
 					<div className="licenseRulesSection">
 						<div className="licenseRulesLabel">Permissions</div>
-						<div class="license-permissions">
+						<div className="license-permissions">
 							<div className="licenseAttribute">
 								<div className="licenseSprite permissions"></div>
 								<div title="This software and derivatives may be used for commercial purposes.">
@@ -58,7 +58,7 @@ export default () => (
 					</div>
 					<div className="licenseRulesSection">
 						<div className="licenseRulesLabel">Conditions</div>
-						<div class="license-conditions">
+						<div className="license-conditions">
 							<div className="licenseAttribute">
 								<div className="licenseSprite conditions"></div>
 								<div title="Source code must be made available when the software is distributed.">
@@ -88,7 +88,7 @@ export default () => (
 
 					<div className="licenseRulesSection">
 						<div className="licenseRulesLabel">Limitations</div>
-						<div class="license-limitations">
+						<div className="license-limitations">
 							<div className="licenseAttribute">
 								<div className="licenseSprite limitations"></div>
 								<div title="This license includes a limitation of liability.">
@@ -178,7 +178,7 @@ export default () => (
 					<p> The &quot;Corresponding Source&quot; for a work in object code form means all
 	the source code needed to generate, install, and (for an executable
 	work) run the object code and to modify the work, including scripts to
-	control those activities. However, it does not include the work's
+	control those activities. However, it does not include the work&apos;s
 	System Libraries, or general-purpose tools or generally available free
 	programs which are used unmodified in performing those activities but
 	which are not part of the work. For example, Corresponding Source
@@ -220,7 +220,7 @@ export default () => (
 	the conditions stated below. Sublicensing is not allowed; section 10
 	makes it unnecessary.</p>
 
-					<p> 3. Protecting Users' Legal Rights From Anti-Circumvention Law.</p>
+					<p> 3. Protecting Users&apos; Legal Rights From Anti-Circumvention Law.</p>
 
 					<p> No covered work shall be deemed part of an effective technological
 	measure under any applicable law fulfilling obligations under article
@@ -232,13 +232,13 @@ export default () => (
 	circumvention of technological measures to the extent such circumvention
 	is effected by exercising rights under this License with respect to
 	the covered work, and you disclaim any intention to limit operation or
-	modification of the work as a means of enforcing, against the work's
-	users, your or third parties' legal rights to forbid circumvention of
+	modification of the work as a means of enforcing, against the work&apos;s
+	users, your or third parties&apos; legal rights to forbid circumvention of
 	technological measures.</p>
 
 					<p> 4. Conveying Verbatim Copies.</p>
 
-					<p> You may convey verbatim copies of the Program's source code as you
+					<p> You may convey verbatim copies of the Program&apos;s source code as you
 	receive it, in any medium, provided that you conspicuously and
 	appropriately publish on each copy an appropriate copyright notice;
 	keep intact all notices stating that this License and any
@@ -281,7 +281,7 @@ export default () => (
 	and which are not combined with it such as to form a larger program,
 	in or on a volume of a storage or distribution medium, is called an
 	&quot;aggregate&quot; if the compilation and its resulting copyright are not
-	used to limit the access or legal rights of the compilation's users
+	used to limit the access or legal rights of the compilation&apos;s users
 	beyond what the individual works permit. Inclusion of a covered work
 	in an aggregate does not cause this License to apply to the other
 	parts of the aggregate.</p>
@@ -499,7 +499,7 @@ export default () => (
 	organization, or merging organizations. If propagation of a covered
 	work results from an entity transaction, each party to that
 	transaction who receives a copy of the work also receives whatever
-	licenses to the work the party's predecessor in interest had or could
+	licenses to the work the party&apos;s predecessor in interest had or could
 	give under the previous paragraph, plus a right to possession of the
 	Corresponding Source of the work from the predecessor in interest, if
 	the predecessor has it or can get it with reasonable efforts.</p>
@@ -516,9 +516,9 @@ export default () => (
 
 					<p> A &quot;contributor&quot; is a copyright holder who authorizes use under this
 	License of the Program or a work on which the Program is based. The
-	work thus licensed is called the contributor's &quot;contributor version&quot;.</p>
+	work thus licensed is called the contributor&apos;s &quot;contributor version&quot;.</p>
 
-					<p> A contributor's &quot;essential patent claims&quot; are all patent claims
+					<p> A contributor&apos;s &quot;essential patent claims&quot; are all patent claims
 	owned or controlled by the contributor, whether already acquired or
 	hereafter acquired, that would be infringed by some manner, permitted
 	by this License, of making, using, or selling its contributor version,
@@ -529,7 +529,7 @@ export default () => (
 	this License.</p>
 
 					<p> Each contributor grants you a non-exclusive, worldwide, royalty-free
-	patent license under the contributor's essential patent claims, to
+	patent license under the contributor&apos;s essential patent claims, to
 	make, use, sell, offer for sale, import and otherwise run, modify and
 	propagate the contents of its contributor version.</p>
 
@@ -550,7 +550,7 @@ export default () => (
 	consistent with the requirements of this License, to extend the patent
 	license to downstream recipients. &quot;Knowingly relying&quot; means you have
 	actual knowledge that, but for the patent license, your conveying the
-	covered work in a country, or your recipient's use of the covered work
+	covered work in a country, or your recipient&apos;s use of the covered work
 	in a country, would infringe one or more identifiable patents in that
 	country that you have reason to believe are valid.</p>
 
@@ -581,7 +581,7 @@ export default () => (
 	any implied license or other defenses to infringement that may
 	otherwise be available to you under applicable patent law.</p>
 
-					<p> 12. No Surrender of Others' Freedom.</p>
+					<p> 12. No Surrender of Others&apos; Freedom.</p>
 
 					<p> If conditions are imposed on you (whether by court order, agreement or
 	otherwise) that contradict the conditions of this License, they do not
@@ -621,7 +621,7 @@ export default () => (
 	by the Free Software Foundation.</p>
 
 					<p> If the Program specifies that a proxy can decide which future
-	versions of the GNU General Public License can be used, that proxy's
+	versions of the GNU General Public License can be used, that proxy&apos;s
 	public statement of acceptance of a version permanently authorizes you
 	to choose that version for the Program.</p>
 
@@ -667,3 +667,4 @@ export default () => (
 		<Footer ignoreTandC />
 	</div>
 )
+export default TermsAndConditions

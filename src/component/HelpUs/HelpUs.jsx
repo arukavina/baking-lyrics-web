@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons'
 import Footer from '../shared/Footer/Footer'
 import logoRed from '../../static/images/logoRed.png'
 import './HelpUs.css'
 
-export default () => (
+const HelpUs = () => (
   <div className="containerLayout regularContainerImage helpUsContainer">
     <div className="regularHeader">
       <Link className="regularHeaderLink" to={'/'}>
@@ -30,7 +30,7 @@ export default () => (
 			</p>
 		</div>
     <div className="donationLinks">
-      <a href="https://www.patreon.com/baking_lyrics" className="patreonLink" target="_blank">
+      <a href="https://www.patreon.com/baking_lyrics" className="patreonLink" target="_blank" rel="noreferrer">
         <FontAwesomeIcon icon={faPatreon} size="4x" color="white"/>
         <span
           className="aboutUsFooterLink footerLink"
@@ -38,7 +38,7 @@ export default () => (
           {'Patreon'}
         </span>
       </a>
-      <a href="https://paypal.me/bakinglyrics" className="paypalLink" target="_blank">
+      <a href="https://paypal.me/bakinglyrics" className="paypalLink" target="_blank" rel="noreferrer">
         <FontAwesomeIcon icon={faPaypal} size="4x" color="white"/>
         <span
           className="aboutUsFooterLink footerLink"
@@ -50,3 +50,4 @@ export default () => (
     <Footer />
   </div>
 )
+export default HelpUs

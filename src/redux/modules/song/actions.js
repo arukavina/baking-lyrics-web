@@ -1,31 +1,37 @@
-import get from "lodash/get"
 import {
-	GET_SONG_FULFILLED,
-	GET_SONG_PENDING,
+  GET_SONG_FULFILLED,
+  GET_SONG_PENDING,
   GET_SONG_REJECTED,
   CLEAR_SONG,
 } from './const'
-import { 
-  getSong as getSongApi,
+import {
+  artistDisplayName,
+  generateSong as generateSongApi,
   getGeneratedSong as getGeneratedSongApi,
- } from '../../../helpers/api/song'
+  getWikipediaImage,
+} from '../../../helpers/api'
+import { generateErrorMessage, getSongErrorMessage } from './errors'
 
-export const generateSong = (seed, numberWords, artistId) => async (dispatch) => {
+const statusOf = e => (typeof e?.status === 'number' ? e.status : null)
+
+export const generateSong = ({ artistId, seed, numberWords = 100 }) => async (dispatch) => {
   dispatch({
     type: GET_SONG_PENDING
   })
   try {
-    const data = await getSongApi(seed, numberWords, artistId)
+    const song = await generateSongApi({ artistId, seed, numberWords })
     dispatch({
       type: GET_SONG_FULFILLED,
-      payload: data.data
+      payload: song
     })
   }
   catch (e) {
+    const status = statusOf(e)
     dispatch({
       type: GET_SONG_REJECTED,
       payload: {
-        errorMsg: `Failed trying to get a song ${e}`
+        errorMsg: generateErrorMessage(status),
+        status
       }
     })
   }
@@ -36,24 +42,23 @@ export const getGeneratedSong = (songId) => async (dispatch) => {
     type: GET_SONG_PENDING
   })
   try {
-    const data = await getGeneratedSongApi(songId)
-    const res = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&origin=*&redirects=1&format=json&piprop=original&titles=${data.data.base_artist.name.replace(/\-/g, '%20')}`, { "Content-Type": "application/json charset=UTF-8" })
-    const json = await res.json()
-    const firstElement = Object.keys(json.query.pages)[0]
-    const coverImg = get(json.query.pages[firstElement], 'original.source')
+    const song = await getGeneratedSongApi(songId)
+    const coverImg = await getWikipediaImage(artistDisplayName(song.base_artist))
     dispatch({
       type: GET_SONG_FULFILLED,
       payload: {
-        ...data.data,
+        ...song,
         coverImg
       }
     })
   }
   catch (e) {
+    const status = statusOf(e)
     dispatch({
       type: GET_SONG_REJECTED,
       payload: {
-        errorMsg: `Failed trying to get a song ${e}`
+        errorMsg: getSongErrorMessage(status),
+        status
       }
     })
   }

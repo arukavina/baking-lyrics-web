@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Element } from 'react-scroll'
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink } from "react-router"
 import Footer from '../shared/Footer/Footer'
 import InfoBox from './InfoBox'
 import logoRed from '../../static/images/logoRed.png'
@@ -13,7 +13,7 @@ import nicolasCribioliImg from '../../static/images/nicolasCribioli.png'
 import radiumLogo from '../../static/images/radium-logo.jpg'
 import './AboutUs.css'
 
-export default class extends Component {
+export default class AboutUs extends Component {
 
   constructor (props) {
     super(props)
@@ -26,7 +26,7 @@ export default class extends Component {
     window.scrollTo(0, 80)
   }
 
-  lineTitle = (title) => {
+  lineTitle = () => {
     return(
       <div className="aboutUsSectionSeparatorContainer">
         <div className="aboutUsSectionSeparator"/>
