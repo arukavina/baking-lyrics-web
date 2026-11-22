@@ -32,12 +32,52 @@ describe('apiGet', () => {
     expect(isNotFound(error)).toBe(false)
   })
 
-  it('falls back to the status text when the error body is not json', async () => {
-    vi.stubGlobal('fetch', vi.fn(async () => jsonResponse(502, undefined)))
+  it('rejects a 2xx response whose body is not json (SPA fallback)', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => jsonResponse(200, undefined)))
     const error = await apiGet('/x').catch(e => e)
-    expect(error.status).toBe(502)
-    expect(error.message).toBe('HTTP 502')
+    expect(error).toBeInstanceOf(ApiError)
+    expect(error.status).toBe(200)
+    expect(error.message).toBe('Unexpected response from the server')
     expect(error.body).toBeNull()
+  })
+
+  it.each([500, 502, 504])('treats an empty-body %i as backend unreachable', async (status) => {
+    vi.stubGlobal('fetch', vi.fn(async () => jsonResponse(status, undefined)))
+    const error = await apiGet('/x').catch(e => e)
+    expect(error).toBeInstanceOf(ApiError)
+    expect(error.status).toBe(0)
+    expect(error.message).toBe('Network error: backend unreachable')
+    expect(error.body).toBeNull()
+  })
+
+  it('keeps the status and message of a json 500 from the backend', async () => {
+    mockFetch({ '/api/v1/x': [500, { message: 'boom' }] })
+    const error = await apiGet('/x').catch(e => e)
+    expect(error.status).toBe(500)
+    expect(error.message).toBe('boom')
+    expect(error.body).toEqual({ message: 'boom' })
+  })
+
+  it('keeps an empty-body 503 as generator offline', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => jsonResponse(503, undefined)))
+    const error = await apiGet('/x').catch(e => e)
+    expect(error.status).toBe(503)
+    expect(isGeneratorOffline(error)).toBe(true)
+  })
+
+  it('falls back to a generic message for a non-json (html) 404', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => jsonResponse(404, undefined)))
+    const error = await apiGet('/x').catch(e => e)
+    expect(error.status).toBe(404)
+    expect(error.message).toBe('HTTP 404')
+    expect(error.body).toBeNull()
+    expect(isNotFound(error)).toBe(true)
+  })
+
+  it('prefers the status text when there is one', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ...jsonResponse(404, undefined), statusText: 'Not Found' })))
+    const error = await apiGet('/x').catch(e => e)
+    expect(error.message).toBe('Not Found')
   })
 
   it('turns network failures into an ApiError with status 0', async () => {

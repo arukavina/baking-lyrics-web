@@ -29,9 +29,11 @@ export const getArtists = (filter = '') => async (dispatch) => {
   dispatch({ type: GET_ARTISTS_PENDING })
   let list
   try {
-    list = query.length >= MIN_SEARCH_LENGTH
+    const result = query.length >= MIN_SEARCH_LENGTH
       ? await searchArtists(query)
       : await getRandomArtists(RANDOM_ARTISTS_COUNT)
+    // Defensive: anything but an array would break the reducer and the grid
+    list = Array.isArray(result) ? result : []
   } catch (e) {
     if (requestId !== latestRequest) return
     dispatch({

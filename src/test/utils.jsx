@@ -28,7 +28,8 @@ export const artificialSong = {
 export const jsonResponse = (status, body) => ({
   ok: status >= 200 && status < 300,
   status,
-  statusText: `HTTP ${status}`,
+  // Realistic: browsers report an empty statusText over HTTP/2
+  statusText: '',
   json: () => (body === undefined ? Promise.reject(new SyntaxError('no body')) : Promise.resolve(body)),
 })
 

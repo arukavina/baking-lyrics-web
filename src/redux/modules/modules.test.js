@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import configureStore from '../../store'
-import { beyonce, artificialSong, mockFetch, requestedUrls } from '../../test/utils'
+import { beyonce, artificialSong, jsonResponse, mockFetch, requestedUrls } from '../../test/utils'
 import artistsReducer from './artists/reducer'
 import artistsInitialState from './artists/initialState'
 import {
@@ -83,6 +83,20 @@ describe('artists thunks', () => {
     const store = configureStore()
     await store.dispatch(getArtists())
     expect(store.getState().artists).toMatchObject({ list: [], errorMsg: '', isFetching: false })
+  })
+
+  it('treats a non-array artist list as empty', async () => {
+    mockFetch({ '/api/v1/artists/random/16': [200, { unexpected: true }] })
+    const store = configureStore()
+    await store.dispatch(getArtists())
+    expect(store.getState().artists).toMatchObject({ list: [], errorMsg: '', isFetching: false })
+  })
+
+  it('reports an unreachable backend (empty-body 500 from the proxy) with status 0', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => jsonResponse(500, undefined)))
+    const store = configureStore()
+    await store.dispatch(getArtists())
+    expect(store.getState().artists).toMatchObject({ errorMsg: ARTISTS_ERROR_MSG, status: 0 })
   })
 
   it('reports a failed load with its status', async () => {
