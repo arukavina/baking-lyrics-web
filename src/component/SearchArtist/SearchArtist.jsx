@@ -124,6 +124,8 @@ export default function SearchArtist(props) {
             name="search"
           />
           <div onClick={() => {
+            // A pending search would otherwise replace the refreshed list
+            debouncedSearch.cancel()
             getArtists()
             setSearch('')
           }}>

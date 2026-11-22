@@ -59,6 +59,31 @@ describe('routes', () => {
     expect(store.getState().wizard).toMatchObject({ search: 'Beyonce Knowles', artistId: 1 })
   })
 
+  it('cancels a pending search when the list is refreshed', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    const fetchMock = mockFetch({
+      '/api/v1/artists/random/16': [200, [beyonce]],
+      '/api/v1/artists/?page=1&per_page=2': [200, { items: [], total: 1 }],
+      '/api/v1/artists/search/adel': [200, [{ ...beyonce, id: 2, name: 'adele', clean_name: 'Adele' }]],
+    })
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+    renderApp('/artist')
+    expect(await screen.findByText('Beyonce Knowles')).toBeInTheDocument()
+
+    const input = screen.getByPlaceholderText('Search for an artist or a band')
+    await user.type(input, 'adel')
+    // The refresh control is the icon wrapper right after the input
+    await user.click(input.nextElementSibling)
+    await act(async () => { vi.advanceTimersByTime(2000) })
+
+    const backendCalls = requestedUrls(fetchMock).filter(url => url.startsWith('/api/v1/artists/'))
+    expect(backendCalls.filter(url => url.includes('/search/'))).toEqual([])
+    expect(backendCalls.filter(url => url.includes('/random/'))).toHaveLength(2)
+    expect(await screen.findByText('Beyonce Knowles')).toBeInTheDocument()
+    expect(screen.queryByText('Adele')).not.toBeInTheDocument()
+    expect(input).toHaveValue('')
+  })
+
   it('shows the offline message when the generator answers 503', async () => {
     const generateUrl = '/api/v1/artificial_songs/generate/en/seed/never%20gonna%20give%20you%20up/words/100/artist/1/'
     const fetchMock = mockFetch({ [generateUrl]: [503, { message: 'ML models are not loaded' }] })
