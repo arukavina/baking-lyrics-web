@@ -6,7 +6,7 @@ It is a React 19 single page app built with Vite, using react-router 7 and Redux
 
 ## Prerequisites
 
-- Node.js 22.22.2 or newer (npm comes with it), required by Vite 8 and jsdom 31.
+- Node.js 26 LTS (npm comes with it), the same version CI and the Vercel deploy use.
 - A running Baking-Lyrics backend for anything beyond the static pages.
 
 ## Install
