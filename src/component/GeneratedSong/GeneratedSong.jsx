@@ -38,7 +38,8 @@ export default function GeneratedSong(props) {
   }, [songId, loadedSongId, getGeneratedSong])
 
   // Counts the share (fire and forget), then opens the network's share page
-  const countShare = network => trackShare(props.generatedSong.id ?? songId, network)
+  // Uses the id from the URL: the stored song may still be the previous one while the next loads
+  const countShare = network => trackShare(songId, network)
 
   const openURLInPopup = (url, network) => {
     countShare(network)
