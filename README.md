@@ -38,6 +38,7 @@ The app runs at http://localhost:3000. Requests to `/api` are proxied to http://
 | Variable | Default | Purpose |
 | --- | --- | --- |
 | `VITE_API_URL` | `/api/v1` | Base URL of the backend API. |
+| `VITE_COMMIT_SHA`, `VITE_COMMIT_DATE` | read from git | Commit shown in the footer as `(front)`; set them when building without git history. |
 
 The default is same origin. The backend has no CORS support, so in production the web server that serves the app must reverse proxy `/api` to the backend; pointing `VITE_API_URL` at another host will be blocked by the browser. See `.env.example`; put local overrides in `.env.local`.
 
@@ -58,3 +59,16 @@ npm run preview
 ```
 
 `npm run build` writes the production bundle to `dist/`. `npm run preview` serves that bundle locally to check it.
+
+## Deployment
+
+The app is hosted on Vercel (project `baking-lyrics-web`). Every push to `master` runs `.github/workflows/deploy.yml`: it runs the same lint, tests and build as CI, then builds with the Vercel CLI and deploys to production. Pull requests only run CI.
+
+Repository secrets used by the deploy:
+
+- `VERCEL_TOKEN`: a Vercel access token for the team that owns the project.
+- `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`: from `.vercel/project.json`, created locally by `vercel link`.
+
+To redeploy without a new commit, run the Deploy workflow manually from the Actions tab (`gh workflow run deploy.yml`).
+
+`vercel.json` serves `index.html` for every path so client side routes such as `/about-us` load directly, and caches the hashed files in `/assets` for a year. The backend is not hosted on Vercel yet; once it has a public URL, a rewrite from `/api/(.*)` to it goes before the catch all rewrite in `vercel.json`.

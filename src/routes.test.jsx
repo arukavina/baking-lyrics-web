@@ -240,6 +240,23 @@ describe('routes', () => {
     if (network !== 'whatsapp') expect(openMock).toHaveBeenCalledTimes(1)
   })
 
+  it('shares links to the song on the current site', async () => {
+    mockFetch({
+      '/api/v1/artificial_songs/7': [200, artificialSong],
+      '/api/v1/artificial_songs/7/shares': [201, { artificial_song_id: 7, network: 'facebook', shares: 1 }],
+    })
+    const openMock = vi.fn()
+    vi.stubGlobal('open', openMock)
+    const user = userEvent.setup()
+    renderApp('/song/7')
+    await screen.findByText('some generated lyrics')
+
+    const songUrl = encodeURIComponent(`${window.location.origin}/song/7`)
+    await user.click(screen.getByRole('button', { name: 'Share on Facebook' }))
+    expect(openMock.mock.calls[0][0]).toBe(`https://www.facebook.com/sharer/sharer.php?u=${songUrl}`)
+    expect(screen.getByRole('link', { name: 'Share on WhatsApp' }).getAttribute('href')).toContain(songUrl)
+  })
+
   it('shows a friendly message for a missing song', async () => {
     mockFetch({ '/api/v1/artificial_songs/999': [404, { message: 'Lyric does not exist.' }] })
     renderApp('/song/999')

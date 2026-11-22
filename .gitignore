@@ -77,3 +77,6 @@ yarn.lock
 
 # vite build output
 dist/
+
+# Vercel CLI project link (local only)
+.vercel

@@ -41,10 +41,13 @@ export default function GeneratedSong(props) {
   // Uses the id from the URL: the stored song may still be the previous one while the next loads
   const countShare = network => trackShare(songId, network)
 
+  // Shares point at the site the visitor is on (the production domain or a preview deploy)
+  const songUrl = `${window.location.origin}/song/${songId}`
+
   const openURLInPopup = (url, network) => {
     countShare(network)
     window.open(
-      `${url}http://bakinglyrics.com/song/${songId}`,
+      `${url}${encodeURIComponent(songUrl)}`,
       "pop",
       "width=600, height=400, scrollbars=no"
     );
@@ -135,7 +138,7 @@ export default function GeneratedSong(props) {
                 <a
                   className="btn-secondary"
                   aria-label="Share on WhatsApp"
-                  href={`https://api.whatsapp.com/send?text=Check%20this%20out!%20I%20just%20generated%20the%20following%20lyrics%20using%20Artificial%20Intelligence:%0A${document.URL}`}
+                  href={`https://api.whatsapp.com/send?text=Check%20this%20out!%20I%20just%20generated%20the%20following%20lyrics%20using%20Artificial%20Intelligence:%0A${encodeURIComponent(songUrl)}`}
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => countShare('whatsapp')}
