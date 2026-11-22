@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import Footer from '../shared/Footer/Footer'
+import { cleanSeed } from '../../helpers/api'
 import logoRed from '../../static/images/logoRed.png'
 import loading from '../../static/images/loading.png'
 import './SeedData.css'
@@ -10,7 +11,12 @@ const minLength = min => value =>
   value && value.length < min ? `Must be ${min} characters or more` : undefined
 const minLength10 = minLength(10)
 
-const validateFistThreeWords = value => required(value) || minLength10(value)
+// Validates the seed as it is sent: ten spaces or slashes would otherwise
+// pass and silently fall back to the no-seed route.
+const validateFistThreeWords = (value) => {
+  const seed = cleanSeed(value)
+  return required(seed) || minLength10(seed)
+}
 const validateTermsAndConditions = value => (value ? undefined : 'Required')
 
 const renderField = (field) => {

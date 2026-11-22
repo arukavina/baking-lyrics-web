@@ -67,6 +67,13 @@ export async function getRandomArtists(n = 16) {
 }
 
 /**
+ * The seed as it is sent to the backend: slashes (which the backend routes on)
+ * become spaces and the ends are trimmed. Empty means the no-seed route.
+ * @returns {string}
+ */
+export const cleanSeed = seed => String(seed ?? '').replace(/[/\\]/g, ' ').trim()
+
+/**
  * Generates a song. Uses the seeded route when a seed is given, otherwise the
  * no-seed route. The seed cannot contain "/" (the backend routes on it).
  * Rejects with ApiError: 503 generator offline, 400/404 artist unusable,
@@ -79,11 +86,11 @@ export function generateSong({ artistId, seed = '', numberWords = 100, lang = 'e
     return Promise.reject(new ApiError(400, 'An artist is required.', null))
   }
   const words = Math.max(1, Math.trunc(Number(numberWords)) || 1)
-  const cleanSeed = String(seed ?? '').replace(/[/\\]/g, ' ').trim()
+  const sentSeed = cleanSeed(seed)
   const base = `/artificial_songs/generate/${encodeURIComponent(lang)}`
   const tail = `/words/${words}/artist/${id}/`
-  return cleanSeed
-    ? apiGet(`${base}/seed/${encodeURIComponent(cleanSeed)}${tail}`)
+  return sentSeed
+    ? apiGet(`${base}/seed/${encodeURIComponent(sentSeed)}${tail}`)
     : apiGet(`${base}${tail}`)
 }
 

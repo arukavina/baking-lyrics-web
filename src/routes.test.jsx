@@ -10,6 +10,14 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
+// A store already on the seed page, with an artist picked
+function seedPageStore() {
+  const store = configureStore()
+  store.dispatch(changeField({ field: 'search', value: 'Beyonce Knowles' }))
+  store.dispatch(changeField({ field: 'artistId', value: 1 }))
+  return store
+}
+
 describe('routes', () => {
   it('renders the home page and pings the backend', () => {
     const fetchMock = mockFetch({ '/api/v1/general/ping': [200, 'pong!'] })
@@ -67,6 +75,33 @@ describe('routes', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent(GENERATOR_OFFLINE_MSG)
     expect(requestedUrls(fetchMock)).toContain(generateUrl)
     expect(screen.queryByText('baking lyrics...')).not.toBeInTheDocument()
+  })
+
+  it.each([
+    ['ten spaces', '          '],
+    ['only slashes', '//////////'],
+  ])('rejects a seed of %s as required', async (_label, seed) => {
+    const fetchMock = mockFetch()
+    const user = userEvent.setup()
+    renderApp('/start-text', { store: seedPageStore() })
+    await user.type(screen.getByPlaceholderText(/write at least 6 words/), seed)
+    await user.click(screen.getByRole('checkbox'))
+    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+
+    expect(screen.getByText('Required')).toBeInTheDocument()
+    expect(requestedUrls(fetchMock).filter(url => url.includes('/generate/'))).toEqual([])
+  })
+
+  it('checks the minimum length on the seed as sent, not on padding or slashes', async () => {
+    const fetchMock = mockFetch()
+    const user = userEvent.setup()
+    renderApp('/start-text', { store: seedPageStore() })
+    await user.type(screen.getByPlaceholderText(/write at least 6 words/), '  a/b/c/d   ')
+    await user.click(screen.getByRole('checkbox'))
+    await user.click(screen.getByRole('link', { name: 'GENERATE' }))
+
+    expect(screen.getByText('Must be 10 characters or more')).toBeInTheDocument()
+    expect(requestedUrls(fetchMock).filter(url => url.includes('/generate/'))).toEqual([])
   })
 
   it('shows a generated song', async () => {

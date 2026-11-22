@@ -3,6 +3,7 @@ import { jsonResponse, mockFetch, requestedUrls, beyonce } from '../../test/util
 import { ApiError, apiGet, isGeneratorOffline, isNotFound } from './client'
 import {
   artistDisplayName,
+  cleanSeed,
   generateSong,
   getArtistsTotal,
   getGeneratedSong,
@@ -165,6 +166,13 @@ describe('songs', () => {
     expect(requestedUrls(fetchMock)).toEqual([
       '/api/v1/artificial_songs/generate/en/seed/up%20down%20left%0Aright/words/100/artist/3/',
     ])
+  })
+
+  it('cleans the seed as it is sent', () => {
+    expect(cleanSeed(' up/down\\left ')).toBe('up down left')
+    expect(cleanSeed('//////////')).toBe('')
+    expect(cleanSeed('          ')).toBe('')
+    expect(cleanSeed(undefined)).toBe('')
   })
 
   it('uses the no-seed route when the seed is blank', async () => {
