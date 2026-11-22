@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons'
-import { artistDisplayName } from '../../helpers/api'
+import { artistDisplayName, trackShare } from '../../helpers/api'
 import Container from '../shared/Container'
 import './GeneratedSong.css'
 
@@ -37,7 +37,11 @@ export default function GeneratedSong(props) {
     }
   }, [songId, loadedSongId, getGeneratedSong])
 
-  const openURLInPopup = (url) => {
+  // Counts the share (fire and forget), then opens the network's share page
+  const countShare = network => trackShare(props.generatedSong.id ?? songId, network)
+
+  const openURLInPopup = (url, network) => {
+    countShare(network)
     window.open(
       `${url}http://bakinglyrics.com/song/${songId}`,
       "pop",
@@ -113,7 +117,7 @@ export default function GeneratedSong(props) {
                   type="button"
                   className="btn-secondary"
                   aria-label="Share on Facebook"
-                  onClick={() => openURLInPopup('https://www.facebook.com/sharer/sharer.php?u=')}
+                  onClick={() => openURLInPopup('https://www.facebook.com/sharer/sharer.php?u=', 'facebook')}
                 >
                   <FontAwesomeIcon icon={faFacebook} className="btn-icon" />
                   Facebook
@@ -122,7 +126,7 @@ export default function GeneratedSong(props) {
                   type="button"
                   className="btn-secondary"
                   aria-label="Share on X"
-                  onClick={() => openURLInPopup('https://twitter.com/intent/tweet?text=Take%20a%20look%20at%20this%20new%20song:%20')}
+                  onClick={() => openURLInPopup('https://twitter.com/intent/tweet?text=Take%20a%20look%20at%20this%20new%20song:%20', 'twitter')}
                 >
                   <FontAwesomeIcon icon={faXTwitter} className="btn-icon" />
                   X
@@ -133,6 +137,7 @@ export default function GeneratedSong(props) {
                   href={`https://api.whatsapp.com/send?text=Check%20this%20out!%20I%20just%20generated%20the%20following%20lyrics%20using%20Artificial%20Intelligence:%0A${document.URL}`}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => countShare('whatsapp')}
                 >
                   <FontAwesomeIcon icon={faWhatsapp} className="btn-icon" />
                   WhatsApp

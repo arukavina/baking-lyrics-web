@@ -213,6 +213,33 @@ describe('routes', () => {
     expect(screen.getByRole('link', { name: 'One more time' })).toHaveAttribute('href', '/artist')
   })
 
+  it.each([
+    ['Share on Facebook', 'facebook'],
+    ['Share on X', 'twitter'],
+    ['Share on WhatsApp', 'whatsapp'],
+  ])('counts a share when "%s" is clicked', async (name, network) => {
+    const fetchMock = mockFetch({
+      '/api/v1/artificial_songs/7': [200, artificialSong],
+      '/api/v1/artificial_songs/7/shares': [201, { artificial_song_id: 7, network, shares: 1 }],
+    })
+    const openMock = vi.fn()
+    vi.stubGlobal('open', openMock)
+    const user = userEvent.setup()
+    renderApp('/song/7')
+    await screen.findByText('some generated lyrics')
+
+    const control = screen.getByRole(network === 'whatsapp' ? 'link' : 'button', { name })
+    // jsdom cannot follow the WhatsApp link; only the click handler matters here
+    control.addEventListener('click', event => event.preventDefault())
+    await user.click(control)
+
+    const shareCalls = fetchMock.mock.calls.filter(([url]) => String(url).endsWith('/shares'))
+    expect(shareCalls).toHaveLength(1)
+    expect(shareCalls[0][0]).toBe('/api/v1/artificial_songs/7/shares')
+    expect(shareCalls[0][1]).toMatchObject({ method: 'POST', body: JSON.stringify({ network }) })
+    if (network !== 'whatsapp') expect(openMock).toHaveBeenCalledTimes(1)
+  })
+
   it('shows a friendly message for a missing song', async () => {
     mockFetch({ '/api/v1/artificial_songs/999': [404, { message: 'Lyric does not exist.' }] })
     renderApp('/song/999')
