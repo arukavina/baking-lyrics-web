@@ -28,13 +28,32 @@ jobs:
       - name: Test
         run: npm run coverage
 
-      # A Codecov outage or a fork without the secret must not block merges or deploys
-      - uses: codecov/codecov-action@v7
+      - name: Build
+        run: npm run build
+
+      - name: Keep the coverage report
+        uses: actions/upload-artifact@v7
         with:
-          files: ./coverage/lcov.info
+          name: coverage
+          path: coverage/lcov.info
+          retention-days: 7
+
+  codecov:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get the coverage report
+        uses: actions/download-artifact@v8
+        with:
+          name: coverage
+
+      # A Codecov outage or a fork without the secret must not block merges or deploys
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v7
+        with:
+          files: ./lcov.info
           disable_search: true
           fail_ci_if_error: false
           token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Build
-        run: npm run build
