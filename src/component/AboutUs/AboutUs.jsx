@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import InfoBox from './InfoBox'
 import Container from '../shared/Container'
 import jonathanPerkesImg from '../../static/images/jonathanPerkes.webp'
@@ -7,7 +6,6 @@ import andreiRukavinaImg from '../../static/images/andreiRukavina.webp'
 import sergioBancheroImg from '../../static/images/sergioBanchero.webp'
 import solanaSierraImg from '../../static/images/solanaSierra.webp'
 import nicolasCribioliImg from '../../static/images/nicolasCribioli.webp'
-import radiumLogo from '../../static/images/radium-logo.webp'
 import './AboutUs.css'
 
 const TEAM = [
@@ -30,9 +28,19 @@ const TEAM = [
       'Software engineer, data scientist and InfoVis enthusiast with an outlandish taste for yerba mate. ' +
       'Member of the Python / R purifiers fictitious society. I can speak really loud.',
     social: {
-      twitter: 'https://twitter.com/andrei_rukavina',
       github: 'https://github.com/arukavina',
       linkedin: 'https://linkedin.com/in/andreirukavina',
+    },
+  },
+  {
+    name: 'Nicolas Cribioli',
+    roles: 'DevOps',
+    image: nicolasCribioliImg,
+    description:
+      'System *, DevOps. Barbecue expert. Handyperson, a.k.a. the could you please fix my ' +
+      '{laptop | mobile | microwave | printer}? guy. This is fine.',
+    social: {
+      linkedin: 'https://linkedin.com/in/nicolas-cribioli',
     },
   },
   {
@@ -57,25 +65,6 @@ const TEAM = [
       'flowers I casually see during the day.',
     social: {
       linkedin: 'https://linkedin.com/in/jonathan-perkes',
-    },
-  },
-  {
-    name: 'Nicolas Cribioli',
-    roles: 'DevOps',
-    image: nicolasCribioliImg,
-    description:
-      'System *, DevOps. Barbecue expert. Handyperson, a.k.a. the could you please fix my ' +
-      '{laptop | mobile | microwave | printer}? guy. This is fine.',
-    social: {
-      linkedin: 'https://linkedin.com/in/nicolas-cribioli',
-    },
-  },
-  {
-    name: 'Radium Rocket',
-    roles: 'Web',
-    image: radiumLogo,
-    social: {
-      web: 'http://radiumrocket.com/',
     },
   },
 ]
@@ -105,9 +94,6 @@ const AboutUs = () => (
             </li>
           ))}
         </ul>
-        <p className="about-help body-text">
-          Want to lend a hand? <Link className="text-link" to="/help-us">See how you can help us</Link>.
-        </p>
       </Container>
     </section>
   </>

@@ -1,4 +1,5 @@
 // Build info constants and helpers for the footer
+export const GITHUB_URL = 'https://github.com/arukavina'
 export const BACK_REPO_URL = 'https://github.com/arukavina/baking-lyrics'
 export const FRONT_REPO_URL = 'https://github.com/arukavina/baking-lyrics-web'
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/andreirukavina/?locale=en'

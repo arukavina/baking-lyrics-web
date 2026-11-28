@@ -97,19 +97,6 @@
   color: var(--color-bone);
 }
 
-.home-letter__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem 1.5rem;
-  margin-top: 2.5rem;
-}
-
-.home-letter__help {
-  font-size: var(--text-sm);
-}
-
 /* Live numbers from the stats endpoint: three counts in a row and the top
    artist under them on phones, all four in one row from 768px */
 .home-kpis {

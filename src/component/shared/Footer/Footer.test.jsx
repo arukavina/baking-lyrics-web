@@ -21,7 +21,7 @@ describe('Footer', () => {
     expect(screen.getByText(/Lyrics by machines, since 2018\./)).toBeInTheDocument()
     expect(container.querySelector('.site-footer__build')).toHaveTextContent(`v${packageJson.version} · (front)`)
     expect(screen.getByRole('link', { name: 'GitHub' }))
-      .toHaveAttribute('href', 'https://github.com/arukavina/baking-lyrics-web')
+      .toHaveAttribute('href', 'https://github.com/arukavina')
     expect(screen.getByRole('link', { name: 'LinkedIn' }))
       .toHaveAttribute('href', 'https://www.linkedin.com/in/andreirukavina/?locale=en')
     expect(await screen.findByRole('link', { name: 'Andrei Rukavina' })).toHaveAttribute('target', '_blank')
@@ -48,13 +48,14 @@ describe('BuildInfo', () => {
     expect(FRONT_BUILD.commit).not.toBe('')
   })
 
-  it('links the front commit with its date', async () => {
+  it('links the front label to its repository and shows the commit as text', async () => {
     mockFetch()
     renderAt(<BuildInfo front={{ version: '9.9.9', commit: FRONT_SHA, date: DATE }} />)
-    const link = screen.getByRole('link', { name: 'def5678' })
-    expect(link).toHaveAttribute('href', `https://github.com/arukavina/baking-lyrics-web/commit/${FRONT_SHA}`)
+    const link = screen.getByRole('link', { name: 'front' })
+    expect(link).toHaveAttribute('href', 'https://github.com/arukavina/baking-lyrics-web')
     expect(link).toHaveAttribute('rel', 'noreferrer noopener')
     expect(link.parentElement).toHaveTextContent('(front) def5678 Nov 22, 2026')
+    expect(screen.queryByRole('link', { name: 'def5678' })).not.toBeInTheDocument()
     await screen.findByRole('link', { name: 'Andrei Rukavina' })
   })
 
@@ -67,9 +68,10 @@ describe('BuildInfo', () => {
   it('adds the back segment when the backend reports its commit', async () => {
     const fetchMock = mockFetch({ [VERSION_URL]: [200, { version: '0.5.0', commit: BACK_SHA, date: DATE }] })
     const { container } = renderAt(<BuildInfo front={{ version: '9.9.9', commit: FRONT_SHA, date: DATE }} />)
-    const link = await screen.findByRole('link', { name: 'abc1234' })
-    expect(link).toHaveAttribute('href', `https://github.com/arukavina/baking-lyrics/commit/${BACK_SHA}`)
+    const link = await screen.findByRole('link', { name: 'back' })
+    expect(link).toHaveAttribute('href', 'https://github.com/arukavina/baking-lyrics')
     expect(link).toHaveAttribute('target', '_blank')
+    expect(screen.queryByRole('link', { name: 'abc1234' })).not.toBeInTheDocument()
     expect(container).toHaveTextContent(
       'v9.9.9 · (back) abc1234 Nov 22, 2026 · (front) def5678 Nov 22, 2026 · Andrei Rukavina'
     )

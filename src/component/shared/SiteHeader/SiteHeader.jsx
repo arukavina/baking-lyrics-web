@@ -8,7 +8,6 @@ import './SiteHeader.css'
 const NAV_LINKS = [
   { to: '/artist', label: 'Generate', match: ['/start-text', '/song/'] },
   { to: '/about-us', label: 'About us' },
-  { to: '/help-us', label: 'Help us' },
 ]
 
 const SiteHeader = () => {
