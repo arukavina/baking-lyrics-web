@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { getArtistsTotal, getStats, ping } from '../../helpers/api'
 import Container from '../shared/Container'
 import './Main.css'
-
-const REPO_URL = 'https://github.com/arukavina/baking-lyrics'
 
 const STEPS = [
   {
@@ -197,13 +194,6 @@ export default function Main() {
               <br />
               The Baking Lyrics coding band
             </p>
-          </div>
-          <div className="home-letter__actions">
-            <a className="btn-secondary" href={REPO_URL} target="_blank" rel="noreferrer noopener">
-              <FontAwesomeIcon icon={faGithub} className="btn-icon" />
-              View the code on GitHub
-            </a>
-            <Link className="text-link home-letter__help" to="/help-us">Help us keep baking</Link>
           </div>
         </Container>
       </section>
