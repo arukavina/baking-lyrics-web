@@ -1,12 +1,11 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faInstagram, faLinkedinIn, faXTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 import './InfoBox.css'
 
 // Known networks, in display order
 const NETWORKS = [
-  { key: 'twitter', label: 'X', icon: faXTwitter },
   { key: 'github', label: 'GitHub', icon: faGithub },
   { key: 'instagram', label: 'Instagram', icon: faInstagram },
   { key: 'linkedin', label: 'LinkedIn', icon: faLinkedinIn },
