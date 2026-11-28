@@ -211,22 +211,87 @@ describe('songs', () => {
 })
 
 describe('getWikipediaImage', () => {
-  it('returns the original image of the first page', async () => {
-    const fetchMock = vi.fn(async () => jsonResponse(200, {
-      query: { pages: { 123: { original: { source: 'https://img/beyonce.jpg' } } } },
-    }))
+  // Answers Wikipedia queries: `titles` lookups from `pages` (by title, with optional
+  // normalized/redirects lists) and searches from `search` (pages in ranking order)
+  const wikipedia = ({ pages = {}, normalized = [], redirects = [], search = [] } = {}) => {
+    const fetchMock = vi.fn(async (href) => {
+      const params = new URL(href).searchParams
+      if (params.get('generator') === 'search') {
+        const found = Object.fromEntries(search.map((page, index) => [index, { ...page, index: index + 1 }]))
+        return jsonResponse(200, { query: { pages: found } })
+      }
+      const asked = params.get('titles').split('|')
+      const resolved = asked.map(title => {
+        const rename = [...normalized, ...redirects].find(r => r.from === title)
+        return rename ? rename.to : title
+      })
+      const found = Object.fromEntries(resolved.map((title, i) =>
+        [i, pages[title] ? { title, ...pages[title] } : { title, missing: '' }]))
+      return jsonResponse(200, { query: { normalized, redirects, pages: found } })
+    })
     vi.stubGlobal('fetch', fetchMock)
-    await expect(getWikipediaImage('Beyonce Knowles')).resolves.toBe('https://img/beyonce.jpg')
+    return fetchMock
+  }
+  const band = (description, source) => ({ description, thumbnail: { source } })
+
+  it('skips a page that is not about music and takes the band page', async () => {
+    const fetchMock = wikipedia({ pages: {
+      Scorpions: band('Order of arachnids', 'https://img/arachnid.jpg'),
+      'Scorpions (band)': band('German rock band', 'https://img/scorpions.jpg'),
+    } })
+    await expect(getWikipediaImage('Scorpions')).resolves.toBe('https://img/scorpions.jpg')
     const url = new URL(fetchMock.mock.calls[0][0])
     expect(url.origin).toBe('https://en.wikipedia.org')
-    expect(url.searchParams.get('titles')).toBe('Beyonce Knowles')
+    expect(url.searchParams.get('titles')).toBe(
+      'Scorpions|Scorpions (band)|Scorpions (musician)|Scorpions (singer)|Scorpions (rapper)|Scorpions (group)')
     expect(url.searchParams.get('origin')).toBe('*')
+    expect(fetchMock).toHaveBeenCalledTimes(1)
   })
 
-  it('resolves to undefined when the lookup fails', async () => {
+  it('prefers the plain title when it is the music page', async () => {
+    wikipedia({ pages: {
+      Madonna: band('American singer-songwriter (born 1958)', 'https://img/madonna.jpg'),
+      'Madonna (band)': band('Rock band', 'https://img/other.jpg'),
+    } })
+    await expect(getWikipediaImage('Madonna')).resolves.toBe('https://img/madonna.jpg')
+  })
+
+  it('follows normalized titles and redirects', async () => {
+    wikipedia({
+      redirects: [{ from: 'Hank Williams Jr', to: 'Hank Williams Jr.' }],
+      pages: { 'Hank Williams Jr.': band('American singer-songwriter and musician', 'https://img/hank.jpg') },
+    })
+    await expect(getWikipediaImage('Hank Williams Jr')).resolves.toBe('https://img/hank.jpg')
+  })
+
+  it('falls back to the best ranked music page of a search', async () => {
+    const fetchMock = wikipedia({ search: [
+      { title: 'Direct current', description: 'Electric current' },
+      { title: 'AC/DC', ...band('Australian rock band', 'https://img/acdc.jpg') },
+    ] })
+    await expect(getWikipediaImage('Ac Dc')).resolves.toBe('https://img/acdc.jpg')
+    expect(new URL(fetchMock.mock.calls[1][0]).searchParams.get('gsrsearch')).toBe('Ac Dc')
+  })
+
+  it('resolves to undefined when no music page is found', async () => {
+    wikipedia({ pages: { Alabama: band('State of the United States', 'https://img/state.jpg') } })
+    await expect(getWikipediaImage('Alabama')).resolves.toBeUndefined()
+  })
+
+  it('looks each name up once', async () => {
+    const fetchMock = wikipedia({ pages: { Eels: band('American indie rock band', 'https://img/eels.jpg') } })
+    await getWikipediaImage('Eels')
+    await expect(getWikipediaImage('Eels')).resolves.toBe('https://img/eels.jpg')
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('resolves to undefined when the lookup fails, and tries again next time', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => { throw new TypeError('offline') }))
     await expect(getWikipediaImage('x')).resolves.toBeUndefined()
     await expect(getWikipediaImage('')).resolves.toBeUndefined()
+    const fetchMock = wikipedia({ pages: { x: band('Pop duo', 'https://img/x.jpg') } })
+    await expect(getWikipediaImage('x')).resolves.toBe('https://img/x.jpg')
+    expect(fetchMock).toHaveBeenCalledTimes(1)
   })
 })
 
