@@ -5,10 +5,9 @@ import {
   CLEAR_SONG,
 } from './const'
 import {
-  artistDisplayName,
+  artistImage,
   generateSong as generateSongApi,
   getGeneratedSong as getGeneratedSongApi,
-  getWikipediaImage,
 } from '../../../helpers/api'
 import { generateErrorMessage, getSongErrorMessage } from './errors'
 
@@ -43,7 +42,7 @@ export const getGeneratedSong = (songId) => async (dispatch) => {
   })
   try {
     const song = await getGeneratedSongApi(songId)
-    const coverImg = await getWikipediaImage(artistDisplayName(song.base_artist))
+    const coverImg = await artistImage(song.base_artist)
     dispatch({
       type: GET_SONG_FULFILLED,
       payload: {
