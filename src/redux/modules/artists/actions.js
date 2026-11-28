@@ -7,10 +7,9 @@ import {
 } from './const'
 import {
   MIN_SEARCH_LENGTH,
-  artistDisplayName,
+  artistImage,
   getArtistsTotal as getArtistsTotalApi,
   getRandomArtists,
-  getWikipediaImage,
   searchArtists,
 } from '../../../helpers/api'
 
@@ -48,10 +47,10 @@ export const getArtists = (filter = '') => async (dispatch) => {
   if (requestId !== latestRequest) return
   dispatch({ type: GET_ARTISTS_FULFILLED, payload: { list } })
 
-  // Cover images are a best effort lookup; failures leave the tile without one.
-  // Wikipedia resolves the display name (clean_name) far better than the slug.
+  // Cover images come from the catalog or a best effort lookup; failures leave
+  // the tile without one.
   list.forEach(async (item) => {
-    const coverImg = await getWikipediaImage(artistDisplayName(item))
+    const coverImg = await artistImage(item)
     if (coverImg) {
       dispatch({ type: SAVE_COVER_IMAGE, payload: { id: item.id, coverImg } })
     }

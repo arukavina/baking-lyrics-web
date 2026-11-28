@@ -3,6 +3,7 @@ import { jsonResponse, mockFetch, requestedUrls, beyonce } from '../../test/util
 import { ApiError, apiGet, isGeneratorOffline, isNotFound } from './client'
 import {
   artistDisplayName,
+  artistImage,
   cleanSeed,
   generateSong,
   getArtistsTotal,
@@ -292,6 +293,22 @@ describe('getWikipediaImage', () => {
     const fetchMock = wikipedia({ pages: { x: band('Pop duo', 'https://img/x.jpg') } })
     await expect(getWikipediaImage('x')).resolves.toBe('https://img/x.jpg')
     expect(fetchMock).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('artistImage', () => {
+  it('uses the catalog picture when the artist page is known, without asking Wikipedia', async () => {
+    const fetchMock = mockFetch()
+    await expect(artistImage({ clean_name: 'Queen', wiki_title: 'Queen (band)', image_url: 'https://img/q.jpg' }))
+      .resolves.toBe('https://img/q.jpg')
+    await expect(artistImage({ clean_name: '112', wiki_title: '112 (band)', image_url: null })).resolves.toBeUndefined()
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+
+  it('looks the display name up when the catalog has no page', async () => {
+    const fetchMock = mockFetch()
+    await expect(artistImage({ clean_name: 'Some Band', wiki_title: null })).resolves.toBeUndefined()
+    expect(new URL(requestedUrls(fetchMock)[0]).searchParams.get('titles')).toMatch(/^Some Band\|Some Band \(band\)/)
   })
 })
 

@@ -1,6 +1,7 @@
 // Public surface of the backend API. Every function resolves to the parsed
 // JSON body and rejects with an ApiError (see ./client).
 import { ApiError, apiGet, apiPost, isNotFound } from './client'
+import { getWikipediaImage } from './wikipedia'
 
 export { ApiError, isNotFound, isGeneratorOffline, API_URL } from './client'
 export { getWikipediaImage } from './wikipedia'
@@ -11,7 +12,8 @@ export const RANDOM_MAX = 20
 
 /**
  * @typedef {{id: number, name: string, clean_name: string, cover: boolean,
- *   country: string, formation_date: string|null, genre: string|null}} Artist
+ *   country: string, formation_date: string|null, genre: string|null,
+ *   wiki_title?: string|null, image_url?: string|null}} Artist
  * @typedef {{id: number, artificial_title: {id: number, title: string, creation_date: string},
  *   lyrics: string, model: string, creation_date: string, user: object,
  *   base_artist: Artist}} ArtificialSong
@@ -20,6 +22,14 @@ export const RANDOM_MAX = 20
 // Human readable artist name: `name` is a slug, `clean_name` the display name.
 export const artistDisplayName = artist =>
   artist?.clean_name || (artist?.name ? artist.name.replace(/-/g, ' ') : '')
+
+// The artist's picture. When the catalog knows the artist's Wikipedia page (the
+// reviewed artist pages list of the backend) its picture is used as is, even
+// when the page has none; otherwise a best effort live lookup by display name.
+export const artistImage = artist =>
+  artist?.wiki_title
+    ? Promise.resolve(artist.image_url || undefined)
+    : getWikipediaImage(artistDisplayName(artist))
 
 /** GET /general/ping, resolves to "pong!" */
 export const ping = () => apiGet('/general/ping')
