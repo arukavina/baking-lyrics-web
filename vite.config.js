@@ -46,6 +46,12 @@ export default defineConfig(({ mode }) => {
       setupFiles: ['./src/test/setup.js'],
       restoreMocks: true,
       unstubGlobals: true,
+      coverage: {
+        provider: 'v8',
+        include: ['src/**/*.{js,jsx}'],
+        exclude: ['src/test/**', 'src/**/*.test.{js,jsx}'],
+        reporter: ['text-summary', 'lcov'],
+      },
     },
   }
 })
