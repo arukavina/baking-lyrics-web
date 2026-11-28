@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import InfoBox from './InfoBox'
 import Container from '../shared/Container'
 import jonathanPerkesImg from '../../static/images/jonathanPerkes.webp'
@@ -105,9 +104,6 @@ const AboutUs = () => (
             </li>
           ))}
         </ul>
-        <p className="about-help body-text">
-          Want to lend a hand? <Link className="text-link" to="/help-us">See how you can help us</Link>.
-        </p>
       </Container>
     </section>
   </>
