@@ -21,7 +21,7 @@ describe('Footer', () => {
     expect(screen.getByText(/Lyrics by machines, since 2018\./)).toBeInTheDocument()
     expect(container.querySelector('.site-footer__build')).toHaveTextContent(`v${packageJson.version} · (front)`)
     expect(screen.getByRole('link', { name: 'GitHub' }))
-      .toHaveAttribute('href', 'https://github.com/arukavina/baking-lyrics-web')
+      .toHaveAttribute('href', 'https://github.com/arukavina')
     expect(screen.getByRole('link', { name: 'LinkedIn' }))
       .toHaveAttribute('href', 'https://www.linkedin.com/in/andreirukavina/?locale=en')
     expect(await screen.findByRole('link', { name: 'Andrei Rukavina' })).toHaveAttribute('target', '_blank')
@@ -55,6 +55,7 @@ describe('BuildInfo', () => {
     expect(link).toHaveAttribute('href', `https://github.com/arukavina/baking-lyrics-web/commit/${FRONT_SHA}`)
     expect(link).toHaveAttribute('rel', 'noreferrer noopener')
     expect(link.parentElement).toHaveTextContent('(front) def5678 Nov 22, 2026')
+    expect(screen.getByRole('link', { name: 'front' })).toHaveAttribute('href', 'https://github.com/arukavina/baking-lyrics-web')
     await screen.findByRole('link', { name: 'Andrei Rukavina' })
   })
 
@@ -70,6 +71,7 @@ describe('BuildInfo', () => {
     const link = await screen.findByRole('link', { name: 'abc1234' })
     expect(link).toHaveAttribute('href', `https://github.com/arukavina/baking-lyrics/commit/${BACK_SHA}`)
     expect(link).toHaveAttribute('target', '_blank')
+    expect(screen.getByRole('link', { name: 'back' })).toHaveAttribute('href', 'https://github.com/arukavina/baking-lyrics')
     expect(container).toHaveTextContent(
       'v9.9.9 · (back) abc1234 Nov 22, 2026 · (front) def5678 Nov 22, 2026 · Andrei Rukavina'
     )

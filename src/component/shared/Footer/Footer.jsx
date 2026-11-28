@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router'
 import Container from '../Container'
 import BuildInfo from './BuildInfo'
 import ExternalLink from './ExternalLink'
-import { FRONT_REPO_URL, LINKEDIN_URL, TERMS_PATH } from './build'
+import { GITHUB_URL, LINKEDIN_URL, TERMS_PATH } from './build'
 import './Footer.css'
 
 const GithubIcon = () => (
@@ -19,7 +19,7 @@ const LinkedInIcon = () => (
 )
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: FRONT_REPO_URL, Icon: GithubIcon },
+  { label: 'GitHub', href: GITHUB_URL, Icon: GithubIcon },
   { label: 'LinkedIn', href: LINKEDIN_URL, Icon: LinkedInIcon },
 ]
 
