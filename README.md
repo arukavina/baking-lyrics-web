@@ -1,5 +1,7 @@
 # baking-lyrics-web
 
+[![codecov](https://codecov.io/gh/arukavina/baking-lyrics-web/graph/badge.svg)](https://codecov.io/gh/arukavina/baking-lyrics-web)
+
 Web front end for Baking-Lyrics, an engine that generates song lyrics in the style of an artist from a few seed words.
 
 It is a React 19 single page app built with Vite, using react-router 7 and Redux Toolkit. It talks to the [Baking-Lyrics backend](https://github.com/arukavina/baking-lyrics) (Flask, routes under `/api/v1`).
