@@ -18,7 +18,7 @@ describe('Footer', () => {
   it('shows the tagline, the front version and the social links', async () => {
     mockFetch({ [VERSION_URL]: [404, { message: 'Not Found' }] })
     const { container } = renderAt(<Footer />)
-    expect(screen.getByText(/Lyrics by machines, since 2020\./)).toBeInTheDocument()
+    expect(screen.getByText(/Lyrics by machines, since 2018\./)).toBeInTheDocument()
     expect(container.querySelector('.site-footer__build')).toHaveTextContent(`v${packageJson.version} · (front)`)
     expect(screen.getByRole('link', { name: 'GitHub' }))
       .toHaveAttribute('href', 'https://github.com/arukavina/baking-lyrics-web')

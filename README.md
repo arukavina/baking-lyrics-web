@@ -40,7 +40,7 @@ The app runs at http://localhost:3000. Requests to `/api` are proxied to http://
 | `VITE_API_URL` | `/api/v1` | Base URL of the backend API. |
 | `VITE_COMMIT_SHA`, `VITE_COMMIT_DATE` | read from git | Commit shown in the footer as `(front)`; set them when building without git history. |
 
-The default is same origin. The backend has no CORS support, so in production the web server that serves the app must reverse proxy `/api` to the backend; pointing `VITE_API_URL` at another host will be blocked by the browser. See `.env.example`; put local overrides in `.env.local`.
+The default is same origin, which the dev proxy serves. In production `VITE_API_URL` is the backend's AWS Lambda Function URL plus `/api/v1`, set as a Production environment variable on the Vercel project and read at build time; the backend allows the site's origins through CORS (`ALLOWED_ORIGINS`). See `.env.example`; put local overrides in `.env.local`.
 
 ## Tests and lint
 
@@ -71,4 +71,4 @@ Repository secrets used by the deploy:
 
 To redeploy without a new commit, run the Deploy workflow manually from the Actions tab (`gh workflow run deploy.yml`).
 
-`vercel.json` serves `index.html` for every path except `/api/` and `/assets/` so client side routes such as `/about-us` load directly while missing API routes and assets return a real 404, and caches the hashed files in `/assets` for a year. The backend is not hosted on Vercel yet; once it has a public URL, a rewrite from `/api/(.*)` to it goes before the catch all rewrite in `vercel.json`.
+`vercel.json` serves `index.html` for every path except `/api/` and `/assets/` so client side routes such as `/about-us` load directly while missing API routes and assets return a real 404, and caches the hashed files in `/assets` for a year. The backend runs on AWS Lambda and is called directly through `VITE_API_URL`, so `vercel.json` has no API rewrite; changing `VITE_API_URL` on Vercel needs a redeploy (run the Deploy workflow) because it is baked in at build time.

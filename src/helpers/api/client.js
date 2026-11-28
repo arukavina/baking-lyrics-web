@@ -1,6 +1,7 @@
 // Thin fetch wrapper for the Baking-Lyrics backend (Flask, routes under /api/v1).
-// The backend has no CORS support, so the default base URL is same-origin:
-// in development Vite proxies /api to the backend (see vite.config.js).
+// In development the default same-origin /api/v1 is proxied by Vite to the local backend
+// (see vite.config.js). Production builds set VITE_API_URL to the AWS Lambda Function URL,
+// which allows the site's origins through CORS (ALLOWED_ORIGINS on the backend).
 export const API_URL = (import.meta.env.VITE_API_URL ?? '/api/v1').replace(/\/+$/, '')
 
 // Thrown for every non-2xx response (status = HTTP status), for a 2xx
