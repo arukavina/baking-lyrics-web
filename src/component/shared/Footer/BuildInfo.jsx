@@ -3,7 +3,7 @@ import { getVersion } from '../../../helpers/api'
 import { BACK_REPO_URL, FRONT_BUILD, FRONT_REPO_URL, LINKEDIN_URL, formatCommitDate } from './build'
 import ExternalLink from './ExternalLink'
 
-// One "(label) sha date" segment: the label links to its repository, the sha to its commit on GitHub.
+// One "(label) sha date" segment: the label links to its repository on GitHub, the sha is plain text.
 // Without a real sha it reads "(label) dev".
 const CommitSegment = ({ label, repoUrl, commit, date }) => {
   const hasSha = Boolean(commit) && commit !== 'dev'
@@ -13,11 +13,7 @@ const CommitSegment = ({ label, repoUrl, commit, date }) => {
       {' · ('}
       <ExternalLink href={repoUrl}>{label}</ExternalLink>
       {') '}
-      {hasSha ? (
-        <ExternalLink href={`${repoUrl}/commit/${commit}`}>{commit.slice(0, 7)}</ExternalLink>
-      ) : (
-        'dev'
-      )}
+      {hasSha ? commit.slice(0, 7) : 'dev'}
       {formattedDate ? ` ${formattedDate}` : null}
     </>
   )
